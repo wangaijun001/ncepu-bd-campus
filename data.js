@@ -62,6 +62,11 @@ const DATA = {
    "NCEPUwiki",
    "https://wiki.ncepuinfo.cc/",
    "学生百科·教材资料"
+  ],
+  [
+   "PDF版下载",
+   "https://wangaijun001.github.io/ncepu-bd-campus/guide.pdf",
+   "完整指南·31页"
   ]
  ],
  "mapNotes": [
@@ -79,6 +84,8 @@ const DATA = {
   "msg": "本篇内容由<b>王家田垄</b>网上搜集汇总，供广大学子参考，如有错误可联系开发者修改（QQ 邮箱：2045296004@qq.com；GitHub 仓库提 Issue：https://github.com/wangaijun001/ncepu-bd-campus/issues ）。",
   "recName": "NCEPUwiki · 华电wiki（学生自制百科）",
   "recUrl": "https://wiki.ncepuinfo.cc/",
+  "pdfName": "华电保定校园通.pdf（完整版指南下载）",
+  "pdfUrl": "https://wangaijun001.github.io/ncepu-bd-campus/guide.pdf",
   "sources": [
    [
     "学校门户",

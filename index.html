@@ -108,7 +108,7 @@ footer{text-align:center;color:#9aa7b5;font-size:11.5px;padding:24px 16px 40px;l
 
 <footer id="foot"></footer>
 
-<script src="data.js?v=202609062225"></script>
+<script src="data.js?v=202609062235"></script>
 <script>
 const app = document.getElementById('app');
 const esc = s => (s ?? '').toString().replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
@@ -229,7 +229,8 @@ function renderDev(){
   const D = DATA.dev;
   let html = `<div class="panel"><h2>开发者寄语</h2>
   <div style="font-size:13.5px;margin-top:8px">${linkify(D.msg)}</div>
-  <div class="note" style="margin-top:10px">开发者推荐一个更加完善的学生自制网站：<a href="${esc(D.recUrl)}" target="_blank" rel="noopener"><b>${esc(D.recName)}</b><span class="lurl">${esc(D.recUrl)}</span></a></div></div>`;
+  <div class="note" style="margin-top:10px">开发者推荐一个更加完善的学生自制网站：<a href="${esc(D.recUrl)}" target="_blank" rel="noopener"><b>${esc(D.recName)}</b><span class="lurl">${esc(D.recUrl)}</span></a></div>
+  ${D.pdfUrl?`<div class="note">本指南 PDF 完整版下载：<a href="${esc(D.pdfUrl)}" target="_blank" rel="noopener"><b>${esc(D.pdfName||'PDF 下载')}</b><span class="lurl">${esc(D.pdfUrl)}</span></a></div>`:''}</div>`;
   html += `<div class="panel"><h2>内容来源网址汇总</h2><div class="pdesc">本站所有信息的来源链接，共 ${D.sources.length} 条（分类排列，点击网址可直接打开）</div>
   <table><thead><tr><th style="width:90px">类别</th><th>网站/页面</th><th>网址</th></tr></thead><tbody>${
     D.sources.map(s=>`<tr><td>${esc(s[0])}</td><td>${s[2]?`<a href="${esc(s[2])}" target="_blank" rel="noopener">${esc(s[1])}</a>`:esc(s[1])}</td><td>${s[2]?`<a href="${esc(s[2])}" target="_blank" rel="noopener">${esc(s[2])}</a>`:'—'}</td></tr>`).join('')
