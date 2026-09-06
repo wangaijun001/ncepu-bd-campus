@@ -89,6 +89,7 @@ footer{text-align:center;color:#9aa7b5;font-size:11.5px;padding:24px 16px 40px;l
     <a class="nl on" data-view="home" href="javascript:void(0)" onclick="showView('home')">首页</a>
     <a class="nl" data-view="study" href="javascript:void(0)" onclick="showView('study')">学习</a>
     <a class="nl" data-view="life" href="javascript:void(0)" onclick="showView('life')">生活</a>
+    <a class="nl" data-view="dev" href="javascript:void(0)" onclick="showView('dev')">开发者寄语</a>
     <div class="spacer"></div>
     <input id="q" type="search" placeholder="搜索内容…（如：数学建模 / 报修）">
   </div>
@@ -99,6 +100,7 @@ footer{text-align:center;color:#9aa7b5;font-size:11.5px;padding:24px 16px 40px;l
   <div class="view" id="view-home">页面生成中…（若长期无响应请检查 data.js 是否在同目录）</div>
   <div class="view" id="view-study" style="display:none"></div>
   <div class="view" id="view-life" style="display:none"></div>
+  <div class="view" id="view-dev" style="display:none"></div>
 </div>
 
 <div id="lightbox"><img id="lbimg" src="" alt=""></div>
@@ -186,7 +188,7 @@ function filterBar(b){
 let CUR = 'home';
 function showView(name){
   CUR = name;
-  ['home','study','life'].forEach(v=>{
+  ['home','study','life','dev'].forEach(v=>{
     document.getElementById('view-'+v).style.display = v===name ? '' : 'none';
   });
   document.querySelectorAll('a.nl[data-view]').forEach(a=>a.classList.toggle('on', a.dataset.view===name));
@@ -221,10 +223,24 @@ function renderHome(){
   document.getElementById('view-home').innerHTML = html;
 }
 
+// ===== 开发者寄语 =====
+function renderDev(){
+  const D = DATA.dev;
+  let html = `<div class="panel"><h2>开发者寄语</h2>
+  <div style="font-size:13.5px;margin-top:8px">${linkify(D.msg)}</div>
+  <div class="note" style="margin-top:10px">开发者推荐一个更加完善的学生自制网站：<a href="${esc(D.recUrl)}" target="_blank" rel="noopener"><b>${esc(D.recName)}</b><span class="lurl">${esc(D.recUrl)}</span></a></div></div>`;
+  html += `<div class="panel"><h2>内容来源网址汇总</h2><div class="pdesc">本站所有信息的来源链接，共 ${D.sources.length} 条（分类排列，点击网址可直接打开）</div>
+  <table><thead><tr><th style="width:90px">类别</th><th>网站/页面</th><th>网址</th></tr></thead><tbody>${
+    D.sources.map(s=>`<tr><td>${esc(s[0])}</td><td>${s[2]?`<a href="${esc(s[2])}" target="_blank" rel="noopener">${esc(s[1])}</a>`:esc(s[1])}</td><td>${s[2]?`<a href="${esc(s[2])}" target="_blank" rel="noopener">${esc(s[2])}</a>`:'—'}</td></tr>`).join('')
+  }</tbody></table></div>`;
+  document.getElementById('view-dev').innerHTML = html;
+}
+
 // ===== 主流程 =====
 renderHome();
 document.getElementById('view-study').innerHTML = moduleHtml('study','学习',false);
 document.getElementById('view-life').innerHTML = moduleHtml('life','生活',false);
+renderDev();
 document.getElementById('foot').innerHTML = DATA.footer;
 
 // 竞赛筛选

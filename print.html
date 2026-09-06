@@ -17,8 +17,7 @@ a{color:#0b62c4;text-decoration:none;word-break:break-all}
 .cover .cap{font-size:11px;color:#9aa7b5;margin-top:8px}
 .cover .meta{margin-top:14px;font-size:11px;color:#68788e}
 /* ===== 章节标题 ===== */
-h2.mod{font-size:19px;color:#124a30;border-left:5px solid #1e7a4f;padding-left:10px;margin:16px 0 10px;page-break-before:always}
-h2.mod.first{page-break-before:auto}
+h2.mod{font-size:19px;color:#124a30;border-left:5px solid #1e7a4f;padding-left:10px;margin:4px 0 10px;page-break-before:always}
 h3.sec{font-size:14.5px;color:#124a30;margin:14px 0 7px;border-bottom:2px solid #e8f4ee;padding-bottom:3px}
 .blktitle{font-weight:bold;font-size:13px;color:#124a30;margin:10px 0 4px}
 .keep{break-inside:avoid}
@@ -26,8 +25,8 @@ h3.sec{font-size:14.5px;color:#124a30;margin:14px 0 7px;border-bottom:2px solid 
 .intro-panel h2{font-size:20px;color:#124a30;margin-bottom:4px}
 .pdesc{color:#68788e;font-size:12px;margin-bottom:8px}
 /* ===== 卡片 ===== */
-.cards{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.card{border:1px solid #dde6e0;border-radius:8px;padding:9px 11px;break-inside:avoid;background:#fff}
+.cards{column-count:2;column-gap:8px}
+.card{border:1px solid #dde6e0;border-radius:8px;padding:9px 11px;break-inside:avoid;background:#fff;margin-bottom:8px}
 .card .t{font-weight:bold;font-size:13px;color:#124a30;margin-bottom:3px}
 .badge{font-size:9.5px;color:#fff;background:#5b8c5a;border-radius:4px;padding:0 6px;font-weight:normal;margin-right:5px}
 .badge.bA{background:#c0392b}.badge.bB{background:#d4791f}.badge.bC{background:#2c7fb8}.badge.bX{background:#5b8c5a}
@@ -136,6 +135,11 @@ function moduleHtml(key, title, first){
   html += `<div class="keep"><h3 class="sec">二校区地图注记</h3><ul class="dots">${DATA.mapNotes.map(x=>`<li>${linkify(x)}</li>`).join('')}</ul>${srcHtml({src:'NCEPUwiki 团队手绘地图 V2.2.8.7（ncepuinfo.icu）',srcUrl:'https://wiki.ncepuinfo.cc/'})}</ul></div>`;
   html += moduleHtml('study','学习模块',true);
   html += moduleHtml('life','生活模块',false);
+  const D = DATA.dev || {msg:'',recName:'',recUrl:'',sources:[]};
+  html += `<h2 class="mod">开发者寄语</h2><div class="intro-panel"><div style="font-size:12.5px">${linkify(D.msg)}</div><div class="note">开发者推荐一个更加完善的学生自制网站：<a href="${esc(D.recUrl)}" target="_blank" rel="noopener"><b>${esc(D.recName)}</b><span class="lurl">${esc(D.recUrl)}</span></a></div></div>`;
+  html += `<div class="keep"><h3 class="sec">所有内容来源网址（共 ${D.sources.length} 条）</h3><table><thead><tr><th style="width:80px">类别</th><th>网站/页面</th><th>网址</th></tr></thead><tbody>${
+    D.sources.map(s=>`<tr><td>${esc(s[0])}</td><td>${s[2]?`<a href="${esc(s[2])}" target="_blank" rel="noopener">${esc(s[1])}</a>`:esc(s[1])}</td><td style="word-break:break-all">${s[2]?`<a href="${esc(s[2])}" target="_blank" rel="noopener">${esc(s[2])}</a>`:'—'}</td></tr>`).join('')
+  }</tbody></table></div>`;
   html += `<div style="margin-top:18px;padding-top:8px;border-top:1px solid #dde6e0;font-size:10px;color:#9aa7b5;text-align:center">华电保定·校园通 · 每条信息均标注来源 · 内容存放在 data.js 可自行修改更新 · 仅供参考，以学校官方最新通知为准</div>`;
   document.getElementById('app').innerHTML = html;
 })();
