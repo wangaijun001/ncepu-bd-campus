@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>华电保定 · 校园通</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--green:#1e7a4f;--green-d:#124a30;--green-l:#e8f4ee;--blue:#0b62c4;--gray:#68788e;--line:#dde6e0;--amber-bg:#fdf6ec;--amber:#d99a2b;--amber-t:#7a5a1e}
+body{font-family:"Microsoft YaHei","PingFang SC",sans-serif;color:#1f2733;background:#f4f7f5;line-height:1.65}
+a{color:var(--blue);text-decoration:none;word-break:break-all}
+a:hover{text-decoration:underline}
+img{max-width:100%}
+/* ===== 顶部导航 ===== */
+nav{position:sticky;top:0;z-index:99;background:#fff;border-bottom:2px solid var(--green);box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.nav-in{max-width:1080px;margin:0 auto;display:flex;align-items:center;gap:6px;padding:8px 16px;flex-wrap:wrap}
+.logo{font-weight:800;font-size:17px;color:var(--green-d);margin-right:10px;white-space:nowrap}
+.logo span{color:var(--green)}
+.nav-in a.nl{padding:5px 11px;border-radius:6px;color:#2c3a4d;font-size:14px;white-space:nowrap}
+.nav-in a.nl:hover,.nav-in a.nl.on{background:var(--green-l);color:var(--green-d);font-weight:bold}
+.spacer{flex:1}
+#q{border:1px solid var(--line);border-radius:18px;padding:6px 14px;font-size:13px;width:180px;outline:none}
+#q:focus{border-color:var(--green)}
+#qCount{font-size:11px;color:var(--gray);width:100%;text-align:right;padding:0 16px;display:none}
+/* ===== 布局 ===== */
+.wrap{max-width:1080px;margin:0 auto;padding:18px 16px 60px}
+.hero{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:18px}
+.hero-img{position:relative;cursor:zoom-in}
+.hero-img img{width:100%;display:block}
+.hero-img .cap{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(transparent,rgba(0,0,0,.62));color:#fff;font-size:12px;padding:22px 14px 8px}
+.panel{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin-bottom:18px}
+.panel>h2{font-size:20px;color:var(--green-d);border-left:5px solid var(--green);padding-left:10px;margin-bottom:6px}
+.panel>.pdesc{color:var(--gray);font-size:12.5px;margin-bottom:12px}
+h3.blk{font-size:15.5px;color:#124a30;margin:20px 0 8px;display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none}
+h3.blk::before{content:"▾";color:var(--green);transition:.2s;font-size:12px}
+h3.blk.closed::before{transform:rotate(-90deg)}
+h3.blk .cnt{font-size:11px;color:#fff;background:var(--green);border-radius:10px;padding:0 8px;font-weight:normal}
+.bgroup{margin-bottom:6px}
+/* 卡片 */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:10px}
+.card{background:#fff;border:1px solid var(--line);border-radius:9px;padding:11px 13px;transition:.15s}
+.card:hover{box-shadow:0 3px 12px rgba(30,122,79,.13);border-color:#bcd9ca}
+.card .t{font-weight:bold;font-size:14px;color:var(--green-d);margin-bottom:4px;display:flex;gap:6px;align-items:baseline;flex-wrap:wrap}
+.badge{font-size:10.5px;color:#fff;background:var(--green);border-radius:4px;padding:0 6px;font-weight:normal;white-space:nowrap}
+.badge.bA{background:#c0392b}.badge.bB{background:#d4791f}.badge.bC{background:#2c7fb8}.badge.bX{background:#5b8c5a}
+.row{display:flex;gap:8px;margin:3px 0;font-size:12.8px}
+.k{flex:0 0 58px;color:var(--gray);font-size:11.5px;text-align:justify;text-align-last:justify}
+.v{flex:1;color:#2c3a4d}
+.src{font-size:11px;color:#9aa7b5;margin-top:5px;border-top:1px dashed #e7ede9;padding-top:4px}
+.src a{color:#7f96ab}
+.steps{counter-reset:st}
+.step{display:flex;gap:9px;margin:7px 0;font-size:13.5px}
+.step::before{counter-increment:st;content:counter(st);flex:0 0 20px;height:20px;line-height:20px;text-align:center;background:var(--green);color:#fff;border-radius:50%;font-size:11px;font-weight:bold}
+.note{background:var(--amber-bg);border-left:3px solid var(--amber);border-radius:4px;padding:7px 11px;margin:8px 0;font-size:12.5px;color:var(--amber-t)}
+table{width:100%;border-collapse:collapse;font-size:12.5px;background:#fff;margin:8px 0}
+th,td{border:1px solid var(--line);padding:5px 9px;text-align:left;vertical-align:top}
+th{background:var(--green-l);color:var(--green-d);white-space:nowrap}
+.imgrow{display:flex;gap:12px;flex-wrap:wrap;margin:10px 0}
+.imgrow figure{flex:1;min-width:260px;text-align:center}
+.imgrow img{border:1px solid var(--line);border-radius:8px;width:100%}
+figcaption{font-size:11px;color:var(--gray);margin-top:3px}
+/* 筛选chips */
+.chips{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:8px 0 12px}
+.chip{border:1px solid var(--green);color:var(--green-d);background:#fff;border-radius:16px;padding:3px 14px;font-size:12.5px;cursor:pointer}
+.chip.on{background:var(--green);color:#fff;font-weight:bold}
+select.deptSel{border:1px solid var(--line);border-radius:16px;padding:4px 10px;font-size:12.5px;color:#2c3a4d;background:#fff;outline:none}
+/* 地图灯箱 */
+#lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.82);z-index:200;align-items:center;justify-content:center;cursor:zoom-out}
+#lightbox img{max-width:96vw;max-height:96vh;border-radius:8px}
+/* 快捷入口 */
+.quick{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.quick a{background:var(--green-l);border:1px solid #cfe6da;border-radius:9px;padding:10px;text-align:center;font-size:13px;color:var(--green-d);font-weight:bold;transition:.15s}
+.quick a:hover{background:var(--green);color:#fff;text-decoration:none;transform:translateY(-2px)}
+.quick a small{display:block;font-weight:normal;font-size:10.5px;margin-top:2px;opacity:.75}
+#top{position:fixed;right:22px;bottom:26px;background:var(--green);color:#fff;border:none;border-radius:50%;width:42px;height:42px;font-size:18px;cursor:pointer;display:none;box-shadow:0 3px 10px rgba(0,0,0,.2);z-index:98}
+.modtag{display:inline-block;background:var(--green);color:#fff;font-size:12px;border-radius:5px;padding:1px 10px;margin-right:8px;vertical-align:middle}
+.lurl{display:inline-block;color:#8ba3b8;font-size:10.5px;margin-left:5px;word-break:break-all;font-weight:normal}
+.quick a small.u{color:#5f7488;opacity:1}
+.morelink{float:right;font-size:12.5px;font-weight:normal}
+footer{text-align:center;color:#9aa7b5;font-size:11.5px;padding:24px 16px 40px;line-height:2}
+@media print{nav,#top,.chips{display:none}body{background:#fff}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-in">
+    <div class="logo">华电保定<span>·校园通</span></div>
+    <a class="nl on" data-view="home" href="javascript:void(0)" onclick="showView('home')">首页</a>
+    <a class="nl" data-view="study" href="javascript:void(0)" onclick="showView('study')">学习</a>
+    <a class="nl" data-view="life" href="javascript:void(0)" onclick="showView('life')">生活</a>
+    <div class="spacer"></div>
+    <input id="q" type="search" placeholder="搜索内容…（如：数学建模 / 报修）">
+  </div>
+  <div id="qCount"></div>
+</nav>
+
+<div class="wrap" id="app">
+  <div class="view" id="view-home">页面生成中…（若长期无响应请检查 data.js 是否在同目录）</div>
+  <div class="view" id="view-study" style="display:none"></div>
+  <div class="view" id="view-life" style="display:none"></div>
+</div>
+
+<div id="lightbox"><img id="lbimg" src="" alt=""></div>
+<button id="top" title="回到顶部">↑</button>
+
+<footer id="foot"></footer>
+
+<script src="data.js"></script>
+<script>
+const app = document.getElementById('app');
+const esc = s => (s ?? '').toString().replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+// 每个超链接后面跟着链接的实际字符串
+const urlTail = u => (u && u.startsWith('http')) ? `<span class="lurl">${esc(u)}</span>` : '';
+const linkHtml = l => `<a href="${esc(l[1])}" target="_blank" rel="noopener">${esc(l[0])}${urlTail(l[1])}</a>`;
+const quickTile = l => `<a href="${esc(l[1])}" target="_blank" rel="noopener">${esc(l[0])}<small>${esc(l[2]||'')}</small><small class="u">${esc(l[1])}</small></a>`;
+const srcHtml = b => b.src ? `<div class="src">来源：${b.srcUrl ? `<a href="${esc(b.srcUrl)}" target="_blank" rel="noopener">${esc(b.src)}${urlTail(b.srcUrl)}</a>` : esc(b.src)}</div>` : '';
+
+// ===== 正文裸网址 / 电话 → 可点击链接名 =====
+const URL_RE = /(https?:\/\/[^\s<>"，。；、）】』》！!？?]+|www\.[^\s<>"，。；、）】』》]+|\b[a-z0-9][a-z0-9-]*(?:\.[a-z0-9-]+)*\.(?:com|cn|net|org|cc|io|xyz|top)(?:\/[^\s<>"，。；、）】』》]*)?)/gi;
+function linkify(s){
+  if(s==null) return '';
+  return s.toString().split(/(<a\s[^>]*>[\s\S]*?<\/a>)|(<[^>]+>)/gi).map(seg=>{
+    if(seg==null) return '';
+    if(seg.charAt(0)==='<') return seg;
+    let out = seg.replace(URL_RE, u=>{
+      const raw = u.replace(/[.,;:!?)\]}"'’”』」]+$/, '');
+      const tail = u.slice(raw.length);
+      const href = (/^https?:\/\//i.test(raw) ? raw : 'https://' + raw).replace(/"/g,'%22');
+      let txt = raw.replace(/^https?:\/\//i,'');
+      if(txt.length>60) txt = txt.slice(0,57)+'…';
+      return `<a href="${href}" target="_blank" rel="noopener" title="${esc(raw)}">${esc(txt)}</a>${tail}`;
+    });
+    out = out.replace(/0312-\d{7}|\b1[3-9]\d{9}\b/g, m=>`<a href="tel:${m}">${m}</a>`);
+    return out;
+  }).join('');
+}
+
+function cardHtml(c){
+  const badge = c.badge ? `<span class="badge ${c.badgeCls||''}">${esc(c.badge)}</span>` : '';
+  const rows = (c.rows||[]).map(r=>`<div class="row"><span class="k">${esc(r[0])}</span><span class="v">${linkify(r[1])}</span></div>`).join('');
+  const links = (c.links&&c.links.length) ? `<div class="row"><span class="k">链接</span><span class="v">${c.links.map(linkHtml).join('<br>')}</span></div>` : '';
+  const tags = (c.tags||[]).join(' ').replace(/"/g,'&quot;');
+  return `<div class="card" data-tags="${esc(tags)}">
+    <div class="t">${badge}${esc(c.t)}</div>${rows}${links}
+    ${c.note?`<div class="note">${linkify(c.note)}</div>`:''}${srcHtml(c)}</div>`;
+}
+
+function blockHtml(b){
+  if(b.type==='cards'){
+    const inner = `<div class="cards">${(b.items||[]).map(cardHtml).join('')}</div>`;
+    const head = b.t ? `<div style="font-weight:bold;font-size:13.5px;color:#124a30;margin:10px 0 2px">${esc(b.t)}</div>` : '';
+    return head + (b.filter ? inner + filterBar(b) : inner);
+  }
+  if(b.type==='table') return `<table>${(b.headers?`<tr>${b.headers.map(h=>`<th>${esc(h)}</th>`).join('')}</tr>`:'')}${b.rows.map(r=>`<tr>${r.map(c=>`<td>${linkify(c)}</td>`).join('')}</tr>`).join('')}</table>${srcHtml(b)}`;
+  if(b.type==='steps') return `<div class="steps">${b.items.map(s=>`<div class="step"><span><b>${linkify(s.t)}</b>${s.t?'<br>':''}${linkify(s.d||'')}</span></div>`).join('')}</div>${srcHtml(b)}`;
+  if(b.type==='note') return `<div class="note">${linkify(b.text)}</div>`;
+  if(b.type==='text') return `<div style="font-size:13.5px;margin:6px 0">${linkify(b.html)}</div>`;
+  if(b.type==='imgs') return `<div class="imgrow">${b.items.map(i=>`<figure><img src="${esc(i.src)}" loading="lazy" alt=""><figcaption>${esc(i.cap||'')}</figcaption></figure>`).join('')}</div>`;
+  if(b.type==='links') return `<div class="quick">${b.items.map(quickTile).join('')}</div>`;
+  if(b.type==='list') return `<ul style="margin:6px 0 6px 20px;font-size:13px">${b.items.map(x=>`<li style="margin:4px 0">${linkify(x)}</li>`).join('')}</ul>${srcHtml(b)}`;
+  return '';
+}
+
+function groupHtml(g){
+  const body = (b=>Array.isArray(b)?b:[b])(g.blocks).map(blockHtml).join('');
+  const cntMatch = body.match(/class="card"/g);
+  const cnt = g.count!=null ? g.count : (cntMatch?cntMatch.length:0);
+  return `<div class="bgroup"><h3 class="blk" onclick="this.classList.toggle('closed');this.nextElementSibling.style.display=this.classList.contains('closed')?'none':''">${esc(g.t)}<span class="cnt">${cnt}</span></h3><div class="bbody">${body}</div></div>`;
+}
+
+function filterBar(b){
+  const depts = [...new Set(b.items.map(c=>c.tags?c.tags[1]:'').filter(Boolean))].sort();
+  return `<div class="chips">
+    <span style="font-size:12px;color:var(--gray)">筛选：</span>
+    <button class="chip on" data-f="all">全部</button>
+    <button class="chip" data-f="A">A类</button>
+    <button class="chip" data-f="B">B类</button>
+    <button class="chip" data-f="C">其他</button>
+    <button class="chip" data-f="X">校内</button>
+    <select class="deptSel"><option value="">全部院系</option>${depts.map(d=>`<option>${esc(d)}</option>`).join('')}</select>
+  </div>`;
+}
+
+// ===== 视图切换：只有点顶部导航才换界面 =====
+let CUR = 'home';
+function showView(name){
+  CUR = name;
+  ['home','study','life'].forEach(v=>{
+    document.getElementById('view-'+v).style.display = v===name ? '' : 'none';
+  });
+  document.querySelectorAll('a.nl[data-view]').forEach(a=>a.classList.toggle('on', a.dataset.view===name));
+  scrollTo({top:0});
+}
+
+// ===== 模块渲染（collapsed=true 时整块折叠，用于首页） =====
+function moduleHtml(key, title, collapsed){
+  const secs = DATA[key]||[];
+  const zh = key==='study'?'学习':'生活';
+  let html = `<div class="panel"><h2><span class="modtag">${zh}</span>${esc(title)}${collapsed?`<a class="morelink" href="javascript:void(0)" onclick="showView('${key}')">进入${zh}模块 →</a>`:''}</h2>`;
+  if(!collapsed) html += `<div class="chips">${secs.map(s=>`<a class="chip" style="text-decoration:none" href="#st-${key}-${s.anchor}">${esc(s.name)}</a>`).join('')}</div>`;
+  for(const s of secs){
+    html += `<div ${collapsed?'':`id="st-${key}-${s.anchor}"`}><h3 class="blk${collapsed?' closed':''}" onclick="this.classList.toggle('closed');this.nextElementSibling.style.display=this.classList.contains('closed')?'none':''">${esc(s.name)}${s.desc?`<span style="font-weight:normal;font-size:11.5px;color:var(--gray)">${esc(s.desc)}</span>`:''}</h3><div class="bbody"${collapsed?' style="display:none"':''}>`;
+    for(const b of s.blocks||[]) html += blockHtml(b);
+    html += `</div></div>`;
+  }
+  return html + '</div>';
+}
+
+// ===== 首页：只有 地图 + 学校简介 + 折叠的学习/生活模块 =====
+function renderHome(){
+  const I = DATA.intro;
+  let html = `<div class="panel"><h2>${esc(I.title)}</h2>
+  <div class="pdesc">${I.sub}</div>
+  <div class="hero-img" onclick="lb(this.querySelector('img').src)"><img src="${esc(DATA.mapImg)}" alt="二校区地图"><div class="cap">${esc(DATA.mapCap)}（点击放大）</div></div>
+  <div style="font-size:13.5px;margin-top:12px">${linkify(I.text)}</div>${I.src?srcHtml(I):''}
+  <h3 class="blk closed" onclick="this.classList.toggle('closed');this.nextElementSibling.style.display=this.classList.contains('closed')?'none':''">地图注记</h3><div style="display:none">${blockHtml({type:'list',items:DATA.mapNotes,src:'NCEPUwiki 团队手绘地图 V2.2.8.7（ncepuinfo.icu）'})}</div></div>`;
+  html += moduleHtml('study','学习模块（点击展开）',true);
+  html += moduleHtml('life','生活模块（点击展开）',true);
+  html += `<div class="panel"><h3 class="blk closed" style="margin:0" onclick="this.classList.toggle('closed');this.nextElementSibling.style.display=this.classList.contains('closed')?'none':''">常用网址（快捷入口）</h3><div style="display:none"><div class="quick">${DATA.quickLinks.map(quickTile).join('')}</div></div></div>`;
+  document.getElementById('view-home').innerHTML = html;
+}
+
+// ===== 主流程 =====
+renderHome();
+document.getElementById('view-study').innerHTML = moduleHtml('study','学习',false);
+document.getElementById('view-life').innerHTML = moduleHtml('life','生活',false);
+document.getElementById('foot').innerHTML = DATA.footer;
+
+// 竞赛筛选
+document.querySelectorAll('.chips').forEach(ch=>{
+  if(!ch.querySelector('[data-f="A"]')) return;
+  ch.addEventListener('click',e=>{
+    if(e.target.classList.contains('chip')){
+      ch.querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));
+      e.target.classList.add('on');
+      applyContestFilter(ch);
+    }
+  });
+  ch.querySelector('.deptSel').addEventListener('change',()=>applyContestFilter(ch));
+});
+function applyContestFilter(ch){
+  const f = ch.querySelector('.chip.on').dataset.f;
+  const d = ch.querySelector('.deptSel').value;
+  let n=0;
+  ch.parentElement.querySelectorAll('.card').forEach(c=>{
+    const tags = (c.dataset.tags||'').split(' ');
+    const lv = tags[0]||''; const dept = tags[1]||'';
+    const ok = (f==='all'||lv===f) && (!d||dept===d);
+    c.style.display = ok?'':'none'; if(ok)n++;
+  });
+}
+
+// 全局搜索（限定当前视图；搜索时自动展开折叠的节）
+const q = document.getElementById('q'), qc = document.getElementById('qCount');
+q.addEventListener('input',()=>{
+  const kw = q.value.trim().toLowerCase();
+  const scope = document.getElementById('view-'+CUR);
+  if(kw){
+    scope.querySelectorAll('h3.blk.closed').forEach(h=>{h.classList.remove('closed');h.nextElementSibling.style.display='';});
+    scope.querySelectorAll('.bbody').forEach(b=>{if(b.style.display==='none')b.style.display='';});
+  }
+  let total=0, hit=0;
+  scope.querySelectorAll('.card,.step,tbody tr').forEach(el=>{
+    total++;
+    const ok = !kw || el.textContent.toLowerCase().includes(kw);
+    el.style.display = ok?'':'none'; if(ok)hit++;
+  });
+  scope.querySelectorAll('table').forEach(t=>{
+    if(!kw){ t.style.display=''; return; }
+    const any=[...t.querySelectorAll('tr')].some(r=>r.style.display!=='none');
+    t.style.display = any?'':'none';
+  });
+  qc.style.display = kw?'block':'none';
+  qc.textContent = kw ? `本页匹配 ${hit} / ${total} 条` : '';
+});
+
+// 折叠状态 & 导航高亮
+document.addEventListener('click',e=>{
+  const a = e.target.closest('a.nl'); if(!a) return;
+  document.querySelectorAll('a.nl').forEach(x=>x.classList.remove('on')); a.classList.add('on');
+});
+const topBtn = document.getElementById('top');
+topBtn.onclick = ()=>scrollTo({top:0,behavior:'smooth'});
+addEventListener('scroll',()=>topBtn.style.display = scrollY>600?'block':'none');
+function lb(src){document.getElementById('lbimg').src=src;document.getElementById('lightbox').style.display='flex';}
+document.getElementById('lightbox').onclick = ()=>document.getElementById('lightbox').style.display='none';
+</script>
+</body>
+</html>

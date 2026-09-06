@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<title>华电保定 · 校园通（打印版）</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei","PingFang SC",sans-serif;color:#1f2733;width:794px;margin:0 auto;line-height:1.6;font-size:12.5px;background:#fff}
+a{color:#0b62c4;text-decoration:none;word-break:break-all}
+.lurl{color:#8ba3b8;font-size:9.5px;margin-left:4px}
+/* ===== 封面 ===== */
+.cover{height:1025px;overflow:hidden;page-break-after:always;text-align:center;padding-top:34px}
+.cover .kicker{font-size:13px;letter-spacing:6px;color:#1e7a4f;margin-bottom:8px}
+.cover h1{font-size:40px;color:#124a30;margin:4px 0 6px}
+.cover .sub{font-size:13px;color:#68788e;margin-bottom:16px}
+.cover img{width:600px;border:1px solid #dde6e0;border-radius:10px}
+.cover .cap{font-size:11px;color:#9aa7b5;margin-top:8px}
+.cover .meta{margin-top:14px;font-size:11px;color:#68788e}
+/* ===== 章节标题 ===== */
+h2.mod{font-size:19px;color:#124a30;border-left:5px solid #1e7a4f;padding-left:10px;margin:16px 0 10px;page-break-before:always}
+h2.mod.first{page-break-before:auto}
+h3.sec{font-size:14.5px;color:#124a30;margin:14px 0 7px;border-bottom:2px solid #e8f4ee;padding-bottom:3px}
+.blktitle{font-weight:bold;font-size:13px;color:#124a30;margin:10px 0 4px}
+.keep{break-inside:avoid}
+.intro-panel{border:1px solid #dde6e0;border-radius:10px;padding:14px 16px;margin:14px 0}
+.intro-panel h2{font-size:20px;color:#124a30;margin-bottom:4px}
+.pdesc{color:#68788e;font-size:12px;margin-bottom:8px}
+/* ===== 卡片 ===== */
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.card{border:1px solid #dde6e0;border-radius:8px;padding:9px 11px;break-inside:avoid;background:#fff}
+.card .t{font-weight:bold;font-size:13px;color:#124a30;margin-bottom:3px}
+.badge{font-size:9.5px;color:#fff;background:#5b8c5a;border-radius:4px;padding:0 6px;font-weight:normal;margin-right:5px}
+.badge.bA{background:#c0392b}.badge.bB{background:#d4791f}.badge.bC{background:#2c7fb8}.badge.bX{background:#5b8c5a}
+.row{display:flex;gap:7px;margin:2px 0;font-size:11.5px}
+.k{flex:0 0 56px;color:#68788e;font-size:10.5px;text-align:justify;text-align-last:justify}
+.v{flex:1;color:#2c3a4d}
+.src{font-size:9.5px;color:#9aa7b5;margin-top:4px;border-top:1px dashed #e7ede9;padding-top:3px}
+.note{background:#fdf6ec;border-left:3px solid #d99a2b;border-radius:4px;padding:6px 10px;margin:7px 0;font-size:11.5px;color:#7a5a1e;break-inside:avoid}
+/* ===== 表格 ===== */
+table{width:100%;border-collapse:collapse;font-size:11px;background:#fff;margin:7px 0}
+th,td{border:1px solid #dde6e0;padding:4px 7px;text-align:left;vertical-align:top}
+th{background:#e8f4ee;color:#124a30}
+tr{break-inside:avoid}
+/* ===== 步骤/列表/图片/磁贴 ===== */
+.steps{margin:6px 0}
+.step{display:flex;gap:8px;margin:5px 0;font-size:12.5px;break-inside:avoid}
+.stepn{flex:0 0 18px;height:18px;line-height:18px;text-align:center;background:#1e7a4f;color:#fff;border-radius:50%;font-size:10px;font-weight:bold}
+.imgrow{display:flex;gap:10px;margin:8px 0;break-inside:avoid}
+.imgrow figure{flex:1;text-align:center}
+.imgrow img{max-width:100%;max-height:360px;border:1px solid #dde6e0;border-radius:8px}
+figcaption{font-size:10px;color:#68788e;margin-top:3px}
+.quick{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:8px 0}
+.quick a{border:1px solid #cfe6da;background:#e8f4ee;border-radius:8px;padding:7px 9px;font-size:12px;color:#124a30;font-weight:bold}
+.quick small{display:block;font-weight:normal;font-size:10px;color:#5f7488;margin-top:1px;word-break:break-all}
+ul.dots{margin:5px 0 5px 18px}
+ul.dots li{margin:3px 0;font-size:12px}
+</style>
+</head>
+<body>
+<div id="app">生成中…</div>
+<script src="data.js"></script>
+<script>
+const esc = s => (s ?? '').toString().replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const urlTail = u => (u && u.startsWith('http')) ? `<span class="lurl">${esc(u)}</span>` : '';
+const linkHtml = l => `<a href="${esc(l[1])}" target="_blank" rel="noopener">${esc(l[0])}${urlTail(l[1])}</a>`;
+const quickTile = l => `<a href="${esc(l[1])}" target="_blank" rel="noopener">${esc(l[0])}<small>${esc(l[2]||'')}</small><small>${esc(l[1])}</small></a>`;
+const srcHtml = b => b.src ? `<div class="src">来源：${b.srcUrl ? `<a href="${esc(b.srcUrl)}" target="_blank" rel="noopener">${esc(b.src)}${urlTail(b.srcUrl)}</a>` : esc(b.src)}</div>` : '';
+
+// ===== 正文裸网址 / 电话 → 可点击链接 =====
+const URL_RE = /(https?:\/\/[^\s<>"，。；、）】』》！!？?]+|www\.[^\s<>"，。；、）】』》]+|\b[a-z0-9][a-z0-9-]*(?:\.[a-z0-9-]+)*\.(?:com|cn|net|org|cc|io|xyz|top)(?:\/[^\s<>"，。；、）】』》]*)?)/gi;
+function linkify(s){
+  if(s==null) return '';
+  return s.toString().split(/(<a\s[^>]*>[\s\S]*?<\/a>)|(<[^>]+>)/gi).map(seg=>{
+    if(seg==null) return '';
+    if(seg.charAt(0)==='<') return seg;
+    let out = seg.replace(URL_RE, u=>{
+      const raw = u.replace(/[.,;:!?)\]}"'’”』」]+$/, '');
+      const tail = u.slice(raw.length);
+      const href = (/^https?:\/\//i.test(raw) ? raw : 'https://' + raw).replace(/"/g,'%22');
+      let txt = raw.replace(/^https?:\/\//i,'');
+      if(txt.length>60) txt = txt.slice(0,57)+'…';
+      return `<a href="${href}" target="_blank" rel="noopener" title="${esc(raw)}">${esc(txt)}</a>${tail}`;
+    });
+    out = out.replace(/0312-\d{7}|\b1[3-9]\d{9}\b/g, m=>`<a href="tel:${m}">${m}</a>`);
+    return out;
+  }).join('');
+}
+
+function cardHtml(c){
+  const badge = c.badge ? `<span class="badge ${c.badgeCls||''}">${esc(c.badge)}</span>` : '';
+  const rows = (c.rows||[]).map(r=>`<div class="row"><span class="k">${esc(r[0])}</span><span class="v">${linkify(r[1])}</span></div>`).join('');
+  const links = (c.links&&c.links.length) ? `<div class="row"><span class="k">链接</span><span class="v">${c.links.map(linkHtml).join('<br>')}</span></div>` : '';
+  return `<div class="card"><div class="t">${badge}${esc(c.t)}</div>${rows}${links}${c.note?`<div class="note">${linkify(c.note)}</div>`:''}${srcHtml(c)}</div>`;
+}
+
+function blockHtml(b){
+  if(b.type==='cards'){
+    const inner = `<div class="cards">${(b.items||[]).map(cardHtml).join('')}</div>`;
+    const head = b.t ? `<div class="blktitle">${esc(b.t)}</div>` : '';
+    return head + inner;
+  }
+  if(b.type==='table') return `<table>${(b.headers?`<thead><tr>${b.headers.map(h=>`<th>${esc(h)}</th>`).join('')}</tr></thead>`:'')}<tbody>${b.rows.map(r=>`<tr>${r.map(c=>`<td>${linkify(c)}</td>`).join('')}</tr>`).join('')}</tbody></table>${srcHtml(b)}`;
+  if(b.type==='steps') return `<div class="steps">${b.items.map((s,i)=>`<div class="step"><span class="stepn">${i+1}</span><span><b>${linkify(s.t)}</b>${s.t&&s.d?'<br>':''}${linkify(s.d||'')}</span></div>`).join('')}</div>${srcHtml(b)}`;
+  if(b.type==='note') return `<div class="note">${linkify(b.text)}</div>`;
+  if(b.type==='text') return `<div style="font-size:12.5px;margin:6px 0">${linkify(b.html)}</div>`;
+  if(b.type==='imgs') return `<div class="imgrow">${b.items.map(i=>`<figure><img src="${esc(i.src)}" alt=""><figcaption>${esc(i.cap||'')}</figcaption></figure>`).join('')}</div>`;
+  if(b.type==='links') return `<div class="quick">${b.items.map(quickTile).join('')}</div>`;
+  if(b.type==='list') return `<ul class="dots">${b.items.map(x=>`<li>${linkify(x)}</li>`).join('')}</ul>${srcHtml(b)}`;
+  return '';
+}
+
+function moduleHtml(key, title, first){
+  const secs = DATA[key]||[];
+  let html = `<h2 class="mod${first?' first':''}">${esc(title)}</h2>`;
+  for(const s of secs){
+    const blocks = s.blocks||[];
+    html += `<div class="keep"><h3 class="sec" style="margin-top:12px">${esc(s.name)}${s.desc?`<span style="font-weight:normal;font-size:10.5px;color:#68788e">　${esc(s.desc)}</span>`:''}</h3>${blocks.length?blockHtml(blocks[0]):''}</div>`;
+    html += blocks.slice(1).map(b=>blockHtml(b)).join('');
+  }
+  return html;
+}
+
+// ===== 组装 =====
+(function(){
+  const I = DATA.intro;
+  let html = `<div class="cover">
+    <div class="kicker">NCEPU · BAODING</div>
+    <h1>华电保定 · 校园通</h1>
+    <div class="sub">${esc(I.sub)}</div>
+    <img src="${esc(DATA.mapImg)}" alt="二校区地图">
+    <div class="cap">${esc(DATA.mapCap)}</div>
+    <div class="meta">信息核实至 2026年9月6日 · 依据学校官方网站、培养方案与 NCEPUwiki 学生百科整理 · 以学校官方最新通知为准</div>
+  </div>`;
+  html += `<div class="intro-panel"><h2>${esc(I.title)}</h2><div class="pdesc">${I.sub}</div><div style="font-size:12.5px">${linkify(I.text)}</div>${I.src?srcHtml(I):''}</div>`;
+  html += `<div class="keep"><h3 class="sec" style="margin-top:12px">常用网址（快捷入口）</h3><div class="quick">${DATA.quickLinks.map(quickTile).join('')}</div></div>`;
+  html += `<div class="keep"><h3 class="sec">二校区地图注记</h3><ul class="dots">${DATA.mapNotes.map(x=>`<li>${linkify(x)}</li>`).join('')}</ul>${srcHtml({src:'NCEPUwiki 团队手绘地图 V2.2.8.7（ncepuinfo.icu）',srcUrl:'https://wiki.ncepuinfo.cc/'})}</ul></div>`;
+  html += moduleHtml('study','学习模块',true);
+  html += moduleHtml('life','生活模块',false);
+  html += `<div style="margin-top:18px;padding-top:8px;border-top:1px solid #dde6e0;font-size:10px;color:#9aa7b5;text-align:center">华电保定·校园通 · 每条信息均标注来源 · 内容存放在 data.js 可自行修改更新 · 仅供参考，以学校官方最新通知为准</div>`;
+  document.getElementById('app').innerHTML = html;
+})();
+</script>
+</body>
+</html>
