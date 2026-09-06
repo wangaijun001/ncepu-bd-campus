@@ -76,7 +76,7 @@ const DATA = {
   "⑧ A南侧一楼监控室、B203教务处。"
  ],
  "dev": {
-  "msg": "本篇内容由<b>王家田垄</b>网上搜集汇总，供广大学子参考，如有错误可联系开发者修改（GitHub 仓库提 Issue：https://github.com/wangaijun001/ncepu-bd-campus/issues ）。",
+  "msg": "本篇内容由<b>王家田垄</b>网上搜集汇总，供广大学子参考，如有错误可联系开发者修改（QQ 邮箱：2045296004@qq.com；GitHub 仓库提 Issue：https://github.com/wangaijun001/ncepu-bd-campus/issues ）。",
   "recName": "NCEPUwiki · 华电wiki（学生自制百科）",
   "recUrl": "https://wiki.ncepuinfo.cc/",
   "sources": [

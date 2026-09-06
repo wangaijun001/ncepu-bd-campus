@@ -119,13 +119,14 @@ const quickTile = l => `<a href="${esc(l[1])}" target="_blank" rel="noopener">${
 const srcHtml = b => b.src ? `<div class="src">来源：${b.srcUrl ? `<a href="${esc(b.srcUrl)}" target="_blank" rel="noopener">${esc(b.src)}${urlTail(b.srcUrl)}</a>` : esc(b.src)}</div>` : '';
 
 // ===== 正文裸网址 / 电话 → 可点击链接名 =====
-const URL_RE = /(https?:\/\/[^\s<>"，。；、）】』》！!？?]+|www\.[^\s<>"，。；、）】』》]+|\b[a-z0-9][a-z0-9-]*(?:\.[a-z0-9-]+)*\.(?:com|cn|net|org|cc|io|xyz|top)(?:\/[^\s<>"，。；、）】』》]*)?)/gi;
+const URL_RE = /([a-zA-Z0-9._%+-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*\.[a-zA-Z]{2,})|(https?:\/\/[^\s<>"，。；、）】』》！!？?]+|www\.[^\s<>"，。；、）】』》]+|\b[a-z0-9][a-z0-9-]*(?:\.[a-z0-9-]+)*\.(?:com|cn|net|org|cc|io|xyz|top)(?:\/[^\s<>"，。；、）】』》]*)?)/gi;
 function linkify(s){
   if(s==null) return '';
   return s.toString().split(/(<a\s[^>]*>[\s\S]*?<\/a>)|(<[^>]+>)/gi).map(seg=>{
     if(seg==null) return '';
     if(seg.charAt(0)==='<') return seg;
     let out = seg.replace(URL_RE, u=>{
+      if(/^[^/@]+@[^/@]+\.[a-zA-Z]{2,}$/.test(u)) return `<a href="mailto:${u}">${u}</a>`;
       const raw = u.replace(/[.,;:!?)\]}"'’”』」]+$/, '');
       const tail = u.slice(raw.length);
       const href = (/^https?:\/\//i.test(raw) ? raw : 'https://' + raw).replace(/"/g,'%22');
