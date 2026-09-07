@@ -89,6 +89,7 @@ footer{text-align:center;color:#9aa7b5;font-size:11.5px;padding:24px 16px 40px;l
     <a class="nl on" data-view="home" href="javascript:void(0)" onclick="showView('home')">首页</a>
     <a class="nl" data-view="study" href="javascript:void(0)" onclick="showView('study')">学习</a>
     <a class="nl" data-view="life" href="javascript:void(0)" onclick="showView('life')">生活</a>
+    <a class="nl" data-view="res" href="javascript:void(0)" onclick="showView('res')">开发者资料</a>
     <a class="nl" data-view="dev" href="javascript:void(0)" onclick="showView('dev')">开发者寄语</a>
     <div class="spacer"></div>
     <input id="q" type="search" placeholder="搜索内容…（如：数学建模 / 报修）">
@@ -100,6 +101,7 @@ footer{text-align:center;color:#9aa7b5;font-size:11.5px;padding:24px 16px 40px;l
   <div class="view" id="view-home">页面生成中…（若长期无响应请检查 data.js 是否在同目录）</div>
   <div class="view" id="view-study" style="display:none"></div>
   <div class="view" id="view-life" style="display:none"></div>
+  <div class="view" id="view-res" style="display:none"></div>
   <div class="view" id="view-dev" style="display:none"></div>
 </div>
 
@@ -108,7 +110,7 @@ footer{text-align:center;color:#9aa7b5;font-size:11.5px;padding:24px 16px 40px;l
 
 <footer id="foot"></footer>
 
-<script src="data.js?v=202609071958"></script>
+<script src="data.js?v=202609072034"></script>
 <script>
 const app = document.getElementById('app');
 const esc = s => (s ?? '').toString().replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
@@ -153,7 +155,7 @@ function blockHtml(b){
   if(b.type==='cards'){
     const inner = `<div class="cards">${(b.items||[]).map(cardHtml).join('')}</div>`;
     const head = b.t ? `<div style="font-weight:bold;font-size:13.5px;color:#124a30;margin:10px 0 2px">${esc(b.t)}</div>` : '';
-    return head + (b.filter ? inner + filterBar(b) : inner);
+    return head + (b.filter ? filterBar(b) + inner : inner);
   }
   if(b.type==='table') return `<table>${(b.headers?`<tr>${b.headers.map(h=>`<th>${esc(h)}</th>`).join('')}</tr>`:'')}${b.rows.map(r=>`<tr>${r.map(c=>`<td>${linkify(c)}</td>`).join('')}</tr>`).join('')}</table>${srcHtml(b)}`;
   if(b.type==='steps') return `<div class="steps">${b.items.map(s=>`<div class="step"><span><b>${linkify(s.t)}</b>${s.t?'<br>':''}${linkify(s.d||'')}</span></div>`).join('')}</div>${srcHtml(b)}`;
@@ -181,7 +183,7 @@ function filterBar(b){
     <button class="chip" data-f="B">B类</button>
     <button class="chip" data-f="C">其他</button>
     <button class="chip" data-f="X">校内</button>
-    <select class="deptSel"><option value="">全部院系</option>${depts.map(d=>`<option>${esc(d)}</option>`).join('')}</select>
+    <span style="font-size:12px;color:var(--gray)">院系（承办·建议参加）：</span><select class="deptSel"><option value="">全部</option>${depts.map(d=>`<option>${esc(d)}</option>`).join('')}</select>
   </div>`;
 }
 
@@ -189,7 +191,7 @@ function filterBar(b){
 let CUR = 'home';
 function showView(name){
   CUR = name;
-  ['home','study','life','dev'].forEach(v=>{
+  ['home','study','life','res','dev'].forEach(v=>{
     document.getElementById('view-'+v).style.display = v===name ? '' : 'none';
   });
   document.querySelectorAll('a.nl[data-view]').forEach(a=>a.classList.toggle('on', a.dataset.view===name));
@@ -217,7 +219,7 @@ function renderHome(){
   <div class="pdesc">${I.sub}</div>
   <div class="hero-img" onclick="lb(this.querySelector('img').src)"><img src="${esc(DATA.mapImg)}" alt="二校区地图"><div class="cap">${esc(DATA.mapCap)}（点击放大）</div></div>
   <div style="font-size:13.5px;margin-top:12px">${linkify(I.text)}</div>${I.src?srcHtml(I):''}
-  <h3 class="blk closed" onclick="this.classList.toggle('closed');this.nextElementSibling.style.display=this.classList.contains('closed')?'none':''">地图注记</h3><div style="display:none">${blockHtml({type:'list',items:DATA.mapNotes,src:'手绘地图（开发者收集）'})}</div></div>`;
+  <h3 class="blk closed" onclick="this.classList.toggle('closed');this.nextElementSibling.style.display=this.classList.contains('closed')?'none':''">地图注记</h3><div style="display:none">${blockHtml({type:'list',items:DATA.mapNotes,src:'来源：网络'})}</div></div>`;
   html += moduleHtml('study','学习模块（点击展开）',true);
   html += moduleHtml('life','生活模块（点击展开）',true);
   html += `<div class="panel"><h3 class="blk closed" style="margin:0" onclick="this.classList.toggle('closed');this.nextElementSibling.style.display=this.classList.contains('closed')?'none':''">常用网址（快捷入口）</h3><div style="display:none"><div class="quick">${DATA.quickLinks.map(quickTile).join('')}</div></div></div>`;
@@ -241,6 +243,7 @@ function renderDev(){
 renderHome();
 document.getElementById('view-study').innerHTML = moduleHtml('study','学习',false);
 document.getElementById('view-life').innerHTML = moduleHtml('life','生活',false);
+document.getElementById('view-res').innerHTML = moduleHtml('res','开发者自我整理资料',false);
 renderDev();
 document.getElementById('foot').innerHTML = DATA.footer;
 

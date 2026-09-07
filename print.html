@@ -57,7 +57,7 @@ ul.dots li{margin:3px 0;font-size:12px}
 </head>
 <body>
 <div id="app">生成中…</div>
-<script src="data.js?v=202609071958"></script>
+<script src="data.js?v=202609072034"></script>
 <script>
 const esc = s => (s ?? '').toString().replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 const urlTail = u => (u && u.startsWith('http')) ? `<span class="lurl">${esc(u)}</span>` : '';
@@ -133,9 +133,10 @@ function moduleHtml(key, title, first){
   </div>`;
   html += `<div class="intro-panel"><h2>${esc(I.title)}</h2><div class="pdesc">${I.sub}</div><div style="font-size:12.5px">${linkify(I.text)}</div>${I.src?srcHtml(I):''}</div>`;
   html += `<div class="keep"><h3 class="sec" style="margin-top:12px">常用网址（快捷入口）</h3><div class="quick">${DATA.quickLinks.map(quickTile).join('')}</div></div>`;
-  html += `<div class="keep"><h3 class="sec">二校区地图注记</h3><ul class="dots">${DATA.mapNotes.map(x=>`<li>${linkify(x)}</li>`).join('')}</ul>${srcHtml({src:'手绘地图（开发者收集）'})}</ul></div>`;
+  html += `<div class="keep"><h3 class="sec">二校区地图注记</h3><ul class="dots">${DATA.mapNotes.map(x=>`<li>${linkify(x)}</li>`).join('')}</ul>${srcHtml({src:'来源：网络'})}</ul></div>`;
   html += moduleHtml('study','学习模块',true);
   html += moduleHtml('life','生活模块',false);
+  html += moduleHtml('res','开发者自我整理资料（仅供学习参考，不可商用）',false);
   const D = DATA.dev || {msg:'',sources:[]};
   html += `<h2 class="mod">开发者寄语</h2><div class="intro-panel"><div style="font-size:12.5px">${linkify(D.msg)}</div></div>`;
   html += `<div class="keep"><h3 class="sec">所有内容来源网址（共 ${D.sources.length} 条）</h3><table><thead><tr><th style="width:80px">类别</th><th>网站/页面</th><th>网址</th></tr></thead><tbody>${
