@@ -9,7 +9,7 @@
 ═══════════════════════════════════════════════════════════ */
 const DATA = {
  "mapImg": "assets/map2.jpg",
- "mapCap": "华北电力大学（保定）二校区手绘地图 · NCEPUwiki 团队绘制",
+ "mapCap": "华北电力大学（保定）二校区手绘地图（点击放大查看）",
  "intro": {
   "title": "华北电力大学（保定校区）",
   "sub": "教育部直属全国重点大学 · 国家“双一流”建设高校 · 电气工程学科 A 档",
@@ -59,11 +59,6 @@ const DATA = {
    "0312-7522436"
   ],
   [
-   "NCEPUwiki",
-   "https://wiki.ncepuinfo.cc/",
-   "学生百科·教材资料"
-  ],
-  [
    "PDF版下载",
    "https://wangaijun001.github.io/ncepu-bd-campus/guide.pdf",
    "完整指南·31页"
@@ -82,8 +77,6 @@ const DATA = {
  ],
  "dev": {
   "msg": "本篇内容由<b>王家田垄</b>网上搜集汇总，供广大学子参考，如有错误可联系开发者修改（QQ 邮箱：2045296004@qq.com；GitHub 仓库提 Issue：https://github.com/wangaijun001/ncepu-bd-campus/issues ）。",
-  "recName": "NCEPUwiki · 华电wiki（学生自制百科）",
-  "recUrl": "https://wiki.ncepuinfo.cc/",
   "pdfName": "华电保定校园通.pdf（完整版指南下载）",
   "pdfUrl": "https://wangaijun001.github.io/ncepu-bd-campus/guide.pdf",
   "sources": [
@@ -233,91 +226,6 @@ const DATA = {
     "https://ilibrary.ncepu.edu.cn/library/"
    ],
    [
-    "NCEPUwiki",
-    "首页（学生自制百科）",
-    "https://wiki.ncepuinfo.cc/"
-   ],
-   [
-    "NCEPUwiki",
-    "常用账号与默认密码",
-    "https://wiki.ncepuinfo.cc/pages/accountpassword/"
-   ],
-   [
-    "NCEPUwiki",
-    "常用网站",
-    "https://wiki.ncepuinfo.cc/pages/webs/"
-   ],
-   [
-    "NCEPUwiki",
-    "常用电话",
-    "https://wiki.ncepuinfo.cc/pages/phones/"
-   ],
-   [
-    "NCEPUwiki",
-    "常用公众号",
-    "https://wiki.ncepuinfo.cc/pages/WeChatPublicAccount/"
-   ],
-   [
-    "NCEPUwiki",
-    "学分与选课",
-    "https://wiki.ncepuinfo.cc/pages/gradeandcourse/"
-   ],
-   [
-    "NCEPUwiki",
-    "课程评价",
-    "https://wiki.ncepuinfo.cc/pages/CourseEvaluation/"
-   ],
-   [
-    "NCEPUwiki",
-    "评优",
-    "https://wiki.ncepuinfo.cc/pages/appraise/"
-   ],
-   [
-    "NCEPUwiki",
-    "保定校区课程资料（教材目录）",
-    "https://wiki.ncepuinfo.cc/pages/books_bd/"
-   ],
-   [
-    "NCEPUwiki",
-    "自习",
-    "https://wiki.ncepuinfo.cc/pages/SelfStudy/"
-   ],
-   [
-    "NCEPUwiki",
-    "教室借用",
-    "https://wiki.ncepuinfo.cc/pages/classroom/"
-   ],
-   [
-    "NCEPUwiki",
-    "计算机学科竞赛赛道",
-    "https://wiki.ncepuinfo.cc/pages/computercompetitions/"
-   ],
-   [
-    "NCEPUwiki",
-    "教师资格证考试",
-    "https://wiki.ncepuinfo.cc/pages/TeacherQualificationExam/"
-   ],
-   [
-    "NCEPUwiki",
-    "新生-课程",
-    "https://wiki.ncepuinfo.cc/pages/Course/"
-   ],
-   [
-    "NCEPUwiki",
-    "新生-入学准备",
-    "https://wiki.ncepuinfo.cc/pages/Preparation/"
-   ],
-   [
-    "NCEPUwiki",
-    "新生Q&A",
-    "https://wiki.ncepuinfo.cc/pages/QuestionAndAnswer/"
-   ],
-   [
-    "NCEPUwiki",
-    "wiki资源站（教材电子版）",
-    "https://resource.ncepuinfo.cc"
-   ],
-   [
     "考试报名",
     "四六级CET报名",
     "https://cet-bm.neea.edu.cn/"
@@ -331,11 +239,6 @@ const DATA = {
     "考试报名",
     "普通话水平测试报名",
     "https://bm.cltt.org/"
-   ],
-   [
-    "考试报名",
-    "课程评价问卷（wiki收录用）",
-    "https://www.wjx.cn/vm/myKSytv.aspx#"
    ],
    [
     "引用页面",
@@ -395,6 +298,11 @@ const DATA = {
    [
     "其他资料",
     "机械系2025新生指南·华电微图公告（用户提供截图，无网址）",
+    ""
+   ],
+   [
+    "其他资料",
+    "其余条目为开发者网络搜索及个人收集整理（不逐一列源）",
     ""
    ]
   ]
@@ -501,7 +409,7 @@ const DATA = {
    "blocks": [
     {
      "type": "note",
-     "text": "下表汇总自 NCEPUwiki《常用账号与默认密码》（2026年4月更新）、华电微图公众号官方公告与《机械系新生指南》。身份证末位为 X 时请<b>大写</b>；首次登录成功后请尽快在各自系统内修改密码。"
+     "text": "下表汇总自 开发者网络搜索与用户提供资料（华电微图公众号官方公告、《机械系新生指南》）。身份证末位为 X 时请<b>大写</b>；首次登录成功后请尽快在各自系统内修改密码。"
     },
     {
      "t": "默认账号密码一览（保定校区）",
@@ -578,8 +486,7 @@ const DATA = {
        "身份证出生日期（如20050812）"
       ]
      ],
-     "src": "NCEPUwiki 常用账号与默认密码（2026-04更新）+ 华电微图公众号公告 + 机械系2025新生指南",
-     "srcUrl": "https://wiki.ncepuinfo.cc/pages/accountpassword/"
+     "src": "华电微图公众号官方公告 + 机械系2025新生指南 + 开发者网络核实"
     },
     {
      "type": "cards",
@@ -596,8 +503,8 @@ const DATA = {
          "Ncepu@+一卡通号后5位（注意大小写）"
         ],
         [
-         "旧版规则",
-         "NCEPUwiki 旧版记载“账号=学号、密码=学号”；若新规则登录失败可再试旧规则，或致电图书馆 0312-7522384"
+         "备用",
+         "若新规则登录失败可试账号=学号、密码=学号的旧规则，或致电图书馆 0312-7522384"
         ]
        ],
        "links": [
@@ -628,7 +535,7 @@ const DATA = {
          "致电网信 7523333；北京校区邮箱在数字华电-师生服务中心申请"
         ]
        ],
-       "src": "NCEPUwiki / 网信服务帮助中心",
+       "src": "网信服务帮助中心（官方）",
        "srcUrl": "https://wxcbd.ncepu.edu.cn/zxbz/"
       }
      ]
@@ -992,8 +899,7 @@ const DATA = {
          "https://jwxt.ncepu.edu.cn/qcredit/welcome"
         ]
        ],
-       "src": "NCEPUwiki 学分与选课（2026-05更新）",
-       "srcUrl": "https://wiki.ncepuinfo.cc/pages/gradeandcourse/"
+       "src": "开发者网络整理（教学一体化平台选课规则）"
       },
       {
        "t": "选课四阶段",
@@ -1015,7 +921,7 @@ const DATA = {
          "即选即得且<b>允许时间冲突</b>：仅供重修、转专业补课等情形选择冲突课程"
         ]
        ],
-       "src": "NCEPUwiki 学分与选课"
+       "src": "开发者网络整理（教学一体化平台选课规则）"
       },
       {
        "t": "预置课 · 分组 · 选课类别",
@@ -1033,7 +939,7 @@ const DATA = {
          "必修/专业选修/本学期计划/专业内跨年级/跨专业/通选课/本学期开设课程共7类；文化艺术类网课会注明，课程代码 w 开头为网课"
         ]
        ],
-       "src": "NCEPUwiki 学分与选课"
+       "src": "开发者网络整理（教学一体化平台选课规则）"
       }
      ]
     },
@@ -1057,37 +963,11 @@ const DATA = {
        "d": ""
       }
      ],
-     "src": "NCEPUwiki 学分与选课 · 具体操作",
-     "srcUrl": "https://wiki.ncepuinfo.cc/pages/gradeandcourse/"
+     "src": "开发者网络整理（教学一体化平台选课规则）"
     },
     {
      "type": "cards",
-     "items": [
-      {
-       "t": "课程评价哪里看",
-       "rows": [
-        [
-         "说明",
-         "NCEPUwiki 汇总了学生问卷评价（北京/保定、本硕，含课程·教师·评分），选课前可参考；内容主观性强，仅供选课参考，勿作为唯一依据。"
-        ],
-        [
-         "参与",
-         "想补充评价可填写 wiki 问卷，匿名收录"
-        ]
-       ],
-       "links": [
-        [
-         "wiki·课程评价",
-         "https://wiki.ncepuinfo.cc/pages/CourseEvaluation/"
-        ],
-        [
-         "评价问卷",
-         "https://www.wjx.cn/vm/myKSytv.aspx#"
-        ]
-       ],
-       "src": "NCEPUwiki 课程评价（2026-07更新）"
-      }
-     ]
+     "items": []
     }
    ]
   },
@@ -4364,8 +4244,7 @@ const DATA = {
        ]
       }
      ],
-     "src": "NCEPUwiki 计算机学科竞赛赛道（2026-07更新）",
-     "srcUrl": "https://wiki.ncepuinfo.cc/pages/computercompetitions/"
+     "src": "开发者网络整理（面向计算机相关专业学生）"
     }
    ]
   },
@@ -4478,14 +4357,10 @@ const DATA = {
         [
          "数理系评优文件",
          "https://shlx.ncepu.edu.cn//xghd/xsgzp/1e117ebc68374abc804b4c067582f437.htm"
-        ],
-        [
-         "wiki·评优细则",
-         "https://wiki.ncepuinfo.cc/pages/appraise/"
         ]
        ],
-       "src": "NCEPUwiki 评优（转自数理系文件）",
-       "srcUrl": "https://wiki.ncepuinfo.cc/pages/appraise/"
+       "src": "保定数理系评优文件（联网核实）",
+       "srcUrl": "https://shlx.ncepu.edu.cn//xghd/xsgzp/1e117ebc68374abc804b4c067582f437.htm"
       }
      ]
     }
@@ -4558,8 +4433,7 @@ const DATA = {
          "人走书走；<b>禁止占座</b>（不在桌面写字留物）"
         ]
        ],
-       "src": "NCEPUwiki 自习（2026-04更新）",
-       "srcUrl": "https://wiki.ncepuinfo.cc/pages/SelfStudy/"
+       "src": "开发者网络及校内收集整理"
       },
       {
        "t": "教室借用（班级/社团活动）",
@@ -4587,8 +4461,7 @@ const DATA = {
          "http://ee.ncepu.edu.cn/docs/2023-02/c9b19ee1bd934ccca5a743e12b445e36.doc"
         ]
        ],
-       "src": "NCEPUwiki 教室借用（2026-07更新）",
-       "srcUrl": "https://wiki.ncepuinfo.cc/pages/classroom/"
+       "src": "开发者网络及校内收集整理（教务处流程）"
       }
      ]
     }
@@ -4622,36 +4495,21 @@ const DATA = {
          "英语教材必须买（书后 U校园激活码要用）；时事政治类教材可不买"
         ]
        ],
-       "src": "NCEPUwiki 新生-课程（2026-07更新）",
-       "srcUrl": "https://wiki.ncepuinfo.cc/pages/Course/"
+       "src": "开发者网络及校内收集整理"
       },
       {
        "t": "电子版教材/资料",
        "rows": [
         [
-         "wiki教材库",
-         "NCEPUwiki 按保定各院系教研室整理了“课程→教材→作者→电子版下载”目录（电路理论、电机学等含电子书与答案）"
+         "渠道",
+         "学长学姐、班级学习群共享的电子版资料目录（电路理论等含电子书与答案）；网上可搜知乎、B站、Z-library 等电子资源"
         ],
         [
-         "资源站",
-         "resource.ncepuinfo.cc 为 wiki 官方资源站"
-        ],
-        [
-         "找不到时",
-         "知乎、B站、Z-library 等可搜电子版；或淘宝/闲鱼几元购买电子资源"
+         "提示",
+         "电子版仅供参考核对，正版教材以学校统一订购为准"
         ]
        ],
-       "links": [
-        [
-         "保定校区教材目录（wiki）",
-         "https://wiki.ncepuinfo.cc/pages/books_bd/"
-        ],
-        [
-         "wiki资源站",
-         "https://resource.ncepuinfo.cc"
-        ]
-       ],
-       "src": "NCEPUwiki 保定校区课程资料（2026-07更新）"
+       "src": "开发者个人收集整理"
       }
      ]
     }
@@ -4681,8 +4539,7 @@ const DATA = {
          "四级成绩与学位授予挂钩（见“毕业要求”）；听力需调频耳机/收音机"
         ]
        ],
-       "src": "NCEPUwiki Q&A + 教务通知",
-       "srcUrl": "https://wiki.ncepuinfo.cc/pages/QuestionAndAnswer/"
+       "src": "华电教务公众号通知 + 开发者网络核实"
       },
       {
        "t": "全国计算机等级考试（NCRE）",
@@ -4700,8 +4557,7 @@ const DATA = {
          "一至四级；建议至少考过二级（Office/Python/C 等），综测“计算机外语能力”项可加分"
         ]
        ],
-       "src": "NCEPUwiki 常用网站",
-       "srcUrl": "https://wiki.ncepuinfo.cc/pages/webs/"
+       "src": "开发者网络核实（报名官网：ncre-bm.neea.cn）"
       },
       {
        "t": "教师资格证",
@@ -4719,8 +4575,7 @@ const DATA = {
          "粉笔/中公资料；顺序：教育教学知识→综合素质→专业课；面试写好逐字稿并登台试讲练习"
         ]
        ],
-       "src": "NCEPUwiki 教师资格证考试（2026-05更新）",
-       "srcUrl": "https://wiki.ncepuinfo.cc/pages/TeacherQualificationExam/"
+       "src": "开发者网络核实（中小学教师资格考试官网）"
       },
       {
        "t": "普通话水平测试",
@@ -4734,7 +4589,7 @@ const DATA = {
          "教师资格认定必备；播音主持等语言类方向要求更高"
         ]
        ],
-       "src": "NCEPUwiki 常用网站"
+       "src": "开发者网络核实（报名官网：bm.cltt.org）"
       }
      ]
     }
@@ -4743,7 +4598,7 @@ const DATA = {
   {
    "anchor": "qa",
    "name": "新生常见问答（保定）",
-   "desc": "摘自 NCEPUwiki，学生整理仅供参考",
+   "desc": "开发者网络及个人收集整理，仅供参考",
    "blocks": [
     {
      "type": "cards",
@@ -4806,7 +4661,7 @@ const DATA = {
     },
     {
      "type": "note",
-     "text": "来源：NCEPUwiki·Q&A wiki.ncepuinfo.cc/pages/QuestionAndAnswer/（2026-09更新，学生整理仅供参考，具体以学校与各系通知为准）"
+     "text": "以上内容为开发者网络及个人收集整理（2026-09整理），仅供参考，具体以学校与各系最新通知为准。"
     }
    ]
   }
@@ -4828,8 +4683,7 @@ const DATA = {
          "微信公众号【华电财务】→ 学生缴费，绑定学号缴纳；发票收据可在财务系统查询。"
         ]
        ],
-       "src": "NCEPUwiki 常用公众号",
-       "srcUrl": "https://wiki.ncepuinfo.cc/pages/WeChatPublicAccount/"
+       "src": "华电财务公众号（官方）"
       },
       {
        "t": "大学生医保（保定）",
@@ -4839,7 +4693,7 @@ const DATA = {
          "参加保定市城乡居民基本医疗保险，每年秋冬集中参保，通过【河北税务】公众号缴费。"
         ]
        ],
-       "src": "NCEPUwiki + 保定校区医保宣讲新闻",
+       "src": "保定校区医保宣讲新闻",
        "srcUrl": "https://news.ncepu.edu.cn/xysx/cac7215dfc6f4e25aca2155588749445.htm"
       },
       {
@@ -4888,8 +4742,7 @@ const DATA = {
          "【华电微后勤】→智慧后勤→用电管理充值（约0.5元/度，以实际为准）"
         ]
        ],
-       "src": "NCEPUwiki（学生整理，以实际为准）",
-       "srcUrl": "https://wiki.ncepuinfo.cc/pages/SchoolLife/"
+       "src": "开发者网络整理（以实际为准）"
       }
      ]
     }
@@ -5041,8 +4894,7 @@ const DATA = {
        "在华电（保定）招生信息网各专业页扫码关注"
       ]
      ],
-     "src": "NCEPUwiki 常用公众号页（2025-08更新）+ 机械系2025新生指南",
-     "srcUrl": "https://wiki.ncepuinfo.cc/pages/WeChatPublicAccount/"
+     "src": "机械系2025新生指南 + 开发者联网逐个核实"
     }
    ]
   },
@@ -5173,7 +5025,7 @@ const DATA = {
        "校园网/邮箱/VPN 问题"
       ]
      ],
-     "src": "NCEPUwiki 常用电话（2026-09更新，转自学校官网）",
+     "src": "转自学校官网服务电话页（保定）",
      "srcUrl": "http://bdhq.ncepu.edu.cn/ncepucenter/wxc/wx/servicePhone_org.htm"
     },
     {
@@ -5321,7 +5173,7 @@ const DATA = {
      "items": [
       {
        "src": "assets/dorm2.jpeg",
-       "cap": "宿舍实拍：六人间、上床下桌、独立空调（图源：NCEPUwiki）"
+       "cap": "宿舍实拍：六人间、上床下桌、独立空调"
       }
      ]
     },
@@ -5336,8 +5188,7 @@ const DATA = {
          "多数楼23:00熄灯断电（部分23:30），早6:00来电；空调/风扇、厕所灯不断电；限电约600W，加热电器会跳闸"
         ]
        ],
-       "src": "NCEPUwiki（学生整理，以楼栋通知为准）",
-       "srcUrl": "https://wiki.ncepuinfo.cc/pages/SchoolLife/"
+       "src": "开发者网络及个人收集整理（以楼栋通知为准）"
       },
       {
        "t": "洗澡与热水",
@@ -5347,7 +5198,7 @@ const DATA = {
          "每栋一层刷卡淋浴间（约1-2元/次，支付宝小程序免密支付），开放参考6:00-9:00、11:30-12:30、14:00-23:00；开水房免费"
         ]
        ],
-       "src": "NCEPUwiki（学生整理）"
+       "src": "开发者个人收集整理"
       },
       {
        "t": "报修与洗衣",
@@ -5361,7 +5212,7 @@ const DATA = {
          "楼内洗衣机约3元/次、付费吹风机、直饮水机"
         ]
        ],
-       "src": "华电微后勤/NCEPUwiki",
+       "src": "华电微后勤公众号",
        "srcUrl": "https://hqjt.ncepu.edu.cn/"
       }
      ]
@@ -5384,8 +5235,7 @@ const DATA = {
          "一校区菜鸟驿站与近邻宝快递柜挨在一起（一舍北侧区域）；近邻宝小件柜24小时可取（超时约2元/天，“近邻宝校园”小程序），菜鸟驿站营业至晚十点多"
         ]
        ],
-       "src": "NCEPUwiki/保卫处简报",
-       "srcUrl": "https://wiki.ncepuinfo.cc/pages/SchoolLife/"
+       "src": "保卫处简报 / 开发者校内收集"
       },
       {
        "t": "收货地址",
@@ -5562,5 +5412,5 @@ const DATA = {
    ]
   }
  ],
- "footer": "华电保定·校园通 — 依据学校官方网站、培养方案与 NCEPUwiki 学生百科整理（信息核实至2026年9月6日）<br>每条信息均标注来源；内容存放在同目录 <b>data.js</b>，用记事本修改后刷新页面即可更新。仅供参考，以学校官方最新通知为准。"
+ "footer": "华电保定·校园通 — 依据学校官方网站、培养方案等资料由开发者网络搜索及个人收集整理（信息核实至2026年9月6日）<br>每条信息均标注来源；内容存放在同目录 <b>data.js</b>，用记事本修改后刷新页面即可更新。仅供参考，以学校官方最新通知为准。"
 };

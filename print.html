@@ -57,7 +57,7 @@ ul.dots li{margin:3px 0;font-size:12px}
 </head>
 <body>
 <div id="app">生成中…</div>
-<script src="data.js?v=202609062235"></script>
+<script src="data.js?v=202609071958"></script>
 <script>
 const esc = s => (s ?? '').toString().replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 const urlTail = u => (u && u.startsWith('http')) ? `<span class="lurl">${esc(u)}</span>` : '';
@@ -129,15 +129,15 @@ function moduleHtml(key, title, first){
     <div class="sub">${esc(I.sub)}</div>
     <img src="${esc(DATA.mapImg)}" alt="二校区地图">
     <div class="cap">${esc(DATA.mapCap)}</div>
-    <div class="meta">信息核实至 2026年9月6日 · 依据学校官方网站、培养方案与 NCEPUwiki 学生百科整理 · 以学校官方最新通知为准</div>
+    <div class="meta">信息核实至 2026年9月6日 · 依据学校官方网站、培养方案等资料由开发者网络搜索及个人收集整理 · 以学校官方最新通知为准</div>
   </div>`;
   html += `<div class="intro-panel"><h2>${esc(I.title)}</h2><div class="pdesc">${I.sub}</div><div style="font-size:12.5px">${linkify(I.text)}</div>${I.src?srcHtml(I):''}</div>`;
   html += `<div class="keep"><h3 class="sec" style="margin-top:12px">常用网址（快捷入口）</h3><div class="quick">${DATA.quickLinks.map(quickTile).join('')}</div></div>`;
-  html += `<div class="keep"><h3 class="sec">二校区地图注记</h3><ul class="dots">${DATA.mapNotes.map(x=>`<li>${linkify(x)}</li>`).join('')}</ul>${srcHtml({src:'NCEPUwiki 团队手绘地图 V2.2.8.7（ncepuinfo.icu）',srcUrl:'https://wiki.ncepuinfo.cc/'})}</ul></div>`;
+  html += `<div class="keep"><h3 class="sec">二校区地图注记</h3><ul class="dots">${DATA.mapNotes.map(x=>`<li>${linkify(x)}</li>`).join('')}</ul>${srcHtml({src:'手绘地图（开发者收集）'})}</ul></div>`;
   html += moduleHtml('study','学习模块',true);
   html += moduleHtml('life','生活模块',false);
-  const D = DATA.dev || {msg:'',recName:'',recUrl:'',sources:[]};
-  html += `<h2 class="mod">开发者寄语</h2><div class="intro-panel"><div style="font-size:12.5px">${linkify(D.msg)}</div><div class="note">开发者推荐一个更加完善的学生自制网站：<a href="${esc(D.recUrl)}" target="_blank" rel="noopener"><b>${esc(D.recName)}</b><span class="lurl">${esc(D.recUrl)}</span></a></div></div>`;
+  const D = DATA.dev || {msg:'',sources:[]};
+  html += `<h2 class="mod">开发者寄语</h2><div class="intro-panel"><div style="font-size:12.5px">${linkify(D.msg)}</div></div>`;
   html += `<div class="keep"><h3 class="sec">所有内容来源网址（共 ${D.sources.length} 条）</h3><table><thead><tr><th style="width:80px">类别</th><th>网站/页面</th><th>网址</th></tr></thead><tbody>${
     D.sources.map(s=>`<tr><td>${esc(s[0])}</td><td>${s[2]?`<a href="${esc(s[2])}" target="_blank" rel="noopener">${esc(s[1])}</a>`:esc(s[1])}</td><td style="word-break:break-all">${s[2]?`<a href="${esc(s[2])}" target="_blank" rel="noopener">${esc(s[2])}</a>`:'—'}</td></tr>`).join('')
   }</tbody></table></div>`;
