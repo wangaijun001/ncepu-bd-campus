@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>并网计划 · 小程序界面预览</title>
+<style>
+
+* { box-sizing: border-box; }
+body { margin:0; background:#07090c; color:#E8ECF0;
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif; padding:36px 20px 60px; }
+h1 { text-align:center; font-size:22px; letter-spacing:3px; margin:0 0 6px; }
+.sub { text-align:center; font-family:monospace; font-size:12px; color:#7E8CA0; letter-spacing:2px; margin-bottom:34px; }
+.stage { display:flex; gap:34px; justify-content:center; flex-wrap:wrap; align-items:flex-start; }
+.frame { display:flex; flex-direction:column; align-items:center; }
+.phone { width:375px; height:780px; background:#11151A; border:9px solid #1c232c; border-radius:38px;
+  overflow:hidden; display:flex; flex-direction:column; box-shadow:0 24px 60px rgba(0,0,0,.7); }
+.label { font-family:monospace; font-size:11px; color:#7E8CA0; letter-spacing:2px; margin-top:12px; }
+.navbar { height:46px; flex-shrink:0; display:flex; align-items:center; justify-content:center;
+  font-size:15px; font-weight:600; background:#11151A; border-bottom:1px solid #232C36; }
+.screen { flex:1; overflow-y:auto; background:#11151A; }
+.screen::-webkit-scrollbar { width:0; }
+.tabbar { height:52px; flex-shrink:0; display:flex; background:#11151A; border-top:1px solid #232C36; }
+.tab { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px;
+  font-size:10px; color:#7E8CA0; }
+.tab.on { color:#F5C500; }
+.tab img { width:19px; height:19px; }
+.foot-note { max-width:900px; margin:44px auto 0; font-size:12.5px; line-height:2; color:#7E8CA0; text-align:center; }
+.foot-note code { color:#F5C500; font-family:monospace; }
+
+/* ═══ app.wxss（已转 px）═══ */
+/* ═══════════════════════════════════════════════════════════
+   并网计划 GRID-IN PROJECT — 全局样式
+   工业 UI：碳黑底 / 高压黄 / 工程橙 / 细描边 / 等宽小字
+═══════════════════════════════════════════════════════════ */
+.screen {
+  --ink: #0C0F13;          /* 最深底 */
+  --bg: #11151A;           /* 碳黑主背景 */
+  --panel: #1A2028;        /* 面板 */
+  --panel-2: #222A34;      /* 次级面板 */
+  --line: #2E3A48;         /* 描边 */
+  --line-soft: #232C36;    /* 弱描边 */
+  --yellow: #F5C500;       /* 高压黄 */
+  --orange: #FF8A00;       /* 工程橙 */
+  --white: #E8ECF0;        /* 冷白 */
+  --gray: #7E8CA0;         /* 灰蓝 */
+  --gray-dim: #55606E;     /* 更暗的灰 */
+
+  background: var(--bg);
+  color: var(--white);
+  font-size: 14px;
+  line-height: 1.7;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.screen, .screen * { box-sizing: border-box; }
+
+/* ── 通用容器 ───────────────────────────────── */
+.wrap { padding: 12px 12px 30px; }
+
+/* 顶部等宽小字标签，模仿品牌图的 "BAODING // NODE-07" */
+.eyebrow {
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  color: var(--gray);
+  text-transform: uppercase;
+}
+
+/* ── 面板 ───────────────────────────────────── */
+.panel {
+  background: var(--panel);
+  border: 0.5px solid var(--line);
+  border-radius: 5px;
+  padding: 13px;
+  margin-bottom: 10px;
+  position: relative;
+  overflow: hidden;
+}
+.panel.tight { padding: 10px; }
+.panel.flat { background: var(--panel-2); }
+
+/* 面板左上角黄色标记（工业角标） */
+.panel.marked::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0;
+  width: 3px; height: 23px;
+  background: var(--yellow);
+}
+
+/* ── 板块标题 ───────────────────────────────── */
+.sec-head { margin: 17px 0 9px; }
+.sec-head:first-child { margin-top: 4px; }
+.sec-head .sec-tag {
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: var(--yellow);
+}
+.sec-head .sec-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: 0.5px;
+  margin-top: 3px;
+  display: flex;
+  align-items: center;
+}
+.sec-head .sec-name::after {
+  content: '';
+  flex: 1;
+  height: 0.5px;
+  background: linear-gradient(90deg, var(--line), transparent);
+  margin-left: 9px;
+}
+.sec-head .sec-desc {
+  font-size: 12px;
+  color: var(--gray);
+  margin-top: 3px;
+}
+
+/* ── 页面级板块头（section / contest 页） ───── */
+.sec-hero { padding: 6px 0 0; }
+.sec-hero .sh-name {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--white);
+  margin-top: 5px;
+  line-height: 1.25;
+}
+.sec-hero .sh-desc {
+  font-size: 12.5px;
+  color: var(--gray);
+  margin-top: 5px;
+  line-height: 1.6;
+}
+
+/* ── 卡片标题 ───────────────────────────────── */
+.card-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--white);
+  line-height: 1.5;
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* ── 竞赛等级角标 ───────────────────────────── */
+.badge {
+  display: inline-block;
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 1px 6px;
+  border-radius: 2px;
+  line-height: 1.6;
+  flex-shrink: 0;
+}
+.badge.bA { background: var(--yellow); color: #11151A; }
+.badge.bB { background: var(--orange); color: #11151A; }
+.badge.bC { background: #3C4A5A; color: var(--white); }
+.badge.bX { background: transparent; color: var(--gray); border: 0.5px solid var(--line); }
+
+/* ── 键值行（rows） ─────────────────────────── */
+.kv { display: flex; padding: 5px 0; }
+.kv + .kv { border-top: 0.5px solid var(--line-soft); }
+.kv .k {
+  width: 65px;
+  flex-shrink: 0;
+  color: var(--gray);
+  font-size: 12.5px;
+}
+.kv .v {
+  flex: 1;
+  font-size: 13px;
+  color: var(--white);
+  word-break: break-all;
+}
+
+/* ── 链接按钮 ───────────────────────────────── */
+.link-row { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 9px; }
+.link-btn {
+  display: inline-flex;
+  align-items: center;
+  font-size: 12.5px;
+  color: var(--yellow);
+  border: 0.5px solid rgba(245, 197, 0, 0.45);
+  background: rgba(245, 197, 0, 0.07);
+  border-radius: 3px;
+  padding: 4px 10px;
+  line-height: 1.6;
+  max-width: 100%;
+}
+.link-btn:active { background: rgba(245, 197, 0, 0.2); }
+.link-btn.tel {
+  color: var(--orange);
+  border-color: rgba(255, 138, 0, 0.45);
+  background: rgba(255, 138, 0, 0.07);
+}
+.link-btn.file { color: var(--gray); border-color: var(--line); background: rgba(255,255,255,0.03); }
+.link-btn .lb-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.link-btn .lb-arrow { margin-left: 4px; font-family: monospace; }
+
+/* ── 提示条（note） ─────────────────────────── */
+.note {
+  background: rgba(255, 138, 0, 0.07);
+  border-left: 2.5px solid var(--orange);
+  border-radius: 0 3px 3px 0;
+  padding: 8px 10px;
+  font-size: 12.5px;
+  color: #D8DEE6;
+  margin: 9px 0;
+  line-height: 1.75;
+}
+.note.plain {
+  background: rgba(255,255,255,0.03);
+  border-left-color: var(--line);
+  color: var(--gray);
+}
+
+/* ── 步骤（steps） ──────────────────────────── */
+.steps { margin: 4px 0; }
+.step { display: flex; padding: 6px 0; }
+.step .num {
+  width: 22px; height: 22px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--yellow);
+  color: #11151A;
+  font-family: monospace;
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 9px;
+  margin-top: 2px;
+}
+.step .st-body { flex: 1; }
+.step .st-t { font-size: 13.5px; font-weight: 600; color: var(--white); }
+.step .st-d { font-size: 12.5px; color: var(--gray); margin-top: 2px; line-height: 1.7; }
+
+/* ── 表格（table） ──────────────────────────── */
+.tbl { margin: 6px 0; overflow: hidden; border: 0.5px solid var(--line); border-radius: 4px; }
+.tbl-cap {
+  font-size: 12px;
+  color: var(--yellow);
+  background: rgba(245,197,0,0.07);
+  padding: 6px 9px;
+  font-weight: 600;
+}
+.tbl-row { display: flex; border-top: 0.5px solid var(--line-soft); }
+.tbl-row:nth-child(odd) { background: rgba(255,255,255,0.015); }
+.tbl-row.head { background: var(--panel-2); }
+.tbl-row.head .tbl-cell { color: var(--yellow); font-weight: 600; font-size: 12px; }
+.tbl-cell {
+  flex: 1;
+  padding: 7px 8px;
+  font-size: 12px;
+  color: var(--white);
+  line-height: 1.65;
+  border-left: 0.5px solid var(--line-soft);
+  word-break: break-all;
+}
+.tbl-cell:first-child { border-left: none; }
+
+/* ── 图片（imgs） ───────────────────────────── */
+.fig { margin: 8px 0; }
+.fig .fig-img {
+  width: 100%;
+  border-radius: 4px;
+  border: 0.5px solid var(--line);
+  background: var(--panel-2);
+}
+.fig .fig-cap {
+  font-size: 11.5px;
+  color: var(--gray);
+  margin-top: 5px;
+  line-height: 1.6;
+}
+
+/* ── 来源标注 ───────────────────────────────── */
+.src-line {
+  font-size: 11px;
+  color: var(--gray-dim);
+  margin-top: 8px;
+  padding-top: 7px;
+  border-top: 0.5px dashed var(--line-soft);
+  line-height: 1.65;
+}
+.src-line .src-k { color: var(--gray); }
+
+/* ── 检索框 ─────────────────────────────────── */
+.search-bar {
+  display: flex;
+  align-items: center;
+  background: var(--panel);
+  border: 0.5px solid var(--line);
+  border-radius: 4px;
+  padding: 0 11px;
+  height: 42px;
+}
+.search-bar .sb-icon { color: var(--gray); font-size: 15px; margin-right: 7px; }
+.search-bar input {
+  flex: 1;
+  color: var(--white);
+  font-size: 14px;
+  height: 42px;
+}
+.search-bar .sb-clear { color: var(--gray); font-size: 15px; padding: 0 3px; }
+
+/* ── 筛选条 ─────────────────────────────────── */
+.filter-row {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin: 8px 0;
+}
+.chip {
+  font-size: 12px;
+  color: var(--gray);
+  border: 0.5px solid var(--line);
+  border-radius: 3px;
+  padding: 3px 9px;
+  background: var(--panel);
+}
+.chip.on {
+  color: #11151A;
+  background: var(--yellow);
+  border-color: var(--yellow);
+  font-weight: 600;
+}
+
+/* ── 横向滚动筛选 ───────────────────────────── */
+.hscroll { white-space: nowrap; margin: 8px -12px; padding: 0 12px; }
+.hscroll .chip { display: inline-block; margin-right: 6px; }
+
+/* ── 空态 ───────────────────────────────────── */
+.empty {
+  text-align: center;
+  color: var(--gray-dim);
+  font-size: 13px;
+  padding: 45px 0;
+  font-family: monospace;
+}
+
+/* ── 列表项（导航用） ───────────────────────── */
+.nav-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 13px;
+  background: var(--panel);
+  border: 0.5px solid var(--line);
+  border-radius: 5px;
+  margin-bottom: 8px;
+}
+.nav-item:active { background: var(--panel-2); }
+.nav-item .ni-idx {
+  font-family: monospace;
+  font-size: 11px;
+  color: var(--yellow);
+  width: 28px;
+  flex-shrink: 0;
+}
+.nav-item .ni-body { flex: 1; min-width: 0; }
+.nav-item .ni-name { font-size: 14.5px; font-weight: 600; color: var(--white); }
+.nav-item .ni-desc { font-size: 11.5px; color: var(--gray); margin-top: 2px; }
+.nav-item .ni-arrow { color: var(--gray-dim); font-family: monospace; margin-left: 6px; }
+
+/* ── 斜纹装饰条 ─────────────────────────────── */
+.hazard {
+  height: 5px;
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--yellow) 0 7px,
+    #11151A 7px 14px
+  );
+  border-radius: 1px;
+  margin: 10px 0;
+  opacity: 0.85;
+}
+
+/* ── 计数徽标 ───────────────────────────────── */
+.count {
+  font-family: monospace;
+  font-size: 11px;
+  color: var(--yellow);
+  border: 0.5px solid rgba(245,197,0,0.4);
+  border-radius: 2px;
+  padding: 0 5px;
+  margin-left: 5px;
+}
+
+/* 富文本容器 */
+.rich { font-size: 13px; line-height: 1.8; color: var(--white); word-break: break-all; }
+
+/* ═══ index.wxss ═══ */
+/* ══ 品牌头 ══ */
+.hero { padding: 7px 0 2px; }
+
+.hero-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hero-main {
+  display: flex;
+  align-items: center;
+  margin: 11px 0 6px;
+}
+
+/* 纯 CSS 闪电（品牌主图形） */
+.bolt {
+  width: 33px;
+  height: 33px;
+  flex-shrink: 0;
+  margin-right: 12px;
+  background: var(--yellow);
+  clip-path: polygon(60% 0%, 20% 54%, 45% 54%, 36% 100%, 80% 42%, 52% 42%);
+}
+
+.hero-title {
+  font-size: 31px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  line-height: 1.08;
+  color: var(--white);
+}
+
+.hero-en {
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 10.5px;
+  letter-spacing: 2.5px;
+  color: var(--yellow);
+  margin-top: 3px;
+}
+
+.hero-sub {
+  font-size: 14px;
+  color: var(--gray);
+  letter-spacing: 1.5px;
+}
+
+.hero-meta {
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 10.5px;
+  color: var(--gray-dim);
+  margin-top: 7px;
+}
+.hero-meta .dot { margin: 0 5px; }
+
+/* ══ 简介 ══ */
+.intro-sub {
+  font-size: 12px;
+  color: var(--yellow);
+  margin: 5px 0 8px;
+  line-height: 1.6;
+}
+
+.intro-text { position: relative; }
+.intro-text.clamp { max-height: 115px; overflow: hidden; }
+.intro-text.clamp::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 45px;
+  background: linear-gradient(rgba(26,32,40,0), var(--panel));
+}
+
+.expand {
+  text-align: center;
+  color: var(--yellow);
+  font-size: 12px;
+  padding-top: 7px;
+}
+.expand:active { opacity: .6; }
+
+/* ══ 常用入口 ══ */
+.quick-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 7px;
+}
+
+.quick-item {
+  background: var(--panel);
+  border: 0.5px solid var(--line);
+  border-radius: 5px;
+  padding: 11px 8px;
+  position: relative;
+  overflow: hidden;
+}
+.quick-item:active { background: var(--panel-2); }
+
+/* 右上角小切角装饰 */
+.quick-item::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  border-width: 0 9px 9px 0;
+  border-style: solid;
+  border-color: transparent var(--line) transparent transparent;
+}
+
+.qi-name {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--white);
+  line-height: 1.4;
+}
+
+.qi-desc {
+  font-size: 10px;
+  color: var(--gray);
+  margin-top: 4px;
+  line-height: 1.5;
+}
+
+/* ══ 地图 ══ */
+.map-card { padding: 10px; }
+.map-thumb {
+  width: 100%;
+  border-radius: 4px;
+  border: 0.5px solid var(--line);
+  display: block;
+}
+.map-cap {
+  font-size: 11.5px;
+  color: var(--gray);
+  margin-top: 6px;
+  text-align: center;
+}
+
+/* ══ 检索入口 ══ */
+.search-entry {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: rgba(245, 197, 0, 0.07);
+  border: 0.5px dashed rgba(245, 197, 0, 0.4);
+  border-radius: 5px;
+  padding: 13px;
+  color: var(--yellow);
+  font-size: 13px;
+  margin-top: 15px;
+}
+.search-entry:active { background: rgba(245, 197, 0, 0.15); }
+.se-icon { font-size: 16px; }
+
+/* ══ 页脚 ══ */
+.foot {
+  margin-top: 20px;
+  font-size: 11px;
+  color: var(--gray-dim);
+  line-height: 1.8;
+}
+
+/* ═══ contest.wxss ═══ */
+/* ══ 搜索框 ══ */
+.search-bar { margin-top: 11px; }
+
+.sb-input {
+  flex: 1;
+  color: var(--white);
+  font-size: 14px;
+  height: 42px;
+  min-width: 0;
+}
+
+.ph {
+  color: var(--gray-dim);
+  font-size: 13px;
+}
+
+/* ══ 院系横向滚动 ══ */
+.hscroll-inner { display: inline-block; }
+
+/* ══ 结果条 ══ */
+.result-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px 0 7px;
+  font-size: 12px;
+  color: var(--gray);
+}
+
+.rb-hint { color: var(--gray-dim); font-size: 11px; }
+
+.rb-reset {
+  color: var(--yellow);
+  border: 0.5px solid rgba(245, 197, 0, 0.45);
+  border-radius: 3px;
+  padding: 2px 9px;
+  font-size: 11.5px;
+}
+.rb-reset:active { background: rgba(245, 197, 0, 0.15); }
+
+/* ══ 加载提示 ══ */
+.more {
+  text-align: center;
+  color: var(--gray-dim);
+  font-size: 11.5px;
+  padding: 14px 0;
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+}
+.more.end { color: #3C4A5A; }
+
+/* ═══ about.wxss ═══ */
+/* ══ 品牌区 ══ */
+.brand {
+  display: flex;
+  align-items: center;
+  padding: 8px 0 3px;
+}
+
+.logo {
+  width: 75px;
+  height: 75px;
+  border-radius: 8px;
+  border: 0.5px solid var(--line);
+  background: #0C0F13;
+  flex-shrink: 0;
+  margin-right: 13px;
+}
+
+.brand-text { flex: 1; min-width: 0; }
+
+.bt-name {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: var(--white);
+  line-height: 1.2;
+}
+
+.bt-en {
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--yellow);
+  margin-top: 3px;
+}
+
+.bt-sub {
+  font-size: 12px;
+  color: var(--gray);
+  margin-top: 4px;
+  letter-spacing: 1px;
+}
+
+/* ══ 统计 ══ */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.stat {
+  background: var(--panel);
+  border: 0.5px solid var(--line);
+  border-radius: 4px;
+  padding: 10px 4px;
+  text-align: center;
+}
+
+.st-n {
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--yellow);
+  line-height: 1.2;
+}
+
+.st-l {
+  font-size: 10.5px;
+  color: var(--gray);
+  margin-top: 3px;
+}
+
+.build-line {
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 10px;
+  color: var(--gray-dim);
+  text-align: center;
+  margin: 7px 0 3px;
+}
+
+/* ══ 数据来源分组 ══ */
+.src-group { padding: 10px 12px; }
+
+.sg-cat {
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 10px;
+  color: var(--yellow);
+  letter-spacing: 1px;
+  padding-bottom: 6px;
+  border-bottom: 0.5px solid var(--line-soft);
+}
+
+.sg-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 7px 0;
+  border-bottom: 0.5px solid var(--line-soft);
+}
+.sg-item:last-child { border-bottom: none; }
+.sg-item:active { opacity: .6; }
+
+.sg-name {
+  font-size: 13px;
+  color: var(--white);
+  flex: 1;
+  min-width: 0;
+  padding-right: 8px;
+}
+
+.sg-arrow {
+  color: var(--gray-dim);
+  font-size: 12px;
+  font-family: monospace;
+  flex-shrink: 0;
+}
+
+/* ══ 尾部标记 ══ */
+.tail-mark { margin-top: 25px; }
+
+.tm-text {
+  text-align: center;
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: #3C4A5A;
+}
+
+</style>
+</head>
+<body>
+  <h1>并网计划 GRID-IN PROJECT</h1>
+  <div class="sub">华电保定校园通 · 微信小程序界面预览（真实数据渲染）</div>
+
+  <div class="stage">
+    <div class="frame"><div class="phone"><div class="navbar">并网计划 · 华电保定校园通</div>
+  <div class="screen"><div class="wrap">
+    <div class="hero">
+      <div class="hero-top"><span class="eyebrow">BAODING // NODE-07</span><span class="eyebrow">GRID-IN</span></div>
+      <div class="hero-main"><div class="bolt"></div><div class="hero-text"><div class="hero-title">并网计划</div><div class="hero-en">GRID-IN PROJECT</div></div></div>
+      <div class="hero-sub">华电保定 · 校园通</div>
+      <div class="hazard"></div>
+      <div class="hero-meta"><span>24 板块</span><span class="dot">·</span><span>79 项竞赛</span><span class="dot">·</span><span>核实至 2026-09-12</span></div>
+    </div>
+
+    <div class="panel">
+      <div class="card-title">华北电力大学（保定校区）</div>
+      <div class="intro-sub">教育部直属全国重点大学 · 国家“双一流”建设高校 · 电气工程学科 A 档</div>
+      <div class="intro-text clamp"><div class="rich">华北电力大学1958年创建于北京，原名北京电力学院，现由国家电网、南方电网、华能、大唐、华电、国家能源、国家电投、三峡、中广核、电建、能建、粤电等12家特大型电力企业和中国电力企业联合会组成的理事会与教育部共建，校部设在北京、分设保定校区，两地实行一体化管理。学校是国家“211工程”、“985工程优势学科创新平台”重点建设大学，2017年入选国家“双一流”建设高校，电气工程学科入选“双一流”建设学科（第四轮学科评估A档）。全校设25个院系、67个本科专业，全日制在校本科生2.5万余人、研究生1.7万余人。<br><b>保定校区</b>：河北省保定市莲池区永华北大街619号（一校区/本部）· 华电路689号（二校区），邮编071003。按大类招生培养（保定19个大类、36个专业），第一学年末按志愿与成绩分流。校训：团结、勤奋、求实、创新。</div></div>
+      <div class="expand">展开全文 ▼</div>
+    </div>
+
+    <div class="sec-head"><div class="sec-tag">QUICK ACCESS</div><div class="sec-name">常用入口</div></div>
+    <div class="quick-grid"><div class="quick-item"><div class="qi-name">数字华电</div><div class="qi-desc">统一门户·学号登录</div></div><div class="quick-item"><div class="qi-name">教务系统</div><div class="qi-desc">选课·查成绩</div></div><div class="quick-item"><div class="qi-name">WebVPN</div><div class="qi-desc">校外访问</div></div><div class="quick-item"><div class="qi-name">图书馆</div><div class="qi-desc">检索·预约</div></div><div class="quick-item"><div class="qi-name">华电新闻网</div><div class="qi-desc">校园新闻</div></div><div class="quick-item"><div class="qi-name">一卡通自助</div><div class="qi-desc">挂失·查询</div></div><div class="quick-item"><div class="qi-name">学生服务平台</div><div class="qi-desc">请假·事务</div></div><div class="quick-item"><div class="qi-name">一卡通热线</div><div class="qi-desc">0312-7522436</div></div><div class="quick-item"><div class="qi-name">PDF版下载</div><div class="qi-desc">完整指南·31页</div></div></div>
+
+    <div class="sec-head"><div class="sec-tag">STUDY // 11 SECTIONS</div><div class="sec-name">学习指南</div></div>
+    <div class="nav-item"><div class="ni-idx">01</div><div class="ni-body"><div class="ni-name">核心系统与账号</div><div class="ni-desc">一切线上事务的入口</div></div><div class="ni-arrow">›</div></div><div class="nav-item"><div class="ni-idx">02</div><div class="ni-body"><div class="ni-name">常用账号与默认密码</div><div class="ni-desc">首次登录后请尽快修改</div></div><div class="ni-arrow">›</div></div><div class="nav-item"><div class="ni-idx">03</div><div class="ni-body"><div class="ni-name">查成绩（最快2分钟）</div><div class="ni-desc">附官方登录页截图</div></div><div class="ni-arrow">›</div></div><div class="nav-item"><div class="ni-idx">04</div><div class="ni-body"><div class="ni-name">课程体系（培养方案分类）</div><div class="ni-desc">按培养方案本身的分类法整理</div></div><div class="ni-arrow">›</div></div><div class="nav-item"><div class="ni-idx">05</div><div class="ni-body"><div class="ni-name">学分与选课</div><div class="ni-desc">选课四阶段 · 成绩与补考规则</div></div><div class="ni-arrow">›</div></div><div class="nav-item"><div class="ni-idx">06</div><div class="ni-body"><div class="ni-name">学科竞赛（79项·可筛选）<span class="count">79</span></div><div class="ni-desc">A类/B类/其他/校内四级 + 按承办院系筛选</div></div><div class="ni-arrow">›</div></div><div class="nav-item"><div class="ni-idx">07</div><div class="ni-body"><div class="ni-name">毕业要求</div><div class="ni-desc">毕业证 + 学位证条件</div></div><div class="ni-arrow">›</div></div><div class="nav-item"><div class="ni-idx">08</div><div class="ni-body"><div class="ni-name">图书馆</div><div class="ni-desc">借书 / 自习 / 预约</div></div><div class="ni-arrow">›</div></div><div class="nav-item"><div class="ni-idx">09</div><div class="ni-body"><div class="ni-name">教材与学习资料</div><div class="ni-desc">哪里买 · 哪里下</div></div><div class="ni-arrow">›</div></div><div class="nav-item"><div class="ni-idx">10</div><div class="ni-body"><div class="ni-name">考证与等级考试</div><div class="ni-desc">四六级 / 计算机 / 教资 / 普通话</div></div><div class="ni-arrow">›</div></div><div class="nav-item"><div class="ni-idx">11</div><div class="ni-body"><div class="ni-name">新生常见问答（保定）</div><div class="ni-desc">开发者网络及个人收集整理，仅供参考</div></div><div class="ni-arrow">›</div></div>
+
+    <div class="sec-head"><div class="sec-tag">LIFE // 10 SECTIONS</div><div class="sec-name">生活指南</div></div>
+    <div class="nav-item"><div class="ni-idx">01</div><div class="ni-body"><div class="ni-name">生活缴费</div><div class="ni-desc">学费 / 医保 / 校园卡 / 网费 / 空调电费</div></div><div class="ni-arrow">›</div></div><div class="nav-item"><div class="ni-idx">02</div><div class="ni-body"><div class="ni-name">校园新闻与通知</div><div class="ni-desc">官方信息渠道 + 公众号矩阵</div></div><div class="ni-arrow">›</div></div><div class="nav-item"><div class="ni-idx">03</div><div class="ni-body"><div class="ni-name">常用服务电话（保定）</div><div class="ni-desc">手机拨打加区号 0312 · 校内可拨短号</div></div><div class="ni-arrow">›</div></div><div class="nav-item"><div class="ni-idx">04</div><div class="ni-body"><div class="ni-name">社团活动</div><div class="ni-desc">五大类 · 每年联合招新</div></div><div class="ni-arrow">›</div></div><div class="nav-item"><div class="ni-idx">05</div><div class="ni-body"><div class="ni-name">志愿活动</div><div class="ni-desc">时长认定 / 品牌项目</div></div><div class="ni-arrow">›</div></div><div class="nav-item"><div class="ni-idx">06</div><div class="ni-body"><div class="ni-name">宿舍生活</div><div class="ni-desc">断电 / 洗澡 / 报修</div></div><div class="ni-arrow">›</div></div><div class="nav-item"><div class="ni-idx">07</div><div class="ni-body"><div class="ni-name">快递收发</div><div class="ni-desc">驿站位置 / 地址写法</div></div><div class="ni-arrow">›</div></div><div class="nav-item"><div class="ni-idx">08</div><div class="ni-body"><div class="ni-name">校园网络与VPN</div><div class="ni-desc">认证 / 宿舍网 / 校外访问</div></div><div class="ni-arrow">›</div></div><div class="nav-item"><div class="ni-idx">09</div><div class="ni-body"><div class="ni-name">医疗与医保</div><div class="ni-desc">就医 / 报销</div></div><div class="ni-arrow">›</div></div><div class="nav-item"><div class="ni-idx">10</div><div class="ni-body"><div class="ni-name">地图与交通</div><div class="ni-desc">两校区 / 到校方式</div></div><div class="ni-arrow">›</div></div>
+  </div></div>
+  <div class="tabbar"><div class="tab "><img src="../assets/icons/home.png" alt=""><span>首页</span></div><div class="tab "><img src="../assets/icons/contest.png" alt=""><span>竞赛</span></div><div class="tab "><img src="../assets/icons/search.png" alt=""><span>检索</span></div><div class="tab "><img src="../assets/icons/about.png" alt=""><span>关于</span></div></div></div><div class="label">01 · 首页</div></div>
+    <div class="frame"><div class="phone"><div class="navbar">学科竞赛</div>
+  <div class="screen"><div class="wrap">
+    <div class="sec-hero">
+      <div class="eyebrow">CONTEST // 79 ITEMS</div>
+      <div class="sh-name">学科竞赛</div>
+      <div class="sh-desc">A类 / B类 / C类 / 校内四级 · 可按承办院系筛选</div>
+      <div class="hazard"></div>
+    </div>
+
+    <div class="search-bar"><span class="sb-icon">⌕</span><span class="sb-input ph">搜索竞赛名称、主办单位…</span></div>
+
+    <div class="filter-row"><span class="chip on">全部</span><span class="chip on">A类</span><span class="chip ">B类</span><span class="chip ">C类</span><span class="chip ">校内四级</span></div>
+    <div class="hscroll"><div class="hscroll-inner"><span class="chip on">全部院系</span><span class="chip">“匠心绿电”劳动教育工作府</span><span class="chip">以校内通知为准</span><span class="chip">保定校区暂无承办单位</span><span class="chip">全校性</span><span class="chip">动力工程系</span><span class="chip">工创中心</span><span class="chip">数理系</span><span class="chip">未列入2024版竞赛目录</span><span class="chip">机械工程系</span><span class="chip">法政系</span></div></div>
+
+    <div class="result-bar"><div>共 <span class="count">79</span> 项<span class="rb-hint"> · 已显示 3</span></div><div class="rb-reset">重置筛选</div></div>
+
+    <div class="panel marked card">
+    <div class="card-title"><span class="ct-t">中国国际大学生创新大赛（原“互联网+”大赛）</span><span class="badge bA">A类</span></div>
+    <div class="rows"><div class="kv"><div class="k">主办</div><div class="v"><div class="rich">教育部等多部委 + 省级人民政府</div></div></div><div class="kv"><div class="k">届次</div><div class="v"><div class="rich">大赛（2026）· 报名进行中</div></div></div><div class="kv"><div class="k">报名方式</div><div class="v"><div class="rich">登录全国大学生创业服务网 <span style="color:#F5C500;border-bottom:0.5px solid rgba(245,197,0,.5);">cy.ncss.cn</span> 注册报名，经校级初赛选拔后逐级推荐参加省赛、全国总决赛</div></div></div><div class="kv"><div class="k">报名时间</div><div class="v"><div class="rich">2026年7月—9月报名（校内选拔同步进行，以校内通知为准）</div></div></div><div class="kv"><div class="k">赛程安排</div><div class="v"><div class="rich">校级初赛：2026年8—9月；省级复赛：2026年9—11月；全国总决赛：2026年下半年（约5000个项目入围，往届于10—11月举行）</div></div></div></div>
+    <div class="note"><div class="rich">教育部通知2026年7月31日印发；《华北电力大学大学生学科竞赛分类表》A类第1项</div></div>
+    <div class="link-row"><span class="link-btn web"><span class="lb-name">竞赛官网</span><span class="lb-arrow">↗</span></span><span class="link-btn web"><span class="lb-name">cy.ncss.cn</span><span class="lb-arrow">↗</span></span></div>
+    <div class="src-line"><span class="src-k">来源 · </span>华电《学科竞赛目录（2024版）》+ 2026年9月联网核实</div>
+  </div><div class="panel marked card">
+    <div class="card-title"><span class="ct-t">“挑战杯”全国大学生课外学术科技作品竞赛</span><span class="badge bA">A类</span></div>
+    <div class="rows"><div class="kv"><div class="k">主办</div><div class="v"><div class="rich">共青团中央、中国科协、教育部、中国社会科学院、全国学联</div></div></div><div class="kv"><div class="k">届次</div><div class="v"><div class="rich">第十九届（2025）已闭幕 · 两年一届</div></div></div><div class="kv"><div class="k">报名方式</div><div class="v"><div class="rich">校内“挑战杯”立项申报与选拔（团委组织），学校统一推荐参加省赛、国赛</div></div></div><div class="kv"><div class="k">报名时间</div><div class="v"><div class="rich">校赛立项约2026年春季启动（备战2027年第二十届）</div></div></div><div class="kv"><div class="k">赛程安排</div><div class="v"><div class="rich">第十九届：全国终审决赛2025年10月31日—11月3日在南京大学举行；第二十届预计2027年举办</div></div></div></div>
+    <div class="note"><div class="rich">奇数年举办；2025年2700余所高校、40余万件作品参赛</div></div>
+    <div class="link-row"><span class="link-btn web"><span class="lb-name">竞赛官网</span><span class="lb-arrow">↗</span></span></div>
+    <div class="src-line"><span class="src-k">来源 · </span>华电《学科竞赛目录（2024版）》+ 2026年9月联网核实</div>
+  </div><div class="panel marked card">
+    <div class="card-title"><span class="ct-t">“挑战杯”中国大学生创业计划竞赛</span><span class="badge bA">A类</span></div>
+    <div class="rows"><div class="kv"><div class="k">主办</div><div class="v"><div class="rich">共青团中央、中国科协、教育部、全国学联</div></div></div><div class="kv"><div class="k">届次</div><div class="v"><div class="rich">第十五届（2026）</div></div></div><div class="kv"><div class="k">报名方式</div><div class="v"><div class="rich">在挑战杯官网（<span style="color:#F5C500;border-bottom:0.5px solid rgba(245,197,0,.5);">2026.tiaozhanbei.net</span>）注册报名，经校内选拔晋级省赛、全国终审决赛</div></div></div><div class="kv"><div class="k">报名时间</div><div class="v"><div class="rich">校赛报名2026年上半年（各校多在3—6月截止）</div></div></div><div class="kv"><div class="k">赛程安排</div><div class="v"><div class="rich">校赛：2026年3—6月；省级赛：2026年夏季；全国终审决赛：2026年下半年（承办高校：大连理工大学）</div></div></div></div>
+    <div class="note"><div class="rich">偶数年举办</div></div>
+    <div class="link-row"><span class="link-btn web"><span class="lb-name">竞赛官网</span><span class="lb-arrow">↗</span></span><span class="link-btn web"><span class="lb-name">2026.tiaozhanbei.net</span><span class="lb-arrow">↗</span></span></div>
+    <div class="src-line"><span class="src-k">来源 · </span>华电《学科竞赛目录（2024版）》+ 2026年9月联网核实</div>
+  </div>
+  </div></div>
+  <div class="tabbar"><div class="tab "><img src="../assets/icons/home.png" alt=""><span>首页</span></div><div class="tab on"><img src="../assets/icons/contest-on.png" alt=""><span>竞赛</span></div><div class="tab "><img src="../assets/icons/search.png" alt=""><span>检索</span></div><div class="tab "><img src="../assets/icons/about.png" alt=""><span>关于</span></div></div></div><div class="label">02 · 学科竞赛（可筛选）</div></div>
+    <div class="frame"><div class="phone"><div class="navbar">关于</div>
+  <div class="screen"><div class="wrap">
+    <div class="brand">
+      <img class="logo" src="../assets/logo.png" alt="">
+      <div class="brand-text"><div class="bt-name">并网计划</div><div class="bt-en">GRID-IN PROJECT</div><div class="bt-sub">华电保定 · 校园通</div></div>
+    </div>
+    <div class="hazard"></div>
+    <div class="stat-grid">
+      <div class="stat"><div class="st-n">24</div><div class="st-l">板块</div></div>
+      <div class="stat"><div class="st-n">79</div><div class="st-l">竞赛</div></div>
+      <div class="stat"><div class="st-n">44</div><div class="st-l">来源</div></div>
+      <div class="stat"><div class="st-n">169</div><div class="st-l">条目</div></div>
+    </div>
+    <div class="build-line">数据版本 · 核实至 2026-09-12</div>
+
+    <div class="sec-head"><div class="sec-tag">ABOUT</div><div class="sec-name">关于本小程序</div></div>
+    <div class="panel marked"><div class="rich">本篇内容由<b>王家田垄</b>网上搜集汇总，供广大学子参考，如有错误可联系开发者修改（QQ 邮箱：2045296004@<span style="color:#F5C500;border-bottom:0.5px solid rgba(245,197,0,.5);">qq.com</span>；GitHub 仓库提 Issue：<span style="color:#F5C500;border-bottom:0.5px solid rgba(245,197,0,.5);">https://github.com/wangaijun001/ncepu-bd-campus/issues</span> ）。</div></div>
+
+    <div class="sec-head"><div class="sec-tag">SOURCES // 44</div><div class="sec-name">数据来源</div><div class="sec-desc">每条内容均标注来源，点击可复制原始链接</div></div>
+    <div class="panel src-group">
+      <div class="sg-cat">学校门户</div>
+      <div class="sg-item"><span class="sg-name">华北电力大学官网</span><span class="sg-arrow">↗</span></div><div class="sg-item"><span class="sg-name">保定校区官网·学校简介</span><span class="sg-arrow">↗</span></div><div class="sg-item"><span class="sg-name">华电新闻网</span><span class="sg-arrow">↗</span></div><div class="sg-item"><span class="sg-name">校团委</span><span class="sg-arrow">↗</span></div><div class="sg-item"><span class="sg-name">工创中心（竞赛）</span><span class="sg-arrow">↗</span></div><div class="sg-item"><span class="sg-name">校医院</span><span class="sg-arrow">↗</span></div>
+    </div>
+  </div></div>
+  <div class="tabbar"><div class="tab "><img src="../assets/icons/home.png" alt=""><span>首页</span></div><div class="tab "><img src="../assets/icons/contest.png" alt=""><span>竞赛</span></div><div class="tab "><img src="../assets/icons/search.png" alt=""><span>检索</span></div><div class="tab on"><img src="../assets/icons/about-on.png" alt=""><span>关于</span></div></div></div><div class="label">03 · 关于 / 数据来源</div></div>
+  </div>
+
+  <div class="foot-note">
+    以上为小程序真实样式与数据的静态预览，实际交互需用<b>微信开发者工具</b>导入 <code>miniprogram/</code> 目录查看。<br>
+    内容源与网页版共用同一份 <code>data.js</code>，改一处两边同步。
+  </div>
+</body>
+</html>
