@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-并网计划 · tabBar 图标生成
+华电保定·校园通 · tabBar 图标生成
 按「华电保定·校园通」网页版视觉绘制 81x81 图标，每页两态
 （未选中中灰 / 选中华电绿）。
 运行：python tools/gen-icons.py

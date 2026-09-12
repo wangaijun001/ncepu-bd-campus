@@ -30,9 +30,9 @@
 }
 
 .hero-title {
-  font-size: 62rpx;
+  font-size: 52rpx;
   font-weight: 800;
-  letter-spacing: 6rpx;
+  letter-spacing: 4rpx;
   line-height: 1.08;
   color: var(--green-d);
 }

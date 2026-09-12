@@ -115,12 +115,12 @@ function pageIndex() {
       )
       .join('');
 
-  return `<div class="navbar">并网计划 · 华电保定校园通</div>
+  return `<div class="navbar">华电保定·校园通</div>
   <div class="screen"><div class="wrap">
     <div class="hero">
-      <div class="hero-top"><span class="eyebrow">BAODING // NODE-07</span><span class="eyebrow">GRID-IN</span></div>
-      <div class="hero-main"><div class="bolt"></div><div class="hero-text"><div class="hero-title">并网计划</div><div class="hero-en">GRID-IN PROJECT</div></div></div>
-      <div class="hero-sub">华电保定 · 校园通</div>
+      <div class="hero-top"><span class="eyebrow">NCEPU // BAODING</span><span class="eyebrow">CAMPUS</span></div>
+      <div class="hero-main"><div class="bolt"></div><div class="hero-text"><div class="hero-title">华电保定·校园通</div><div class="hero-en">NCEPU · BAODING</div></div></div>
+      <div class="hero-sub">竞赛 · 生活 · 全站检索</div>
       <div class="brand-rule"></div>
       <div class="hero-meta"><span>${C.sections.length} 板块</span><span class="dot">·</span><span>${
     C.contest.items.length
@@ -179,8 +179,8 @@ function pageAbout() {
   return `<div class="navbar">关于</div>
   <div class="screen"><div class="wrap">
     <div class="brand">
-      <img class="logo" src="../assets/logo.png" alt="">
-      <div class="brand-text"><div class="bt-name">并网计划</div><div class="bt-en">GRID-IN PROJECT</div><div class="bt-sub">华电保定 · 校园通</div></div>
+      <img class="logo" src="../assets/logo-light.png" alt="">
+      <div class="brand-text"><div class="bt-name">华电保定·校园通</div><div class="bt-en">NCEPU · BAODING</div><div class="bt-sub">竞赛 · 生活 · 全站检索</div></div>
     </div>
     <div class="brand-rule"></div>
     <div class="stat-grid">
@@ -366,7 +366,7 @@ const html = `<!DOCTYPE html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>并网计划 · 小程序界面预览</title>
+<title>华电保定·校园通 · 小程序界面预览</title>
 <style>
 ${PHONE_CSS}
 /* ═══ app.wxss（已转 px）═══ */
@@ -386,8 +386,8 @@ ${CARD_CSS}
 </style>
 </head>
 <body>
-  <h1>并网计划 GRID-IN PROJECT</h1>
-  <div class="sub">华电保定校园通 · 微信小程序界面预览（真实数据渲染）</div>
+  <h1>华电保定·校园通</h1>
+  <div class="sub">微信小程序界面预览（真实数据渲染）</div>
 
   <div class="stage">
     <div class="frame"><div class="phone">${pageIndex()}</div><div class="label">01 · 首页</div></div>

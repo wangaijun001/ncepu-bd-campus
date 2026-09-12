@@ -1,4 +1,4 @@
-// 并网计划 GRID-IN PROJECT · 华电保定校园通小程序
+// 华电保定·校园通 · 微信小程序
 const content = require('./data/content.js');
 
 App({

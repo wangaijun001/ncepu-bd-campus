@@ -2,11 +2,11 @@
 
   <!-- ══ 品牌区 ══ -->
   <view class="brand">
-    <image class="logo" src="/assets/logo.png" mode="aspectFit" lazy-load></image>
+    <image class="logo" src="/assets/logo-light.png" mode="aspectFit" lazy-load></image>
     <view class="brand-text">
-      <view class="bt-name">并网计划</view>
-      <view class="bt-en">GRID-IN PROJECT</view>
-      <view class="bt-sub">华电保定 · 校园通</view>
+      <view class="bt-name">华电保定·校园通</view>
+      <view class="bt-en">NCEPU · BAODING</view>
+      <view class="bt-sub">竞赛 · 生活 · 全站检索</view>
     </view>
   </view>
   <view class="brand-rule"></view>
@@ -145,7 +145,7 @@
 
   <view class="tail-mark">
     <view class="brand-rule"></view>
-    <view class="tm-text">GRID-IN PROJECT · 并网计划</view>
+    <view class="tm-text">华电保定 · 校园通</view>
   </view>
 
 </view>

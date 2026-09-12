@@ -3,19 +3,19 @@
   <!-- ══ 品牌头 ══ -->
   <view class="hero">
     <view class="hero-top">
-      <text class="eyebrow">BAODING // NODE-07</text>
-      <text class="eyebrow">GRID-IN</text>
+      <text class="eyebrow">NCEPU // BAODING</text>
+      <text class="eyebrow">CAMPUS</text>
     </view>
 
     <view class="hero-main">
       <view class="bolt"></view>
       <view class="hero-text">
-        <view class="hero-title">并网计划</view>
-        <view class="hero-en">GRID-IN PROJECT</view>
+        <view class="hero-title">华电保定·校园通</view>
+        <view class="hero-en">NCEPU · BAODING</view>
       </view>
     </view>
 
-    <view class="hero-sub">华电保定 · 校园通</view>
+    <view class="hero-sub">竞赛 · 生活 · 全站检索</view>
     <view class="brand-rule"></view>
     <view class="hero-meta">
       <text>{{totalSections}} 板块</text>
