@@ -71,8 +71,9 @@ const URL_RE = new RegExp(
   'g'
 );
 
-/** 链接样式（rich-text 内部 class 不生效，必须用 inline style） */
-const LINK_STYLE = 'color:#F5C500;border-bottom:1rpx solid rgba(245,197,0,.5);';
+/** 链接样式（rich-text 内部 class 不生效，必须用 inline style；
+ *  注意：rich-text 是 WebView 渲染，这里不能用 rpx，要用 px） */
+const LINK_STYLE = 'color:#F5C500;border-bottom:1px solid rgba(245,197,0,.5);';
 
 /** 严格判定：只有「区号-号码」形态才算电话，避免把 2026.xxx.net 这类域名误判 */
 function isTel(s) {
