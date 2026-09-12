@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "info-card": "/components/info-card/index"
+  },
+  "navigationBarTitleText": "板块"
+}

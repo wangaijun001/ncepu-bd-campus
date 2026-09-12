@@ -1,0 +1,87 @@
+/* ══ 搜索框 ══ */
+.search-bar { margin-top: 22rpx; }
+
+.sb-input {
+  flex: 1;
+  color: var(--white);
+  font-size: 28rpx;
+  height: 84rpx;
+  min-width: 0;
+}
+
+.ph {
+  color: var(--gray-dim);
+  font-size: 26rpx;
+}
+
+/* ══ 检索按钮 ══ */
+.go-btn {
+  margin-top: 18rpx;
+  height: 84rpx;
+  line-height: 84rpx;
+  text-align: center;
+  background: var(--yellow);
+  color: #11151A;
+  font-size: 29rpx;
+  font-weight: 700;
+  letter-spacing: 6rpx;
+  border-radius: 8rpx;
+}
+.go-btn:active { opacity: .82; }
+
+/* ══ 结果条 ══ */
+.result-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 26rpx 0 14rpx;
+  font-size: 24rpx;
+  color: var(--gray);
+}
+.rb-hint { color: var(--gray-dim); font-size: 22rpx; }
+.rb-reset {
+  color: var(--yellow);
+  border: 1rpx solid rgba(245, 197, 0, 0.45);
+  border-radius: 6rpx;
+  padding: 4rpx 18rpx;
+  font-size: 23rpx;
+}
+
+/* ══ 结果项 ══ */
+.res-item {
+  background: var(--panel);
+  border: 1rpx solid var(--line);
+  border-left: 5rpx solid var(--yellow);
+  border-radius: 8rpx;
+  padding: 22rpx 24rpx;
+  margin-bottom: 16rpx;
+}
+.res-item:active { background: var(--panel-2); }
+
+.ri-head {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  margin-bottom: 8rpx;
+}
+
+.ri-sec {
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 20rpx;
+  color: var(--yellow);
+  letter-spacing: 1rpx;
+}
+
+.ri-title {
+  font-size: 29rpx;
+  font-weight: 600;
+  color: var(--white);
+  line-height: 1.5;
+  margin-bottom: 8rpx;
+}
+
+.ri-text {
+  font-size: 24rpx;
+  color: var(--gray);
+  line-height: 1.7;
+}

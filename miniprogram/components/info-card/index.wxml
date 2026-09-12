@@ -1,0 +1,44 @@
+<view class="panel marked card">
+  <!-- 标题 + 等级角标 -->
+  <view class="card-title">
+    <text class="ct-t">{{item.t}}</text>
+    <text wx:if="{{item.badge}}" class="badge {{item.badgeCls}}">{{item.badge}}</text>
+  </view>
+
+  <!-- 键值行 -->
+  <view wx:if="{{item.rows.length}}" class="rows">
+    <view wx:for="{{item.rows}}" wx:key="k" wx:for-item="row" class="kv">
+      <view class="k">{{row.k}}</view>
+      <view class="v"><rich-text class="rich" nodes="{{row.v}}"></rich-text></view>
+    </view>
+  </view>
+
+  <!-- 卡片内提示 -->
+  <view wx:if="{{item.note}}" class="note">
+    <rich-text class="rich" nodes="{{item.note}}"></rich-text>
+  </view>
+
+  <!-- 链接按钮 -->
+  <view wx:if="{{item.links.length}}" class="link-row">
+    <view
+      wx:for="{{item.links}}"
+      wx:key="url"
+      wx:for-item="lk"
+      class="link-btn {{lk.kind}}"
+      data-url="{{lk.url}}"
+      data-kind="{{lk.kind}}"
+      data-name="{{lk.name}}"
+      bindtap="onLink"
+    >
+      <text class="lb-name">{{lk.name}}</text>
+      <text class="lb-arrow">{{icons[lk.kind]}}</text>
+    </view>
+  </view>
+
+  <!-- 来源 -->
+  <view wx:if="{{item.src}}" class="src-line">
+    <text class="src-k">来源 · </text>
+    <text>{{item.src}}</text>
+    <text wx:if="{{item.srcUrl}}" class="src-a" data-url="{{item.srcUrl}}" bindtap="onSrc"> 原文 ↗</text>
+  </view>
+</view>

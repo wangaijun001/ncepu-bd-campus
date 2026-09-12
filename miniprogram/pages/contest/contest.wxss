@@ -1,0 +1,49 @@
+/* ══ 搜索框 ══ */
+.search-bar { margin-top: 22rpx; }
+
+.sb-input {
+  flex: 1;
+  color: var(--white);
+  font-size: 28rpx;
+  height: 84rpx;
+  min-width: 0;
+}
+
+.ph {
+  color: var(--gray-dim);
+  font-size: 26rpx;
+}
+
+/* ══ 院系横向滚动 ══ */
+.hscroll-inner { display: inline-block; }
+
+/* ══ 结果条 ══ */
+.result-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20rpx 0 14rpx;
+  font-size: 24rpx;
+  color: var(--gray);
+}
+
+.rb-hint { color: var(--gray-dim); font-size: 22rpx; }
+
+.rb-reset {
+  color: var(--yellow);
+  border: 1rpx solid rgba(245, 197, 0, 0.45);
+  border-radius: 6rpx;
+  padding: 4rpx 18rpx;
+  font-size: 23rpx;
+}
+.rb-reset:active { background: rgba(245, 197, 0, 0.15); }
+
+/* ══ 加载提示 ══ */
+.more {
+  text-align: center;
+  color: var(--gray-dim);
+  font-size: 23rpx;
+  padding: 28rpx 0;
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+}
+.more.end { color: #3C4A5A; }

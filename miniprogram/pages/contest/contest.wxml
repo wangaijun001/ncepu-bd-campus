@@ -1,0 +1,106 @@
+<view class="wrap">
+
+  <!-- ══ 头部 ══ -->
+  <view class="sec-hero">
+    <view class="eyebrow">CONTEST // {{allTotal}} ITEMS</view>
+    <view class="sh-name">学科竞赛</view>
+    <view class="sh-desc">A类 / B类 / C类 / 校内四级 · 可按承办院系筛选</view>
+    <view class="hazard"></view>
+  </view>
+
+  <!-- ══ 搜索 ══ -->
+  <view class="search-bar">
+    <text class="sb-icon">⌕</text>
+    <input
+      class="sb-input"
+      value="{{kw}}"
+      placeholder="搜索竞赛名称、主办单位…"
+      placeholder-class="ph"
+      confirm-type="search"
+      bindinput="onKw"
+    />
+    <text wx:if="{{kw}}" class="sb-clear" bindtap="clearKw">✕</text>
+  </view>
+
+  <!-- ══ 级别筛选 ══ -->
+  <view class="filter-row">
+    <view class="chip {{levelIdx === 0 ? 'on' : ''}}" data-i="0" bindtap="onLevel">全部</view>
+    <view
+      wx:for="{{levels}}"
+      wx:key="*this"
+      wx:for-index="li"
+      class="chip {{levelIdx === li + 1 ? 'on' : ''}}"
+      data-i="{{li + 1}}"
+      bindtap="onLevel"
+    >{{levelNames[item]}}</view>
+  </view>
+
+  <!-- ══ 院系筛选（横向滚动） ══ -->
+  <scroll-view class="hscroll" scroll-x>
+    <view class="hscroll-inner">
+      <view class="chip {{deptIdx === 0 ? 'on' : ''}}" data-i="0" bindtap="onDept">全部院系</view>
+      <view
+        wx:for="{{depts}}"
+        wx:key="*this"
+        wx:for-index="di"
+        class="chip {{deptIdx === di + 1 ? 'on' : ''}}"
+        data-i="{{di + 1}}"
+        bindtap="onDept"
+      >{{item}}</view>
+    </view>
+  </scroll-view>
+
+  <!-- ══ 结果条 ══ -->
+  <view class="result-bar">
+    <view class="rb-left">
+      共 <text class="count">{{total}}</text> 项
+      <text wx:if="{{list.length < total}}" class="rb-hint">· 已显示 {{list.length}}</text>
+    </view>
+    <view
+      wx:if="{{levelIdx > 0 || deptIdx > 0 || kw}}"
+      class="rb-reset"
+      bindtap="reset"
+    >重置筛选</view>
+  </view>
+
+  <!-- ══ 竞赛列表 ══ -->
+  <info-card
+    wx:for="{{list}}"
+    wx:key="_i"
+    wx:for-item="item"
+    item="{{item}}"
+  ></info-card>
+
+  <view wx:if="{{!list.length}}" class="empty">
+    没有匹配的竞赛
+  </view>
+
+  <!-- ══ 加载更多提示 ══ -->
+  <view wx:if="{{hasMore}}" class="more">↓ 上滑加载更多</view>
+  <view wx:elif="{{list.length && total > 10}}" class="more end">— 已显示全部 {{total}} 项 —</view>
+
+  <!-- ══ 补充说明 ══ -->
+  <block wx:if="{{!kw && levelIdx === 0 && deptIdx === 0}}">
+    <view wx:if="{{notes.length}}" class="sec-head">
+      <view class="sec-tag">NOTES</view>
+      <view class="sec-name">说明</view>
+    </view>
+    <view wx:for="{{notes}}" wx:key="_i" wx:for-item="nt" class="note">
+      <rich-text class="rich" nodes="{{nt.text}}"></rich-text>
+    </view>
+
+    <block wx:if="{{tail.length}}">
+      <view class="sec-head">
+        <view class="sec-tag">MORE</view>
+        <view class="sec-name">其他竞赛与说明</view>
+      </view>
+      <info-card
+        wx:for="{{tail}}"
+        wx:key="_i"
+        wx:for-item="item"
+        item="{{item}}"
+      ></info-card>
+    </block>
+  </block>
+
+</view>

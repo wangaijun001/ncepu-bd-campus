@@ -1,0 +1,13 @@
+/* info-card 组件 —— 主体样式复用 app.wxss 全局类 */
+.card { padding: 26rpx; }
+
+.ct-t { flex: 1; min-width: 0; }
+
+.rows { margin-top: 8rpx; }
+
+/* 来源原文链接 */
+.src-a {
+  color: var(--yellow);
+  font-size: 22rpx;
+}
+.src-a:active { opacity: .6; }

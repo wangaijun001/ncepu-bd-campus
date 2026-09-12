@@ -1,0 +1,151 @@
+<view class="wrap">
+
+  <!-- ══ 品牌区 ══ -->
+  <view class="brand">
+    <image class="logo" src="/assets/logo.png" mode="aspectFit" lazy-load></image>
+    <view class="brand-text">
+      <view class="bt-name">并网计划</view>
+      <view class="bt-en">GRID-IN PROJECT</view>
+      <view class="bt-sub">华电保定 · 校园通</view>
+    </view>
+  </view>
+  <view class="hazard"></view>
+
+  <!-- ══ 数据统计 ══ -->
+  <view class="stat-grid">
+    <view class="stat">
+      <view class="st-n">{{stats.sections}}</view>
+      <view class="st-l">板块</view>
+    </view>
+    <view class="stat">
+      <view class="st-n">{{stats.contest}}</view>
+      <view class="st-l">竞赛</view>
+    </view>
+    <view class="stat">
+      <view class="st-n">{{stats.sources}}</view>
+      <view class="st-l">来源</view>
+    </view>
+    <view class="stat">
+      <view class="st-n">{{stats.entries}}</view>
+      <view class="st-l">条目</view>
+    </view>
+  </view>
+
+  <view class="build-line">数据版本 · 核实至 {{builtAt}}</view>
+
+  <!-- ══ 开发者寄语 ══ -->
+  <view class="sec-head">
+    <view class="sec-tag">ABOUT</view>
+    <view class="sec-name">关于本小程序</view>
+  </view>
+
+  <view class="panel marked">
+    <rich-text class="rich" nodes="{{dev.msg}}"></rich-text>
+  </view>
+
+  <!-- ══ 完整版 PDF ══ -->
+  <view class="panel marked">
+    <view class="card-title">完整版指南 PDF</view>
+    <view class="kv">
+      <view class="k">文件</view>
+      <view class="v">{{dev.pdfName}}</view>
+    </view>
+    <view class="link-row">
+      <view
+        class="link-btn file"
+        data-url="{{dev.pdfUrl}}"
+        data-kind="file"
+        data-name="完整版指南"
+        bindtap="onLink"
+      >
+        <text class="lb-name">获取下载链接</text>
+        <text class="lb-arrow">↓</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- ══ 开源与反馈 ══ -->
+  <view class="panel marked">
+    <view class="card-title">开源仓库与反馈</view>
+    <view class="kv">
+      <view class="k">仓库</view>
+      <view class="v">{{repo}}</view>
+    </view>
+    <view class="kv">
+      <view class="k">网页版</view>
+      <view class="v">{{site}}</view>
+    </view>
+    <view class="link-row">
+      <view
+        class="link-btn"
+        data-url="{{repo}}"
+        data-kind="web"
+        data-name="GitHub 仓库"
+        bindtap="onLink"
+      >
+        <text class="lb-name">GitHub 仓库</text>
+        <text class="lb-arrow">↗</text>
+      </view>
+      <view
+        class="link-btn"
+        data-url="{{repo}}/issues"
+        data-kind="web"
+        data-name="提交 Issue"
+        bindtap="onLink"
+      >
+        <text class="lb-name">提 Issue</text>
+        <text class="lb-arrow">↗</text>
+      </view>
+      <view
+        class="link-btn"
+        data-url="{{site}}"
+        data-kind="web"
+        data-name="网页版"
+        bindtap="onLink"
+      >
+        <text class="lb-name">网页版</text>
+        <text class="lb-arrow">↗</text>
+      </view>
+    </view>
+    <view class="link-row">
+      <view class="link-btn mail" bindtap="copyMail">
+        <text class="lb-name">QQ 邮箱 2045296004@qq.com</text>
+        <text class="lb-arrow">✉</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- ══ 数据来源 ══ -->
+  <view class="sec-head">
+    <view class="sec-tag">SOURCES // {{stats.sources}}</view>
+    <view class="sec-name">数据来源</view>
+    <view class="sec-desc">每条内容均标注来源，点击可复制原始链接</view>
+  </view>
+
+  <view wx:for="{{srcGroups}}" wx:key="cat" wx:for-item="grp" class="panel src-group">
+    <view class="sg-cat">{{grp.cat}}</view>
+    <view
+      wx:for="{{grp.items}}"
+      wx:key="_i"
+      wx:for-item="s"
+      class="sg-item"
+      data-url="{{s.url}}"
+      data-name="{{s.name}}"
+      bindtap="onSrcItem"
+    >
+      <text class="sg-name">{{s.name}}</text>
+      <text class="sg-arrow">↗</text>
+    </view>
+  </view>
+
+  <!-- ══ 免责说明 ══ -->
+  <view class="note plain">
+    <rich-text class="rich" nodes="{{footer}}"></rich-text>
+  </view>
+
+  <view class="tail-mark">
+    <view class="hazard"></view>
+    <view class="tm-text">GRID-IN PROJECT · 并网计划</view>
+  </view>
+
+</view>

@@ -1,0 +1,127 @@
+/* ══ 品牌区 ══ */
+.brand {
+  display: flex;
+  align-items: center;
+  padding: 16rpx 0 6rpx;
+}
+
+.logo {
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 16rpx;
+  border: 1rpx solid var(--line);
+  background: #0C0F13;
+  flex-shrink: 0;
+  margin-right: 26rpx;
+}
+
+.brand-text { flex: 1; min-width: 0; }
+
+.bt-name {
+  font-size: 44rpx;
+  font-weight: 800;
+  letter-spacing: 4rpx;
+  color: var(--white);
+  line-height: 1.2;
+}
+
+.bt-en {
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 20rpx;
+  letter-spacing: 4rpx;
+  color: var(--yellow);
+  margin-top: 6rpx;
+}
+
+.bt-sub {
+  font-size: 24rpx;
+  color: var(--gray);
+  margin-top: 8rpx;
+  letter-spacing: 2rpx;
+}
+
+/* ══ 统计 ══ */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12rpx;
+  margin-top: 4rpx;
+}
+
+.stat {
+  background: var(--panel);
+  border: 1rpx solid var(--line);
+  border-radius: 8rpx;
+  padding: 20rpx 8rpx;
+  text-align: center;
+}
+
+.st-n {
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 38rpx;
+  font-weight: 700;
+  color: var(--yellow);
+  line-height: 1.2;
+}
+
+.st-l {
+  font-size: 21rpx;
+  color: var(--gray);
+  margin-top: 6rpx;
+}
+
+.build-line {
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 20rpx;
+  color: var(--gray-dim);
+  text-align: center;
+  margin: 14rpx 0 6rpx;
+}
+
+/* ══ 数据来源分组 ══ */
+.src-group { padding: 20rpx 24rpx; }
+
+.sg-cat {
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 20rpx;
+  color: var(--yellow);
+  letter-spacing: 2rpx;
+  padding-bottom: 12rpx;
+  border-bottom: 1rpx solid var(--line-soft);
+}
+
+.sg-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14rpx 0;
+  border-bottom: 1rpx solid var(--line-soft);
+}
+.sg-item:last-child { border-bottom: none; }
+.sg-item:active { opacity: .6; }
+
+.sg-name {
+  font-size: 26rpx;
+  color: var(--white);
+  flex: 1;
+  min-width: 0;
+  padding-right: 16rpx;
+}
+
+.sg-arrow {
+  color: var(--gray-dim);
+  font-size: 24rpx;
+  font-family: monospace;
+  flex-shrink: 0;
+}
+
+/* ══ 尾部标记 ══ */
+.tail-mark { margin-top: 50rpx; }
+
+.tm-text {
+  text-align: center;
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 20rpx;
+  letter-spacing: 4rpx;
+  color: #3C4A5A;
+}

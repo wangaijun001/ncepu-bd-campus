@@ -1,0 +1,51 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/section/section",
+    "pages/contest/contest",
+    "pages/search/search",
+    "pages/about/about"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#11151A",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "并网计划",
+    "backgroundColor": "#0C0F13",
+    "backgroundTextStyle": "dark"
+  },
+  "tabBar": {
+    "color": "#7E8CA0",
+    "selectedColor": "#F5C500",
+    "backgroundColor": "#11151A",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "assets/icons/home.png",
+        "selectedIconPath": "assets/icons/home-on.png"
+      },
+      {
+        "pagePath": "pages/contest/contest",
+        "text": "竞赛",
+        "iconPath": "assets/icons/contest.png",
+        "selectedIconPath": "assets/icons/contest-on.png"
+      },
+      {
+        "pagePath": "pages/search/search",
+        "text": "检索",
+        "iconPath": "assets/icons/search.png",
+        "selectedIconPath": "assets/icons/search-on.png"
+      },
+      {
+        "pagePath": "pages/about/about",
+        "text": "关于",
+        "iconPath": "assets/icons/about.png",
+        "selectedIconPath": "assets/icons/about-on.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

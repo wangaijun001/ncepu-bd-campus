@@ -1,0 +1,26 @@
+/* 板块头样式已提取到 app.wxss（.sec-hero），此处仅保留本页特有样式 */
+
+/* ══ 表格块 ══ */
+.tbl-block { margin: 20rpx 0; }
+
+.tbl-block .tbl-cap {
+  border: 1rpx solid var(--line);
+  border-bottom: none;
+  border-radius: 8rpx 8rpx 0 0;
+}
+
+.tbl-block .tbl {
+  margin: 0;
+  border-radius: 0 0 8rpx 8rpx;
+}
+
+/* ══ 步骤块 ══ */
+.steps { padding: 16rpx 26rpx; }
+
+/* ══ 页脚 ══ */
+.foot {
+  margin-top: 44rpx;
+  font-size: 22rpx;
+  color: var(--gray-dim);
+  line-height: 1.8;
+}

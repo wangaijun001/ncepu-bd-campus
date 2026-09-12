@@ -1,0 +1,106 @@
+<view class="wrap">
+
+  <!-- ══ 板块头 ══ -->
+  <view class="sec-hero">
+    <view class="eyebrow">{{groupLabel}}</view>
+    <view class="sh-name">{{sec.name}}</view>
+    <view class="sh-desc">{{sec.desc}}</view>
+    <view class="hazard"></view>
+  </view>
+
+  <!-- ══ 内容块 ══ -->
+  <block wx:for="{{sec.blocks}}" wx:key="_i" wx:for-item="blk">
+
+    <!-- ① 卡片 -->
+    <block wx:if="{{blk.type === 'cards'}}">
+      <info-card
+        wx:for="{{blk.items}}"
+        wx:key="_i"
+        wx:for-item="card"
+        item="{{card}}"
+      ></info-card>
+    </block>
+
+    <!-- ② 提示条 -->
+    <view wx:elif="{{blk.type === 'note'}}" class="note">
+      <rich-text class="rich" nodes="{{blk.text}}"></rich-text>
+    </view>
+
+    <!-- ③ 表格 -->
+    <view wx:elif="{{blk.type === 'table'}}" class="tbl-block">
+      <view wx:if="{{blk.t}}" class="tbl-cap">{{blk.t}}</view>
+      <view class="tbl">
+        <view wx:if="{{blk.headers.length}}" class="tbl-row head">
+          <view wx:for="{{blk.headers}}" wx:key="_i" wx:for-item="h" class="tbl-cell">{{h.t}}</view>
+        </view>
+        <view wx:for="{{blk.rows}}" wx:key="_i" wx:for-item="row" class="tbl-row">
+          <view wx:for="{{row.cells}}" wx:key="_i" wx:for-item="cell" class="tbl-cell">
+            <rich-text class="rich" nodes="{{cell.nodes}}"></rich-text>
+          </view>
+        </view>
+      </view>
+      <view wx:if="{{blk.src}}" class="src-line">
+        <text class="src-k">来源 · </text>{{blk.src}}
+      </view>
+    </view>
+
+    <!-- ④ 步骤 -->
+    <view wx:elif="{{blk.type === 'steps'}}" class="panel steps">
+      <view
+        wx:for="{{blk.items}}"
+        wx:key="_i"
+        wx:for-item="st"
+        wx:for-index="si"
+        class="step"
+      >
+        <view class="num">{{si + 1}}</view>
+        <view class="st-body">
+          <view class="st-t"><rich-text class="rich" nodes="{{st.t}}"></rich-text></view>
+          <view wx:if="{{st.d}}" class="st-d"><rich-text class="rich" nodes="{{st.d}}"></rich-text></view>
+        </view>
+      </view>
+    </view>
+
+    <!-- ⑤ 图片 -->
+    <block wx:elif="{{blk.type === 'imgs'}}">
+      <view wx:for="{{blk.items}}" wx:key="_i" wx:for-item="im" class="fig">
+        <image
+          class="fig-img"
+          src="{{im.src}}"
+          mode="widthFix"
+          lazy-load
+          data-src="{{im.src}}"
+          bindtap="onPreviewImg"
+        ></image>
+        <view wx:if="{{im.cap}}" class="fig-cap">{{im.cap}}</view>
+      </view>
+    </block>
+
+    <!-- ⑥ 链接组 -->
+    <view wx:elif="{{blk.type === 'links'}}" class="panel">
+      <view class="link-row">
+        <view
+          wx:for="{{blk.items}}"
+          wx:key="_i"
+          wx:for-item="lk"
+          class="link-btn {{lk.kind}}"
+          data-url="{{lk.url}}"
+          data-kind="{{lk.kind}}"
+          data-name="{{lk.name}}"
+          bindtap="onLink"
+        >
+          <text class="lb-name">{{lk.name}}</text>
+          <text class="lb-arrow">{{icons[lk.kind]}}</text>
+        </view>
+      </view>
+    </view>
+
+  </block>
+
+  <!-- ══ 页脚 ══ -->
+  <view class="foot">
+    <view class="hazard"></view>
+    <rich-text class="rich" nodes="{{footer}}"></rich-text>
+  </view>
+
+</view>

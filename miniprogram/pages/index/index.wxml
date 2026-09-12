@@ -1,0 +1,150 @@
+<view class="wrap">
+
+  <!-- ══ 品牌头 ══ -->
+  <view class="hero">
+    <view class="hero-top">
+      <text class="eyebrow">BAODING // NODE-07</text>
+      <text class="eyebrow">GRID-IN</text>
+    </view>
+
+    <view class="hero-main">
+      <view class="bolt"></view>
+      <view class="hero-text">
+        <view class="hero-title">并网计划</view>
+        <view class="hero-en">GRID-IN PROJECT</view>
+      </view>
+    </view>
+
+    <view class="hero-sub">华电保定 · 校园通</view>
+    <view class="hazard"></view>
+    <view class="hero-meta">
+      <text>{{totalSections}} 板块</text>
+      <text class="dot">·</text>
+      <text>{{contestCount}} 项竞赛</text>
+      <text class="dot">·</text>
+      <text>核实至 {{builtAt}}</text>
+    </view>
+  </view>
+
+  <!-- ══ 学校简介 ══ -->
+  <view class="panel">
+    <view class="card-title">{{intro.title}}</view>
+    <view class="intro-sub">{{intro.sub}}</view>
+    <view class="intro-text {{introOpen ? '' : 'clamp'}}">
+      <rich-text class="rich" nodes="{{intro.text}}"></rich-text>
+    </view>
+    <view class="expand" bindtap="toggleIntro">{{introOpen ? '收起 ▲' : '展开全文 ▼'}}</view>
+  </view>
+
+  <!-- ══ 常用入口 ══ -->
+  <view class="sec-head">
+    <view class="sec-tag">QUICK ACCESS</view>
+    <view class="sec-name">常用入口</view>
+    <view class="sec-desc">长按复制链接后到浏览器打开 · 电话直接拨号</view>
+  </view>
+
+  <view class="quick-grid">
+    <view
+      wx:for="{{quickLinks}}"
+      wx:key="url"
+      class="quick-item"
+      data-url="{{item.url}}"
+      data-kind="{{item.kind}}"
+      data-name="{{item.name}}"
+      bindtap="onQuick"
+    >
+      <view class="qi-name">{{item.name}}</view>
+      <view class="qi-desc">{{item.desc}}</view>
+    </view>
+  </view>
+
+  <!-- ══ 学习指南 ══ -->
+  <view class="sec-head">
+    <view class="sec-tag">STUDY // {{study.length}} SECTIONS</view>
+    <view class="sec-name">学习指南</view>
+  </view>
+
+  <view
+    wx:for="{{study}}"
+    wx:key="anchor"
+    class="nav-item"
+    data-anchor="{{item.anchor}}"
+    bindtap="goSection"
+  >
+    <view class="ni-idx">{{item.idx}}</view>
+    <view class="ni-body">
+      <view class="ni-name">
+        {{item.name}}
+        <text wx:if="{{item.anchor === 'contest'}}" class="count">{{contestCount}}</text>
+      </view>
+      <view class="ni-desc">{{item.desc}}</view>
+    </view>
+    <view class="ni-arrow">›</view>
+  </view>
+
+  <!-- ══ 生活指南 ══ -->
+  <view class="sec-head">
+    <view class="sec-tag">LIFE // {{life.length}} SECTIONS</view>
+    <view class="sec-name">生活指南</view>
+  </view>
+
+  <view
+    wx:for="{{life}}"
+    wx:key="anchor"
+    class="nav-item"
+    data-anchor="{{item.anchor}}"
+    bindtap="goSection"
+  >
+    <view class="ni-idx">{{item.idx}}</view>
+    <view class="ni-body">
+      <view class="ni-name">{{item.name}}</view>
+      <view class="ni-desc">{{item.desc}}</view>
+    </view>
+    <view class="ni-arrow">›</view>
+  </view>
+
+  <!-- ══ 资料下载 ══ -->
+  <view class="sec-head">
+    <view class="sec-tag">RESOURCES // {{res.length}} SECTIONS</view>
+    <view class="sec-name">资料与工具</view>
+  </view>
+
+  <view
+    wx:for="{{res}}"
+    wx:key="anchor"
+    class="nav-item"
+    data-anchor="{{item.anchor}}"
+    bindtap="goSection"
+  >
+    <view class="ni-idx">{{item.idx}}</view>
+    <view class="ni-body">
+      <view class="ni-name">{{item.name}}</view>
+      <view class="ni-desc">{{item.desc}}</view>
+    </view>
+    <view class="ni-arrow">›</view>
+  </view>
+
+  <!-- ══ 校园地图 ══ -->
+  <view class="sec-head">
+    <view class="sec-tag">MAP</view>
+    <view class="sec-name">校园地图</view>
+  </view>
+
+  <view class="panel marked map-card" bindtap="previewMap">
+    <image class="map-thumb" src="{{mapImg}}" mode="widthFix" lazy-load></image>
+    <view class="map-cap">{{mapCap}} · 点击查看大图</view>
+  </view>
+
+  <!-- ══ 检索入口 ══ -->
+  <view class="search-entry" bindtap="goSearch">
+    <text class="se-icon">⌕</text>
+    <text>检索全站内容（系统 · 竞赛 · 电话 · 缴费…）</text>
+  </view>
+
+  <!-- ══ 页脚 ══ -->
+  <view class="foot">
+    <view class="hazard"></view>
+    <rich-text class="rich" nodes="{{footer}}"></rich-text>
+  </view>
+
+</view>

@@ -1,0 +1,75 @@
+<view class="wrap">
+
+  <!-- ══ 头部 ══ -->
+  <view class="sec-hero">
+    <view class="eyebrow">SEARCH // {{searchIndexTotal || ''}} ENTRIES</view>
+    <view class="sh-name">检索</view>
+    <view class="sh-desc">系统 · 竞赛 · 电话 · 缴费 · 宿舍 · 网络 …</view>
+    <view class="hazard"></view>
+  </view>
+
+  <!-- ══ 搜索框 ══ -->
+  <view class="search-bar">
+    <text class="sb-icon">⌕</text>
+    <input
+      class="sb-input"
+      value="{{kw}}"
+      placeholder="输入关键词，如「选课」「快递」"
+      placeholder-class="ph"
+      confirm-type="search"
+      bindinput="onKw"
+      bindconfirm="doSearch"
+    />
+    <text wx:if="{{kw}}" class="sb-clear" bindtap="clear">✕</text>
+  </view>
+
+  <view class="go-btn" bindtap="doSearch">检 索</view>
+
+  <!-- ══ 未检索：常用词 ══ -->
+  <block wx:if="{{!searched}}">
+    <view class="sec-head">
+      <view class="sec-tag">HOT</view>
+      <view class="sec-name">常用检索</view>
+    </view>
+    <view class="filter-row">
+      <view
+        wx:for="{{hot}}"
+        wx:key="*this"
+        class="chip"
+        data-k="{{item}}"
+        bindtap="onHot"
+      >{{item}}</view>
+    </view>
+  </block>
+
+  <!-- ══ 检索结果 ══ -->
+  <block wx:else>
+    <view class="result-bar">
+      <view>找到 <text class="count">{{total}}</text> 条<text wx:if="{{total > results.length}}" class="rb-hint"> · 显示前 {{results.length}}</text></view>
+      <view class="rb-reset" bindtap="clear">清空</view>
+    </view>
+
+    <view
+      wx:for="{{results}}"
+      wx:key="_i"
+      wx:for-item="res"
+      class="res-item"
+      data-anchor="{{res.anchor}}"
+      bindtap="goResult"
+    >
+      <view class="ri-head">
+        <text class="ri-sec">{{res.secName}}</text>
+        <text wx:if="{{res.badge}}" class="badge {{res.badgeCls}}">{{res.badge}}</text>
+      </view>
+      <view class="ri-title">{{res.title}}</view>
+      <view class="ri-text">
+        <rich-text class="rich" nodes="{{res.nodes}}"></rich-text>
+      </view>
+    </view>
+
+    <view wx:if="{{!results.length}}" class="empty">
+      没有找到「{{kw}}」相关内容
+    </view>
+  </block>
+
+</view>
