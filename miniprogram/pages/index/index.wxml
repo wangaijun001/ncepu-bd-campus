@@ -16,7 +16,7 @@
     </view>
 
     <view class="hero-sub">华电保定 · 校园通</view>
-    <view class="hazard"></view>
+    <view class="brand-rule"></view>
     <view class="hero-meta">
       <text>{{totalSections}} 板块</text>
       <text class="dot">·</text>
@@ -103,27 +103,6 @@
     <view class="ni-arrow">›</view>
   </view>
 
-  <!-- ══ 资料下载 ══ -->
-  <view class="sec-head">
-    <view class="sec-tag">RESOURCES // {{res.length}} SECTIONS</view>
-    <view class="sec-name">资料与工具</view>
-  </view>
-
-  <view
-    wx:for="{{res}}"
-    wx:key="anchor"
-    class="nav-item"
-    data-anchor="{{item.anchor}}"
-    bindtap="goSection"
-  >
-    <view class="ni-idx">{{item.idx}}</view>
-    <view class="ni-body">
-      <view class="ni-name">{{item.name}}</view>
-      <view class="ni-desc">{{item.desc}}</view>
-    </view>
-    <view class="ni-arrow">›</view>
-  </view>
-
   <!-- ══ 校园地图 ══ -->
   <view class="sec-head">
     <view class="sec-tag">MAP</view>
@@ -143,7 +122,7 @@
 
   <!-- ══ 页脚 ══ -->
   <view class="foot">
-    <view class="hazard"></view>
+    <view class="brand-rule"></view>
     <rich-text class="rich" nodes="{{footer}}"></rich-text>
   </view>
 

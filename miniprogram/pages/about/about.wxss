@@ -10,7 +10,7 @@
   height: 150rpx;
   border-radius: 16rpx;
   border: 1rpx solid var(--line);
-  background: #0C0F13;
+  background: #ffffff;
   flex-shrink: 0;
   margin-right: 26rpx;
 }
@@ -21,7 +21,7 @@
   font-size: 44rpx;
   font-weight: 800;
   letter-spacing: 4rpx;
-  color: var(--white);
+  color: var(--green-d);
   line-height: 1.2;
 }
 
@@ -29,7 +29,7 @@
   font-family: "SF Mono", Menlo, Consolas, monospace;
   font-size: 20rpx;
   letter-spacing: 4rpx;
-  color: var(--yellow);
+  color: var(--green);
   margin-top: 6rpx;
 }
 
@@ -60,7 +60,7 @@
   font-family: "SF Mono", Menlo, Consolas, monospace;
   font-size: 38rpx;
   font-weight: 700;
-  color: var(--yellow);
+  color: var(--green);
   line-height: 1.2;
 }
 
@@ -84,7 +84,7 @@
 .sg-cat {
   font-family: "SF Mono", Menlo, Consolas, monospace;
   font-size: 20rpx;
-  color: var(--yellow);
+  color: var(--green);
   letter-spacing: 2rpx;
   padding-bottom: 12rpx;
   border-bottom: 1rpx solid var(--line-soft);
@@ -102,7 +102,7 @@
 
 .sg-name {
   font-size: 26rpx;
-  color: var(--white);
+  color: var(--text);
   flex: 1;
   min-width: 0;
   padding-right: 16rpx;
@@ -123,5 +123,5 @@
   font-family: "SF Mono", Menlo, Consolas, monospace;
   font-size: 20rpx;
   letter-spacing: 4rpx;
-  color: #3C4A5A;
+  color: #c3ccd6;
 }

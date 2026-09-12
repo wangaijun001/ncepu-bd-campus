@@ -3,7 +3,7 @@
 
 .sb-input {
   flex: 1;
-  color: var(--white);
+  color: var(--text);
   font-size: 28rpx;
   height: 84rpx;
   min-width: 0;
@@ -20,8 +20,8 @@
   height: 84rpx;
   line-height: 84rpx;
   text-align: center;
-  background: var(--yellow);
-  color: #11151A;
+  background: var(--green);
+  color: #ffffff;
   font-size: 29rpx;
   font-weight: 700;
   letter-spacing: 6rpx;
@@ -40,8 +40,8 @@
 }
 .rb-hint { color: var(--gray-dim); font-size: 22rpx; }
 .rb-reset {
-  color: var(--yellow);
-  border: 1rpx solid rgba(245, 197, 0, 0.45);
+  color: var(--green);
+  border: 1rpx solid rgba(30, 122, 79, 0.35);
   border-radius: 6rpx;
   padding: 4rpx 18rpx;
   font-size: 23rpx;
@@ -51,7 +51,7 @@
 .res-item {
   background: var(--panel);
   border: 1rpx solid var(--line);
-  border-left: 5rpx solid var(--yellow);
+  border-left: 5rpx solid var(--green);
   border-radius: 8rpx;
   padding: 22rpx 24rpx;
   margin-bottom: 16rpx;
@@ -68,14 +68,14 @@
 .ri-sec {
   font-family: "SF Mono", Menlo, Consolas, monospace;
   font-size: 20rpx;
-  color: var(--yellow);
+  color: var(--green);
   letter-spacing: 1rpx;
 }
 
 .ri-title {
   font-size: 29rpx;
   font-weight: 600;
-  color: var(--white);
+  color: var(--green-d);
   line-height: 1.5;
   margin-bottom: 8rpx;
 }

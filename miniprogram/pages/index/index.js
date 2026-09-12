@@ -9,7 +9,6 @@ Page({
     quickLinks: C.quickLinks,
     study: [],
     life: [],
-    res: [],
     mapImg: C.mapImg,
     mapCap: C.mapCap,
     footer: C.footer,
@@ -23,8 +22,7 @@ Page({
     const mark = (arr) => arr.map((s, i) => Object.assign({}, s, { idx: pad(i + 1) }));
     this.setData({
       study: mark(C.study),
-      life: mark(C.life),
-      res: mark(C.res)
+      life: mark(C.life)
     });
   },
 

@@ -7,16 +7,16 @@
     "pages/about/about"
   ],
   "window": {
-    "navigationBarBackgroundColor": "#11151A",
-    "navigationBarTextStyle": "white",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTextStyle": "black",
     "navigationBarTitleText": "并网计划",
-    "backgroundColor": "#0C0F13",
+    "backgroundColor": "#f4f7f5",
     "backgroundTextStyle": "dark"
   },
   "tabBar": {
-    "color": "#7E8CA0",
-    "selectedColor": "#F5C500",
-    "backgroundColor": "#11151A",
+    "color": "#68788e",
+    "selectedColor": "#1e7a4f",
+    "backgroundColor": "#ffffff",
     "borderStyle": "black",
     "list": [
       {

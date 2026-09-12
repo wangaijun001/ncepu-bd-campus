@@ -10,16 +10,16 @@
 
 ```
 miniprogram/
-├── app.js / app.json / app.wxss     小程序入口与全局样式（碳黑 + 高压黄工业风）
+├── app.js / app.json / app.wxss     小程序入口与全局样式（浅绿底 + 华电绿，与网页版一致）
 ├── project.config.json              开发者工具项目配置（appid 需自行填写）
 ├── sitemap.json
 ├── data/
 │   └── content.js                   ← 构建产物，由 tools/build-data.js 生成
 ├── pages/
-│   ├── index/      首页：品牌头 + 学校简介 + 常用入口 + 24 板块导航 + 地图
+│   ├── index/      首页：品牌头 + 学校简介 + 常用入口 + 21 板块导航 + 地图
 │   ├── section/    板块页：通用渲染器，支持 6 种内容块
 │   ├── contest/    竞赛页：79 项，按级别 + 承办院系筛选
-│   ├── search/     检索页：169 条全站索引
+│   ├── search/     检索页：162 条全站索引
 │   └── about/      关于页：数据来源 44 条 + 开源仓库 + 反馈
 ├── components/
 │   └── info-card/  信息卡片组件（标题 / 键值 / 链接 / 来源）
@@ -30,6 +30,7 @@ miniprogram/
 └── tools/
     ├── build-data.js    内容构建：data.js → data/content.js
     ├── gen-icons.py     tabBar 图标生成（需 Pillow）
+    ├── gen-preview.js   生成 docs/preview.html 浏览器预览
     └── check-project.js 项目自检
 ```
 
@@ -39,8 +40,8 @@ miniprogram/
 
 用**微信开发者工具**打开本目录（`miniprogram/`）。
 
-`project.config.json` 里的 `appid` 默认是 `touristappid`（游客模式，只能模拟器预览），
-**发布前请改成你自己的小程序 AppID**。
+`project.config.json` 里的 `appid` 已填写为本项目的小程序 AppID；
+若你要另建小程序，请替换成自己的 AppID。
 
 ### 2. 更新内容
 
@@ -73,11 +74,11 @@ node tools/check-project.js
 
 | 事项 | 方案 |
 | --- | --- |
-| 内容存储 | 本地打包（`data/content.js`，约 330 KB），秒开、离线可用 |
+| 内容存储 | 本地打包（`data/content.js`，约 323 KB），秒开、离线可用 |
 | 图片 / PDF / 安装包 | **不打包**，走 GitHub Pages 直链（`wangaijun001.github.io/ncepu-bd-campus/`） |
 | 外部网页 | 小程序内无法直接打开，采用「复制链接 → 浏览器访问」 |
 | 电话 | `tel:` 链接直接唤起拨号 |
-| 主包体积 | 约 0.46 MB（上限 2 MB） |
+| 主包体积 | 约 0.44 MB（上限 2 MB） |
 
 > 图片走 `image` 组件加载网络图，无需配置服务器域名白名单；
 > 文件下载用复制链接方案，绕开个人主体无法配置未备案域名的问题。
@@ -86,9 +87,11 @@ node tools/check-project.js
 
 品牌方案见 `../../ziliao/bd-mini-brand/设计说明书.md`。
 
-- 色板：碳黑 `#11151A` / 高压黄 `#F5C500` / 工程橙 `#FF8A00` / 冷白 `#E8ECF0` / 灰蓝 `#7E8CA0`
+- 色板（与网页版共用）：华电绿 `#1e7a4f` / 深绿 `#124a30` / 浅绿底 `#e8f4ee` / 链接蓝 `#0b62c4` /
+  次要灰 `#68788e` / 边线 `#dde6e0` / 琥珀提示 `#d99a2b` + `#fdf6ec` / 页面底 `#f4f7f5`
 - 头像：`assets/logo.png`（品牌 V4 · 近景双塔）
 - 图标：六边形闪电（首页）/ 五角星（竞赛）/ 放大镜（检索）/ 信息圆（关于）
+  两态配色：未选中 `#68788e` / 选中 `#1e7a4f`
 
 ## 内容声明
 

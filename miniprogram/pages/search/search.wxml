@@ -5,7 +5,7 @@
     <view class="eyebrow">SEARCH // {{searchIndexTotal || ''}} ENTRIES</view>
     <view class="sh-name">检索</view>
     <view class="sh-desc">系统 · 竞赛 · 电话 · 缴费 · 宿舍 · 网络 …</view>
-    <view class="hazard"></view>
+    <view class="brand-rule"></view>
   </view>
 
   <!-- ══ 搜索框 ══ -->

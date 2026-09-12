@@ -7,7 +7,7 @@
 
 /* 来源原文链接 */
 .src-a {
-  color: var(--yellow);
+  color: var(--green);
   font-size: 22rpx;
 }
 .src-a:active { opacity: .6; }

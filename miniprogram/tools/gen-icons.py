@@ -2,7 +2,8 @@
 # -*- coding: utf-8 -*-
 """
 并网计划 · tabBar 图标生成
-按品牌视觉（工业几何 + 高压黄）绘制 81x81 图标，每页两态（未选中灰蓝 / 选中高压黄）。
+按「华电保定·校园通」网页版视觉绘制 81x81 图标，每页两态
+（未选中中灰 / 选中华电绿）。
 运行：python tools/gen-icons.py
 """
 import math
@@ -11,8 +12,8 @@ from PIL import Image, ImageDraw
 
 OUT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'assets', 'icons')
 S = 81
-NORM = (0x7E, 0x8C, 0xA0, 0xFF)   # 未选中 · 灰蓝
-ACT = (0xF5, 0xC5, 0x00, 0xFF)    # 选中 · 高压黄
+NORM = (0x68, 0x78, 0x8E, 0xFF)   # 未选中 · 中灰（--gray #68788e）
+ACT = (0x1E, 0x7A, 0x4F, 0xFF)    # 选中 · 华电绿（--green #1e7a4f）
 LW = 7                            # 线宽
 
 

@@ -92,7 +92,7 @@ if (!exists('data/content.js')) {
 } else {
   const C = require(path.join(ROOT, 'data/content.js'));
   ok('content.js 加载成功（' + (fs.statSync(path.join(ROOT, 'data/content.js')).size / 1024).toFixed(1) + ' KB）');
-  const expect = ['intro', 'quickLinks', 'study', 'life', 'res', 'contest', 'searchIndex', 'sections'];
+  const expect = ['intro', 'quickLinks', 'study', 'life', 'contest', 'searchIndex', 'sections'];
   expect.forEach((k) => {
     if (!C[k]) bad('数据缺少字段 ' + k);
   });

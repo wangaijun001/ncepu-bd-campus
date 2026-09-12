@@ -7,47 +7,53 @@
 <style>
 
 * { box-sizing: border-box; }
-body { margin:0; background:#07090c; color:#E8ECF0;
+body { margin:0; background:#eef1ef; color:#1f2733;
   font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif; padding:36px 20px 60px; }
-h1 { text-align:center; font-size:22px; letter-spacing:3px; margin:0 0 6px; }
-.sub { text-align:center; font-family:monospace; font-size:12px; color:#7E8CA0; letter-spacing:2px; margin-bottom:34px; }
+h1 { text-align:center; font-size:22px; letter-spacing:3px; margin:0 0 6px; color:#124a30; }
+.sub { text-align:center; font-family:monospace; font-size:12px; color:#68788e; letter-spacing:2px; margin-bottom:34px; }
 .stage { display:flex; gap:34px; justify-content:center; flex-wrap:wrap; align-items:flex-start; }
 .frame { display:flex; flex-direction:column; align-items:center; }
-.phone { width:375px; height:780px; background:#11151A; border:9px solid #1c232c; border-radius:38px;
-  overflow:hidden; display:flex; flex-direction:column; box-shadow:0 24px 60px rgba(0,0,0,.7); }
-.label { font-family:monospace; font-size:11px; color:#7E8CA0; letter-spacing:2px; margin-top:12px; }
+.phone { width:375px; height:780px; background:#f4f7f5; border:9px solid #2b333a; border-radius:38px;
+  overflow:hidden; display:flex; flex-direction:column; box-shadow:0 18px 44px rgba(18,74,48,.22); }
+.label { font-family:monospace; font-size:11px; color:#68788e; letter-spacing:2px; margin-top:12px; }
 .navbar { height:46px; flex-shrink:0; display:flex; align-items:center; justify-content:center;
-  font-size:15px; font-weight:600; background:#11151A; border-bottom:1px solid #232C36; }
-.screen { flex:1; overflow-y:auto; background:#11151A; }
+  font-size:15px; font-weight:600; background:#ffffff; color:#1f2733; border-bottom:1px solid #dde6e0; }
+.screen { flex:1; overflow-y:auto; background:#f4f7f5; }
 .screen::-webkit-scrollbar { width:0; }
-.tabbar { height:52px; flex-shrink:0; display:flex; background:#11151A; border-top:1px solid #232C36; }
+.tabbar { height:52px; flex-shrink:0; display:flex; background:#ffffff; border-top:1px solid #dde6e0; }
 .tab { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px;
-  font-size:10px; color:#7E8CA0; }
-.tab.on { color:#F5C500; }
+  font-size:10px; color:#68788e; }
+.tab.on { color:#1e7a4f; font-weight:600; }
 .tab img { width:19px; height:19px; }
-.foot-note { max-width:900px; margin:44px auto 0; font-size:12.5px; line-height:2; color:#7E8CA0; text-align:center; }
-.foot-note code { color:#F5C500; font-family:monospace; }
+.foot-note { max-width:900px; margin:44px auto 0; font-size:12.5px; line-height:2; color:#68788e; text-align:center; }
+.foot-note code { color:#1e7a4f; font-family:monospace; }
 
 /* ═══ app.wxss（已转 px）═══ */
 /* ═══════════════════════════════════════════════════════════
    并网计划 GRID-IN PROJECT — 全局样式
-   工业 UI：碳黑底 / 高压黄 / 工程橙 / 细描边 / 等宽小字
+   视觉与「华电保定·校园通」网页版保持一致：
+   浅绿底 / 白卡片 / 华电绿主色 / 深绿标题 / 蓝链接 / 琥珀提示
 ═══════════════════════════════════════════════════════════ */
 .screen {
-  --ink: #0C0F13;          /* 最深底 */
-  --bg: #11151A;           /* 碳黑主背景 */
-  --panel: #1A2028;        /* 面板 */
-  --panel-2: #222A34;      /* 次级面板 */
-  --line: #2E3A48;         /* 描边 */
-  --line-soft: #232C36;    /* 弱描边 */
-  --yellow: #F5C500;       /* 高压黄 */
-  --orange: #FF8A00;       /* 工程橙 */
-  --white: #E8ECF0;        /* 冷白 */
-  --gray: #7E8CA0;         /* 灰蓝 */
-  --gray-dim: #55606E;     /* 更暗的灰 */
+  --bg: #f4f7f5;          /* 页面底色（浅绿灰） */
+  --panel: #ffffff;       /* 面板 */
+  --panel-2: #e8f4ee;     /* 次级面板 / 表头 */
+  --line: #dde6e0;        /* 描边 */
+  --line-soft: #e7ede9;   /* 弱描边 */
+  --green: #1e7a4f;       /* 华电绿（主色） */
+  --green-d: #124a30;     /* 深绿（标题） */
+  --green-l: #e8f4ee;     /* 浅绿底 */
+  --blue: #0b62c4;        /* 链接蓝 */
+  --amber: #d99a2b;       /* 琥珀（提示条） */
+  --amber-bg: #fdf6ec;
+  --amber-t: #7a5a1e;
+  --text: #1f2733;        /* 正文 */
+  --text-2: #2c3a4d;      /* 次级正文 */
+  --gray: #68788e;        /* 次要文字 */
+  --gray-dim: #9aa7b5;    /* 更浅的灰 */
 
   background: var(--bg);
-  color: var(--white);
+  color: var(--text);
   font-size: 14px;
   line-height: 1.7;
   font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif;
@@ -59,12 +65,12 @@ h1 { text-align:center; font-size:22px; letter-spacing:3px; margin:0 0 6px; }
 /* ── 通用容器 ───────────────────────────────── */
 .wrap { padding: 12px 12px 30px; }
 
-/* 顶部等宽小字标签，模仿品牌图的 "BAODING // NODE-07" */
+/* 顶部等宽小字标签，呼应网页版的分区小标题 */
 .eyebrow {
   font-family: "SF Mono", Menlo, Consolas, monospace;
   font-size: 10px;
   letter-spacing: 1.5px;
-  color: var(--gray);
+  color: var(--gray-dim);
   text-transform: uppercase;
 }
 
@@ -72,7 +78,7 @@ h1 { text-align:center; font-size:22px; letter-spacing:3px; margin:0 0 6px; }
 .panel {
   background: var(--panel);
   border: 0.5px solid var(--line);
-  border-radius: 5px;
+  border-radius: 6px;
   padding: 13px;
   margin-bottom: 10px;
   position: relative;
@@ -81,13 +87,13 @@ h1 { text-align:center; font-size:22px; letter-spacing:3px; margin:0 0 6px; }
 .panel.tight { padding: 10px; }
 .panel.flat { background: var(--panel-2); }
 
-/* 面板左上角黄色标记（工业角标） */
+/* 面板左上角绿色标记（对应网页版 h2 的左侧绿边） */
 .panel.marked::before {
   content: '';
   position: absolute;
   left: 0; top: 0;
   width: 3px; height: 23px;
-  background: var(--yellow);
+  background: var(--green);
 }
 
 /* ── 板块标题 ───────────────────────────────── */
@@ -97,12 +103,12 @@ h1 { text-align:center; font-size:22px; letter-spacing:3px; margin:0 0 6px; }
   font-family: "SF Mono", Menlo, Consolas, monospace;
   font-size: 10px;
   letter-spacing: 1px;
-  color: var(--yellow);
+  color: var(--green);
 }
 .sec-head .sec-name {
   font-size: 18px;
   font-weight: 700;
-  color: var(--white);
+  color: var(--green-d);
   letter-spacing: 0.5px;
   margin-top: 3px;
   display: flex;
@@ -127,7 +133,7 @@ h1 { text-align:center; font-size:22px; letter-spacing:3px; margin:0 0 6px; }
   font-size: 24px;
   font-weight: 800;
   letter-spacing: 1px;
-  color: var(--white);
+  color: var(--green-d);
   margin-top: 5px;
   line-height: 1.25;
 }
@@ -142,7 +148,7 @@ h1 { text-align:center; font-size:22px; letter-spacing:3px; margin:0 0 6px; }
 .card-title {
   font-size: 15px;
   font-weight: 600;
-  color: var(--white);
+  color: var(--green-d);
   line-height: 1.5;
   display: flex;
   align-items: flex-start;
@@ -162,10 +168,10 @@ h1 { text-align:center; font-size:22px; letter-spacing:3px; margin:0 0 6px; }
   line-height: 1.6;
   flex-shrink: 0;
 }
-.badge.bA { background: var(--yellow); color: #11151A; }
-.badge.bB { background: var(--orange); color: #11151A; }
-.badge.bC { background: #3C4A5A; color: var(--white); }
-.badge.bX { background: transparent; color: var(--gray); border: 0.5px solid var(--line); }
+.badge.bA { background: #c0392b; color: #ffffff; }
+.badge.bB { background: #d4791f; color: #ffffff; }
+.badge.bC { background: #2c7fb8; color: #ffffff; }
+.badge.bX { background: #5b8c5a; color: #ffffff; }
 
 /* ── 键值行（rows） ─────────────────────────── */
 .kv { display: flex; padding: 5px 0; }
@@ -179,7 +185,7 @@ h1 { text-align:center; font-size:22px; letter-spacing:3px; margin:0 0 6px; }
 .kv .v {
   flex: 1;
   font-size: 13px;
-  color: var(--white);
+  color: var(--text-2);
   word-break: break-all;
 }
 
@@ -189,37 +195,41 @@ h1 { text-align:center; font-size:22px; letter-spacing:3px; margin:0 0 6px; }
   display: inline-flex;
   align-items: center;
   font-size: 12.5px;
-  color: var(--yellow);
-  border: 0.5px solid rgba(245, 197, 0, 0.45);
-  background: rgba(245, 197, 0, 0.07);
+  color: var(--green-d);
+  border: 0.5px solid #cfe6da;
+  background: var(--green-l);
   border-radius: 3px;
   padding: 4px 10px;
   line-height: 1.6;
   max-width: 100%;
 }
-.link-btn:active { background: rgba(245, 197, 0, 0.2); }
+.link-btn:active { background: #d7ebe1; }
 .link-btn.tel {
-  color: var(--orange);
-  border-color: rgba(255, 138, 0, 0.45);
-  background: rgba(255, 138, 0, 0.07);
+  color: var(--amber-t);
+  border-color: #eddcb6;
+  background: var(--amber-bg);
 }
-.link-btn.file { color: var(--gray); border-color: var(--line); background: rgba(255,255,255,0.03); }
+.link-btn.file {
+  color: var(--blue);
+  border-color: #cddff4;
+  background: #eef4fc;
+}
 .link-btn .lb-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .link-btn .lb-arrow { margin-left: 4px; font-family: monospace; }
 
 /* ── 提示条（note） ─────────────────────────── */
 .note {
-  background: rgba(255, 138, 0, 0.07);
-  border-left: 2.5px solid var(--orange);
+  background: var(--amber-bg);
+  border-left: 2.5px solid var(--amber);
   border-radius: 0 3px 3px 0;
   padding: 8px 10px;
   font-size: 12.5px;
-  color: #D8DEE6;
+  color: var(--amber-t);
   margin: 9px 0;
   line-height: 1.75;
 }
 .note.plain {
-  background: rgba(255,255,255,0.03);
+  background: #f2f5f3;
   border-left-color: var(--line);
   color: var(--gray);
 }
@@ -231,8 +241,8 @@ h1 { text-align:center; font-size:22px; letter-spacing:3px; margin:0 0 6px; }
   width: 22px; height: 22px;
   flex-shrink: 0;
   border-radius: 50%;
-  background: var(--yellow);
-  color: #11151A;
+  background: var(--green);
+  color: #ffffff;
   font-family: monospace;
   font-size: 12px;
   font-weight: 700;
@@ -243,27 +253,27 @@ h1 { text-align:center; font-size:22px; letter-spacing:3px; margin:0 0 6px; }
   margin-top: 2px;
 }
 .step .st-body { flex: 1; }
-.step .st-t { font-size: 13.5px; font-weight: 600; color: var(--white); }
+.step .st-t { font-size: 13.5px; font-weight: 600; color: var(--text-2); }
 .step .st-d { font-size: 12.5px; color: var(--gray); margin-top: 2px; line-height: 1.7; }
 
 /* ── 表格（table） ──────────────────────────── */
-.tbl { margin: 6px 0; overflow: hidden; border: 0.5px solid var(--line); border-radius: 4px; }
+.tbl { margin: 6px 0; overflow: hidden; border: 0.5px solid var(--line); border-radius: 4px; background: var(--panel); }
 .tbl-cap {
   font-size: 12px;
-  color: var(--yellow);
-  background: rgba(245,197,0,0.07);
+  color: var(--green-d);
+  background: var(--green-l);
   padding: 6px 9px;
   font-weight: 600;
 }
 .tbl-row { display: flex; border-top: 0.5px solid var(--line-soft); }
-.tbl-row:nth-child(odd) { background: rgba(255,255,255,0.015); }
-.tbl-row.head { background: var(--panel-2); }
-.tbl-row.head .tbl-cell { color: var(--yellow); font-weight: 600; font-size: 12px; }
+.tbl-row:nth-child(odd) { background: #fafcfb; }
+.tbl-row.head { background: var(--green-l); }
+.tbl-row.head .tbl-cell { color: var(--green-d); font-weight: 600; font-size: 12px; }
 .tbl-cell {
   flex: 1;
   padding: 7px 8px;
   font-size: 12px;
-  color: var(--white);
+  color: var(--text-2);
   line-height: 1.65;
   border-left: 0.5px solid var(--line-soft);
   word-break: break-all;
@@ -276,7 +286,7 @@ h1 { text-align:center; font-size:22px; letter-spacing:3px; margin:0 0 6px; }
   width: 100%;
   border-radius: 4px;
   border: 0.5px solid var(--line);
-  background: var(--panel-2);
+  background: #f7faf8;
 }
 .fig .fig-cap {
   font-size: 11.5px;
@@ -306,14 +316,14 @@ h1 { text-align:center; font-size:22px; letter-spacing:3px; margin:0 0 6px; }
   padding: 0 11px;
   height: 42px;
 }
-.search-bar .sb-icon { color: var(--gray); font-size: 15px; margin-right: 7px; }
+.search-bar .sb-icon { color: var(--gray-dim); font-size: 15px; margin-right: 7px; }
 .search-bar input {
   flex: 1;
-  color: var(--white);
+  color: var(--text);
   font-size: 14px;
   height: 42px;
 }
-.search-bar .sb-clear { color: var(--gray); font-size: 15px; padding: 0 3px; }
+.search-bar .sb-clear { color: var(--gray-dim); font-size: 15px; padding: 0 3px; }
 
 /* ── 筛选条 ─────────────────────────────────── */
 .filter-row {
@@ -324,16 +334,16 @@ h1 { text-align:center; font-size:22px; letter-spacing:3px; margin:0 0 6px; }
 }
 .chip {
   font-size: 12px;
-  color: var(--gray);
-  border: 0.5px solid var(--line);
+  color: var(--green-d);
+  border: 0.5px solid var(--green);
   border-radius: 3px;
   padding: 3px 9px;
   background: var(--panel);
 }
 .chip.on {
-  color: #11151A;
-  background: var(--yellow);
-  border-color: var(--yellow);
+  color: #ffffff;
+  background: var(--green);
+  border-color: var(--green);
   font-weight: 600;
 }
 
@@ -357,52 +367,53 @@ h1 { text-align:center; font-size:22px; letter-spacing:3px; margin:0 0 6px; }
   padding: 12px 13px;
   background: var(--panel);
   border: 0.5px solid var(--line);
-  border-radius: 5px;
+  border-radius: 6px;
   margin-bottom: 8px;
 }
-.nav-item:active { background: var(--panel-2); }
+.nav-item:active { background: var(--green-l); }
 .nav-item .ni-idx {
   font-family: monospace;
   font-size: 11px;
-  color: var(--yellow);
+  color: var(--green);
   width: 28px;
   flex-shrink: 0;
 }
 .nav-item .ni-body { flex: 1; min-width: 0; }
-.nav-item .ni-name { font-size: 14.5px; font-weight: 600; color: var(--white); }
+.nav-item .ni-name { font-size: 14.5px; font-weight: 600; color: var(--green-d); }
 .nav-item .ni-desc { font-size: 11.5px; color: var(--gray); margin-top: 2px; }
 .nav-item .ni-arrow { color: var(--gray-dim); font-family: monospace; margin-left: 6px; }
 
-/* ── 斜纹装饰条 ─────────────────────────────── */
-.hazard {
-  height: 5px;
-  background: repeating-linear-gradient(
-    -45deg,
-    var(--yellow) 0 7px,
-    #11151A 7px 14px
-  );
-  border-radius: 1px;
+/* ── 品牌分隔条（浅绿渐变） ─────────────────── */
+.brand-rule {
+  height: 3px;
+  border-radius: 1.5px;
+  background: linear-gradient(90deg, var(--green), rgba(30, 122, 79, 0.08));
   margin: 10px 0;
-  opacity: 0.85;
 }
 
 /* ── 计数徽标 ───────────────────────────────── */
 .count {
   font-family: monospace;
   font-size: 11px;
-  color: var(--yellow);
-  border: 0.5px solid rgba(245,197,0,0.4);
-  border-radius: 2px;
-  padding: 0 5px;
+  color: #ffffff;
+  background: var(--green);
+  border-radius: 5px;
+  padding: 0 6px;
   margin-left: 5px;
 }
 
 /* 富文本容器 */
-.rich { font-size: 13px; line-height: 1.8; color: var(--white); word-break: break-all; }
+.rich { font-size: 13px; line-height: 1.8; color: var(--text-2); word-break: break-all; }
 
 /* ═══ index.wxss ═══ */
-/* ══ 品牌头 ══ */
-.hero { padding: 7px 0 2px; }
+/* ══ 品牌头（白卡片，呼应网页版顶栏） ══ */
+.hero {
+  background: var(--panel);
+  border: 0.5px solid var(--line);
+  border-radius: 6px;
+  padding: 13px;
+  margin-bottom: 10px;
+}
 
 .hero-top {
   display: flex;
@@ -422,7 +433,7 @@ h1 { text-align:center; font-size:22px; letter-spacing:3px; margin:0 0 6px; }
   height: 33px;
   flex-shrink: 0;
   margin-right: 12px;
-  background: var(--yellow);
+  background: var(--green);
   clip-path: polygon(60% 0%, 20% 54%, 45% 54%, 36% 100%, 80% 42%, 52% 42%);
 }
 
@@ -431,14 +442,14 @@ h1 { text-align:center; font-size:22px; letter-spacing:3px; margin:0 0 6px; }
   font-weight: 800;
   letter-spacing: 3px;
   line-height: 1.08;
-  color: var(--white);
+  color: var(--green-d);
 }
 
 .hero-en {
   font-family: "SF Mono", Menlo, Consolas, monospace;
   font-size: 10.5px;
   letter-spacing: 2.5px;
-  color: var(--yellow);
+  color: var(--green);
   margin-top: 3px;
 }
 
@@ -459,7 +470,7 @@ h1 { text-align:center; font-size:22px; letter-spacing:3px; margin:0 0 6px; }
 /* ══ 简介 ══ */
 .intro-sub {
   font-size: 12px;
-  color: var(--yellow);
+  color: var(--green);
   margin: 5px 0 8px;
   line-height: 1.6;
 }
@@ -471,12 +482,12 @@ h1 { text-align:center; font-size:22px; letter-spacing:3px; margin:0 0 6px; }
   position: absolute;
   left: 0; right: 0; bottom: 0;
   height: 45px;
-  background: linear-gradient(rgba(26,32,40,0), var(--panel));
+  background: linear-gradient(rgba(255,255,255,0), var(--panel));
 }
 
 .expand {
   text-align: center;
-  color: var(--yellow);
+  color: var(--green);
   font-size: 12px;
   padding-top: 7px;
 }
@@ -490,29 +501,17 @@ h1 { text-align:center; font-size:22px; letter-spacing:3px; margin:0 0 6px; }
 }
 
 .quick-item {
-  background: var(--panel);
-  border: 0.5px solid var(--line);
+  background: var(--green-l);
+  border: 0.5px solid #cfe6da;
   border-radius: 5px;
   padding: 11px 8px;
-  position: relative;
-  overflow: hidden;
 }
-.quick-item:active { background: var(--panel-2); }
-
-/* 右上角小切角装饰 */
-.quick-item::after {
-  content: '';
-  position: absolute;
-  top: 0; right: 0;
-  border-width: 0 9px 9px 0;
-  border-style: solid;
-  border-color: transparent var(--line) transparent transparent;
-}
+.quick-item:active { background: #d7ebe1; }
 
 .qi-name {
   font-size: 13.5px;
   font-weight: 600;
-  color: var(--white);
+  color: var(--green-d);
   line-height: 1.4;
 }
 
@@ -544,15 +543,15 @@ h1 { text-align:center; font-size:22px; letter-spacing:3px; margin:0 0 6px; }
   align-items: center;
   justify-content: center;
   gap: 6px;
-  background: rgba(245, 197, 0, 0.07);
-  border: 0.5px dashed rgba(245, 197, 0, 0.4);
+  background: rgba(30, 122, 79, 0.06);
+  border: 0.5px dashed rgba(30, 122, 79, 0.35);
   border-radius: 5px;
   padding: 13px;
-  color: var(--yellow);
+  color: var(--green);
   font-size: 13px;
   margin-top: 15px;
 }
-.search-entry:active { background: rgba(245, 197, 0, 0.15); }
+.search-entry:active { background: rgba(30, 122, 79, 0.12); }
 .se-icon { font-size: 16px; }
 
 /* ══ 页脚 ══ */
@@ -569,7 +568,7 @@ h1 { text-align:center; font-size:22px; letter-spacing:3px; margin:0 0 6px; }
 
 .sb-input {
   flex: 1;
-  color: var(--white);
+  color: var(--text);
   font-size: 14px;
   height: 42px;
   min-width: 0;
@@ -596,13 +595,13 @@ h1 { text-align:center; font-size:22px; letter-spacing:3px; margin:0 0 6px; }
 .rb-hint { color: var(--gray-dim); font-size: 11px; }
 
 .rb-reset {
-  color: var(--yellow);
-  border: 0.5px solid rgba(245, 197, 0, 0.45);
+  color: var(--green);
+  border: 0.5px solid rgba(30, 122, 79, 0.35);
   border-radius: 3px;
   padding: 2px 9px;
   font-size: 11.5px;
 }
-.rb-reset:active { background: rgba(245, 197, 0, 0.15); }
+.rb-reset:active { background: rgba(30, 122, 79, 0.12); }
 
 /* ══ 加载提示 ══ */
 .more {
@@ -612,7 +611,7 @@ h1 { text-align:center; font-size:22px; letter-spacing:3px; margin:0 0 6px; }
   padding: 14px 0;
   font-family: "SF Mono", Menlo, Consolas, monospace;
 }
-.more.end { color: #3C4A5A; }
+.more.end { color: #c3ccd6; }
 
 /* ═══ about.wxss ═══ */
 /* ══ 品牌区 ══ */
@@ -627,7 +626,7 @@ h1 { text-align:center; font-size:22px; letter-spacing:3px; margin:0 0 6px; }
   height: 75px;
   border-radius: 8px;
   border: 0.5px solid var(--line);
-  background: #0C0F13;
+  background: #ffffff;
   flex-shrink: 0;
   margin-right: 13px;
 }
@@ -638,7 +637,7 @@ h1 { text-align:center; font-size:22px; letter-spacing:3px; margin:0 0 6px; }
   font-size: 22px;
   font-weight: 800;
   letter-spacing: 2px;
-  color: var(--white);
+  color: var(--green-d);
   line-height: 1.2;
 }
 
@@ -646,7 +645,7 @@ h1 { text-align:center; font-size:22px; letter-spacing:3px; margin:0 0 6px; }
   font-family: "SF Mono", Menlo, Consolas, monospace;
   font-size: 10px;
   letter-spacing: 2px;
-  color: var(--yellow);
+  color: var(--green);
   margin-top: 3px;
 }
 
@@ -677,7 +676,7 @@ h1 { text-align:center; font-size:22px; letter-spacing:3px; margin:0 0 6px; }
   font-family: "SF Mono", Menlo, Consolas, monospace;
   font-size: 19px;
   font-weight: 700;
-  color: var(--yellow);
+  color: var(--green);
   line-height: 1.2;
 }
 
@@ -701,7 +700,7 @@ h1 { text-align:center; font-size:22px; letter-spacing:3px; margin:0 0 6px; }
 .sg-cat {
   font-family: "SF Mono", Menlo, Consolas, monospace;
   font-size: 10px;
-  color: var(--yellow);
+  color: var(--green);
   letter-spacing: 1px;
   padding-bottom: 6px;
   border-bottom: 0.5px solid var(--line-soft);
@@ -719,7 +718,7 @@ h1 { text-align:center; font-size:22px; letter-spacing:3px; margin:0 0 6px; }
 
 .sg-name {
   font-size: 13px;
-  color: var(--white);
+  color: var(--text);
   flex: 1;
   min-width: 0;
   padding-right: 8px;
@@ -740,7 +739,7 @@ h1 { text-align:center; font-size:22px; letter-spacing:3px; margin:0 0 6px; }
   font-family: "SF Mono", Menlo, Consolas, monospace;
   font-size: 10px;
   letter-spacing: 2px;
-  color: #3C4A5A;
+  color: #c3ccd6;
 }
 
 </style>
@@ -756,8 +755,8 @@ h1 { text-align:center; font-size:22px; letter-spacing:3px; margin:0 0 6px; }
       <div class="hero-top"><span class="eyebrow">BAODING // NODE-07</span><span class="eyebrow">GRID-IN</span></div>
       <div class="hero-main"><div class="bolt"></div><div class="hero-text"><div class="hero-title">并网计划</div><div class="hero-en">GRID-IN PROJECT</div></div></div>
       <div class="hero-sub">华电保定 · 校园通</div>
-      <div class="hazard"></div>
-      <div class="hero-meta"><span>24 板块</span><span class="dot">·</span><span>79 项竞赛</span><span class="dot">·</span><span>核实至 2026-09-12</span></div>
+      <div class="brand-rule"></div>
+      <div class="hero-meta"><span>21 板块</span><span class="dot">·</span><span>79 项竞赛</span><span class="dot">·</span><span>核实至 2026-09-12</span></div>
     </div>
 
     <div class="panel">
@@ -783,7 +782,7 @@ h1 { text-align:center; font-size:22px; letter-spacing:3px; margin:0 0 6px; }
       <div class="eyebrow">CONTEST // 79 ITEMS</div>
       <div class="sh-name">学科竞赛</div>
       <div class="sh-desc">A类 / B类 / C类 / 校内四级 · 可按承办院系筛选</div>
-      <div class="hazard"></div>
+      <div class="brand-rule"></div>
     </div>
 
     <div class="search-bar"><span class="sb-icon">⌕</span><span class="sb-input ph">搜索竞赛名称、主办单位…</span></div>
@@ -795,7 +794,7 @@ h1 { text-align:center; font-size:22px; letter-spacing:3px; margin:0 0 6px; }
 
     <div class="panel marked card">
     <div class="card-title"><span class="ct-t">中国国际大学生创新大赛（原“互联网+”大赛）</span><span class="badge bA">A类</span></div>
-    <div class="rows"><div class="kv"><div class="k">主办</div><div class="v"><div class="rich">教育部等多部委 + 省级人民政府</div></div></div><div class="kv"><div class="k">届次</div><div class="v"><div class="rich">大赛（2026）· 报名进行中</div></div></div><div class="kv"><div class="k">报名方式</div><div class="v"><div class="rich">登录全国大学生创业服务网 <span style="color:#F5C500;border-bottom:1px solid rgba(245,197,0,.5);">cy.ncss.cn</span> 注册报名，经校级初赛选拔后逐级推荐参加省赛、全国总决赛</div></div></div><div class="kv"><div class="k">报名时间</div><div class="v"><div class="rich">2026年7月—9月报名（校内选拔同步进行，以校内通知为准）</div></div></div><div class="kv"><div class="k">赛程安排</div><div class="v"><div class="rich">校级初赛：2026年8—9月；省级复赛：2026年9—11月；全国总决赛：2026年下半年（约5000个项目入围，往届于10—11月举行）</div></div></div></div>
+    <div class="rows"><div class="kv"><div class="k">主办</div><div class="v"><div class="rich">教育部等多部委 + 省级人民政府</div></div></div><div class="kv"><div class="k">届次</div><div class="v"><div class="rich">大赛（2026）· 报名进行中</div></div></div><div class="kv"><div class="k">报名方式</div><div class="v"><div class="rich">登录全国大学生创业服务网 <span style="color:#0b62c4;border-bottom:1px solid rgba(11,98,196,.4);">cy.ncss.cn</span> 注册报名，经校级初赛选拔后逐级推荐参加省赛、全国总决赛</div></div></div><div class="kv"><div class="k">报名时间</div><div class="v"><div class="rich">2026年7月—9月报名（校内选拔同步进行，以校内通知为准）</div></div></div><div class="kv"><div class="k">赛程安排</div><div class="v"><div class="rich">校级初赛：2026年8—9月；省级复赛：2026年9—11月；全国总决赛：2026年下半年（约5000个项目入围，往届于10—11月举行）</div></div></div></div>
     <div class="note"><div class="rich">教育部通知2026年7月31日印发；《华北电力大学大学生学科竞赛分类表》A类第1项</div></div>
     <div class="link-row"><span class="link-btn web"><span class="lb-name">竞赛官网</span><span class="lb-arrow">↗</span></span><span class="link-btn web"><span class="lb-name">cy.ncss.cn</span><span class="lb-arrow">↗</span></span></div>
     <div class="src-line"><span class="src-k">来源 · </span>华电《学科竞赛目录（2024版）》+ 2026年9月联网核实</div>
@@ -807,7 +806,7 @@ h1 { text-align:center; font-size:22px; letter-spacing:3px; margin:0 0 6px; }
     <div class="src-line"><span class="src-k">来源 · </span>华电《学科竞赛目录（2024版）》+ 2026年9月联网核实</div>
   </div><div class="panel marked card">
     <div class="card-title"><span class="ct-t">“挑战杯”中国大学生创业计划竞赛</span><span class="badge bA">A类</span></div>
-    <div class="rows"><div class="kv"><div class="k">主办</div><div class="v"><div class="rich">共青团中央、中国科协、教育部、全国学联</div></div></div><div class="kv"><div class="k">届次</div><div class="v"><div class="rich">第十五届（2026）</div></div></div><div class="kv"><div class="k">报名方式</div><div class="v"><div class="rich">在挑战杯官网（<span style="color:#F5C500;border-bottom:1px solid rgba(245,197,0,.5);">2026.tiaozhanbei.net</span>）注册报名，经校内选拔晋级省赛、全国终审决赛</div></div></div><div class="kv"><div class="k">报名时间</div><div class="v"><div class="rich">校赛报名2026年上半年（各校多在3—6月截止）</div></div></div><div class="kv"><div class="k">赛程安排</div><div class="v"><div class="rich">校赛：2026年3—6月；省级赛：2026年夏季；全国终审决赛：2026年下半年（承办高校：大连理工大学）</div></div></div></div>
+    <div class="rows"><div class="kv"><div class="k">主办</div><div class="v"><div class="rich">共青团中央、中国科协、教育部、全国学联</div></div></div><div class="kv"><div class="k">届次</div><div class="v"><div class="rich">第十五届（2026）</div></div></div><div class="kv"><div class="k">报名方式</div><div class="v"><div class="rich">在挑战杯官网（<span style="color:#0b62c4;border-bottom:1px solid rgba(11,98,196,.4);">2026.tiaozhanbei.net</span>）注册报名，经校内选拔晋级省赛、全国终审决赛</div></div></div><div class="kv"><div class="k">报名时间</div><div class="v"><div class="rich">校赛报名2026年上半年（各校多在3—6月截止）</div></div></div><div class="kv"><div class="k">赛程安排</div><div class="v"><div class="rich">校赛：2026年3—6月；省级赛：2026年夏季；全国终审决赛：2026年下半年（承办高校：大连理工大学）</div></div></div></div>
     <div class="note"><div class="rich">偶数年举办</div></div>
     <div class="link-row"><span class="link-btn web"><span class="lb-name">竞赛官网</span><span class="lb-arrow">↗</span></span><span class="link-btn web"><span class="lb-name">2026.tiaozhanbei.net</span><span class="lb-arrow">↗</span></span></div>
     <div class="src-line"><span class="src-k">来源 · </span>华电《学科竞赛目录（2024版）》+ 2026年9月联网核实</div>
@@ -820,17 +819,17 @@ h1 { text-align:center; font-size:22px; letter-spacing:3px; margin:0 0 6px; }
       <img class="logo" src="../assets/logo.png" alt="">
       <div class="brand-text"><div class="bt-name">并网计划</div><div class="bt-en">GRID-IN PROJECT</div><div class="bt-sub">华电保定 · 校园通</div></div>
     </div>
-    <div class="hazard"></div>
+    <div class="brand-rule"></div>
     <div class="stat-grid">
-      <div class="stat"><div class="st-n">24</div><div class="st-l">板块</div></div>
+      <div class="stat"><div class="st-n">21</div><div class="st-l">板块</div></div>
       <div class="stat"><div class="st-n">79</div><div class="st-l">竞赛</div></div>
       <div class="stat"><div class="st-n">44</div><div class="st-l">来源</div></div>
-      <div class="stat"><div class="st-n">169</div><div class="st-l">条目</div></div>
+      <div class="stat"><div class="st-n">162</div><div class="st-l">条目</div></div>
     </div>
     <div class="build-line">数据版本 · 核实至 2026-09-12</div>
 
     <div class="sec-head"><div class="sec-tag">ABOUT</div><div class="sec-name">关于本小程序</div></div>
-    <div class="panel marked"><div class="rich">本篇内容由<b>王家田垄</b>网上搜集汇总，供广大学子参考，如有错误可联系开发者修改（QQ 邮箱：2045296004@<span style="color:#F5C500;border-bottom:1px solid rgba(245,197,0,.5);">qq.com</span>；GitHub 仓库提 Issue：<span style="color:#F5C500;border-bottom:1px solid rgba(245,197,0,.5);">https://github.com/wangaijun001/ncepu-bd-campus/issues</span> ）。</div></div>
+    <div class="panel marked"><div class="rich">本篇内容由<b>王家田垄</b>网上搜集汇总，供广大学子参考，如有错误可联系开发者修改（QQ 邮箱：2045296004@<span style="color:#0b62c4;border-bottom:1px solid rgba(11,98,196,.4);">qq.com</span>；GitHub 仓库提 Issue：<span style="color:#0b62c4;border-bottom:1px solid rgba(11,98,196,.4);">https://github.com/wangaijun001/ncepu-bd-campus/issues</span> ）。</div></div>
 
     <div class="sec-head"><div class="sec-tag">SOURCES // 44</div><div class="sec-name">数据来源</div><div class="sec-desc">每条内容均标注来源，点击可复制原始链接</div></div>
     <div class="panel src-group">

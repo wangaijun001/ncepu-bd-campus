@@ -89,7 +89,6 @@ footer{text-align:center;color:#9aa7b5;font-size:11.5px;padding:24px 16px 40px;l
     <a class="nl on" data-view="home" href="javascript:void(0)" onclick="showView('home')">首页</a>
     <a class="nl" data-view="study" href="javascript:void(0)" onclick="showView('study')">学习</a>
     <a class="nl" data-view="life" href="javascript:void(0)" onclick="showView('life')">生活</a>
-    <a class="nl" data-view="res" href="javascript:void(0)" onclick="showView('res')">开发者资料</a>
     <a class="nl" data-view="dev" href="javascript:void(0)" onclick="showView('dev')">开发者寄语</a>
     <div class="spacer"></div>
     <input id="q" type="search" placeholder="搜索内容…（如：数学建模 / 报修）">
@@ -101,7 +100,6 @@ footer{text-align:center;color:#9aa7b5;font-size:11.5px;padding:24px 16px 40px;l
   <div class="view" id="view-home">页面生成中…（若长期无响应请检查 data.js 是否在同目录）</div>
   <div class="view" id="view-study" style="display:none"></div>
   <div class="view" id="view-life" style="display:none"></div>
-  <div class="view" id="view-res" style="display:none"></div>
   <div class="view" id="view-dev" style="display:none"></div>
 </div>
 
@@ -415,144 +413,6 @@ const DATA = {
    ]
   ]
  },
- "res": [
-  {
-   "anchor": "cet",
-   "name": "四六级备考资料（cet-prep）",
-   "desc": "开发者整理的 CET-4 / CET-6 备考手册 PDF",
-   "blocks": [
-    {
-     "type": "note",
-     "text": "⚠ 本模块全部资料均为<b>开发者自我整理</b>，仅供学习交流与个人参考使用，<b>不可用于任何商业用途</b>；如需分享请保留本说明。"
-    },
-    {
-     "type": "cards",
-     "items": [
-      {
-       "t": "《大学英语四级备考完全手册》PDF",
-       "rows": [
-        [
-         "内容",
-         "开发者整理的四级备考完全手册：题型拆解、词汇、真题思路与应试技巧（与公众号/校内分享版一致）"
-        ],
-        [
-         "用途",
-         "手机/平板/打印均可阅读；建议按手册节奏在考前 4-6 周使用"
-        ]
-       ],
-       "links": [
-        [
-         "下载 cet4.pdf",
-         "https://wangaijun001.github.io/ncepu-bd-campus/files/cet4.pdf"
-        ]
-       ],
-       "src": "开发者自我整理"
-      },
-      {
-       "t": "《大学英语六级备考完全手册》PDF",
-       "rows": [
-        [
-         "内容",
-         "开发者整理的六级备考完全手册：题型拆解、词汇、真题思路与应试技巧"
-        ],
-        [
-         "用途",
-         "同上；六级听力/写作板块建议结合真题精练"
-        ]
-       ],
-       "links": [
-        [
-         "下载 cet6.pdf",
-         "https://wangaijun001.github.io/ncepu-bd-campus/files/cet6.pdf"
-        ]
-       ],
-       "src": "开发者自我整理"
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "anchor": "wake",
-   "name": "Wake 课程表 App（wake app）",
-   "desc": "华电课表安卓应用：APK 安装包 + 使用手册",
-   "blocks": [
-    {
-     "type": "note",
-     "text": "⚠ 该应用为开发者自我开发整理，<b>不可用于商业用途</b>；安装前请先阅读使用手册。"
-    },
-    {
-     "type": "cards",
-     "items": [
-      {
-       "t": "Wake课程表.apk（安卓安装包）",
-       "rows": [
-        [
-         "用途",
-         "华电（保定）课程表查看 App，包名 com.wake.timetable v1.0.0"
-        ],
-        [
-         "安装方法",
-         "安卓手机下载 APK → 打开文件（系统提示“未知来源”时允许本安装，或到设置-安全中临时开启“允许安装未知应用”）→ 安装完成后按手册导入课表"
-        ],
-        [
-         "注意",
-         "仅安卓；iOS 暂无；安装包未上架应用商店，属个人开发测试版"
-        ]
-       ],
-       "links": [
-        [
-         "下载 wake.apk",
-         "https://wangaijun001.github.io/ncepu-bd-campus/files/wake.apk"
-        ],
-        [
-         "下载 使用手册(PDF)",
-         "https://wangaijun001.github.io/ncepu-bd-campus/files/wake-使用手册.pdf"
-        ]
-       ],
-       "src": "开发者自我整理"
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "anchor": "c1",
-   "name": "C语言入门练习代码（c语言1.0）",
-   "desc": "零基础自学路线 + 100 道练习骨架 + 参考答案",
-   "blocks": [
-    {
-     "type": "note",
-     "text": "⚠ 本套资料为开发者自我整理，<b>不可用于商业用途</b>；仅供个人学习编程使用。"
-    },
-    {
-     "type": "cards",
-     "items": [
-      {
-       "t": "C语言资料包（zip，约 340KB）",
-       "rows": [
-        [
-         "包含",
-         "《C语言学习全流程.txt》（学习路线总纲）+ C语言入门代码集合：100 个练习骨架（ch01_ex01.c ~ ch20_ex05.c）+ 《练习答案100题》PDF + 自动编译脚本"
-        ],
-        [
-         "用法",
-         "解压后先读《C语言学习全流程.txt》；按章节先自己写骨架，再对照答案复盘；配合洛谷在线刷题巩固"
-        ]
-       ],
-       "links": [
-        [
-         "下载 c语言资料.zip",
-         "https://wangaijun001.github.io/ncepu-bd-campus/files/c_language.zip"
-        ]
-       ],
-       "src": "开发者自我整理"
-      }
-     ]
-    }
-   ]
-  }
- ],
  "study": [
   {
    "anchor": "sys",
@@ -655,7 +515,7 @@ const DATA = {
    "blocks": [
     {
      "type": "note",
-     "text": "下表汇总自 开发者网络搜索与用户提供资料（华电微图公众号官方公告、《机械系新生指南》）。身份证末位为 X 时请<b>大写</b>；首次登录成功后请尽快在各自系统内修改密码。"
+     "text": "下表汇总自 开发者网络搜索与用户提供资料（华电微图公众号官方公告、华电教务《大学体育选课操作指南》、《机械系新生指南》）。身份证末位为 X 时请<b>大写</b>；首次登录成功后请尽快在各自系统内修改密码。"
     },
     {
      "t": "默认账号密码一览（保定校区）",
@@ -717,9 +577,9 @@ const DATA = {
        "身份证后六位（X大写）"
       ],
       [
-       "教务与一体化平台（jwxt）",
-       "学籍号",
-       "学籍号（学籍号以录取通知书/辅导员通知为准）"
+       "教务与一体化平台（jwxt.ncepu.edu.cn）",
+       "学号",
+       "身份证后六位"
       ],
       [
        "华电邮箱",
@@ -732,7 +592,7 @@ const DATA = {
        "身份证出生日期（如20050812）"
       ]
      ],
-     "src": "华电微图公众号官方公告 + 机械系2025新生指南 + 开发者网络核实"
+     "src": "华电微图公众号官方公告 + 华电教务《大学体育选课操作指南》 + 机械系2025新生指南 + 开发者网络核实"
     },
     {
      "type": "cards",
@@ -5737,7 +5597,7 @@ function filterBar(b){
 let CUR = 'home';
 function showView(name){
   CUR = name;
-  ['home','study','life','res','dev'].forEach(v=>{
+  ['home','study','life','dev'].forEach(v=>{
     document.getElementById('view-'+v).style.display = v===name ? '' : 'none';
   });
   document.querySelectorAll('a.nl[data-view]').forEach(a=>a.classList.toggle('on', a.dataset.view===name));
@@ -5789,7 +5649,6 @@ function renderDev(){
 renderHome();
 document.getElementById('view-study').innerHTML = moduleHtml('study','学习',false);
 document.getElementById('view-life').innerHTML = moduleHtml('life','生活',false);
-document.getElementById('view-res').innerHTML = moduleHtml('res','开发者自我整理资料',false);
 renderDev();
 document.getElementById('foot').innerHTML = DATA.footer;
 

@@ -5,7 +5,7 @@
     <view class="eyebrow">CONTEST // {{allTotal}} ITEMS</view>
     <view class="sh-name">学科竞赛</view>
     <view class="sh-desc">A类 / B类 / C类 / 校内四级 · 可按承办院系筛选</view>
-    <view class="hazard"></view>
+    <view class="brand-rule"></view>
   </view>
 
   <!-- ══ 搜索 ══ -->

@@ -5,7 +5,7 @@
     <view class="eyebrow">{{groupLabel}}</view>
     <view class="sh-name">{{sec.name}}</view>
     <view class="sh-desc">{{sec.desc}}</view>
-    <view class="hazard"></view>
+    <view class="brand-rule"></view>
   </view>
 
   <!-- ══ 内容块 ══ -->
@@ -99,7 +99,7 @@
 
   <!-- ══ 页脚 ══ -->
   <view class="foot">
-    <view class="hazard"></view>
+    <view class="brand-rule"></view>
     <rich-text class="rich" nodes="{{footer}}"></rich-text>
   </view>
 

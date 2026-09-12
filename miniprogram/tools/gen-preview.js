@@ -118,7 +118,7 @@ function pageIndex() {
       <div class="hero-top"><span class="eyebrow">BAODING // NODE-07</span><span class="eyebrow">GRID-IN</span></div>
       <div class="hero-main"><div class="bolt"></div><div class="hero-text"><div class="hero-title">并网计划</div><div class="hero-en">GRID-IN PROJECT</div></div></div>
       <div class="hero-sub">华电保定 · 校园通</div>
-      <div class="hazard"></div>
+      <div class="brand-rule"></div>
       <div class="hero-meta"><span>${C.sections.length} 板块</span><span class="dot">·</span><span>${
     C.contest.items.length
   } 项竞赛</span><span class="dot">·</span><span>核实至 ${C.__builtAt}</span></div>
@@ -156,7 +156,7 @@ function pageContest() {
       <div class="eyebrow">CONTEST // ${C.contest.items.length} ITEMS</div>
       <div class="sh-name">学科竞赛</div>
       <div class="sh-desc">A类 / B类 / C类 / 校内四级 · 可按承办院系筛选</div>
-      <div class="hazard"></div>
+      <div class="brand-rule"></div>
     </div>
 
     <div class="search-bar"><span class="sb-icon">⌕</span><span class="sb-input ph">搜索竞赛名称、主办单位…</span></div>
@@ -179,7 +179,7 @@ function pageAbout() {
       <img class="logo" src="../assets/logo.png" alt="">
       <div class="brand-text"><div class="bt-name">并网计划</div><div class="bt-en">GRID-IN PROJECT</div><div class="bt-sub">华电保定 · 校园通</div></div>
     </div>
-    <div class="hazard"></div>
+    <div class="brand-rule"></div>
     <div class="stat-grid">
       <div class="stat"><div class="st-n">${C.sections.length}</div><div class="st-l">板块</div></div>
       <div class="stat"><div class="st-n">${C.contest.items.length}</div><div class="st-l">竞赛</div></div>
@@ -206,26 +206,26 @@ function pageAbout() {
 // ── 组装 ─────────────────────────────────────────────────────
 const PHONE_CSS = `
 * { box-sizing: border-box; }
-body { margin:0; background:#07090c; color:#E8ECF0;
+body { margin:0; background:#eef1ef; color:#1f2733;
   font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif; padding:36px 20px 60px; }
-h1 { text-align:center; font-size:22px; letter-spacing:3px; margin:0 0 6px; }
-.sub { text-align:center; font-family:monospace; font-size:12px; color:#7E8CA0; letter-spacing:2px; margin-bottom:34px; }
+h1 { text-align:center; font-size:22px; letter-spacing:3px; margin:0 0 6px; color:#124a30; }
+.sub { text-align:center; font-family:monospace; font-size:12px; color:#68788e; letter-spacing:2px; margin-bottom:34px; }
 .stage { display:flex; gap:34px; justify-content:center; flex-wrap:wrap; align-items:flex-start; }
 .frame { display:flex; flex-direction:column; align-items:center; }
-.phone { width:375px; height:780px; background:#11151A; border:9px solid #1c232c; border-radius:38px;
-  overflow:hidden; display:flex; flex-direction:column; box-shadow:0 24px 60px rgba(0,0,0,.7); }
-.label { font-family:monospace; font-size:11px; color:#7E8CA0; letter-spacing:2px; margin-top:12px; }
+.phone { width:375px; height:780px; background:#f4f7f5; border:9px solid #2b333a; border-radius:38px;
+  overflow:hidden; display:flex; flex-direction:column; box-shadow:0 18px 44px rgba(18,74,48,.22); }
+.label { font-family:monospace; font-size:11px; color:#68788e; letter-spacing:2px; margin-top:12px; }
 .navbar { height:46px; flex-shrink:0; display:flex; align-items:center; justify-content:center;
-  font-size:15px; font-weight:600; background:#11151A; border-bottom:1px solid #232C36; }
-.screen { flex:1; overflow-y:auto; background:#11151A; }
+  font-size:15px; font-weight:600; background:#ffffff; color:#1f2733; border-bottom:1px solid #dde6e0; }
+.screen { flex:1; overflow-y:auto; background:#f4f7f5; }
 .screen::-webkit-scrollbar { width:0; }
-.tabbar { height:52px; flex-shrink:0; display:flex; background:#11151A; border-top:1px solid #232C36; }
+.tabbar { height:52px; flex-shrink:0; display:flex; background:#ffffff; border-top:1px solid #dde6e0; }
 .tab { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px;
-  font-size:10px; color:#7E8CA0; }
-.tab.on { color:#F5C500; }
+  font-size:10px; color:#68788e; }
+.tab.on { color:#1e7a4f; font-weight:600; }
 .tab img { width:19px; height:19px; }
-.foot-note { max-width:900px; margin:44px auto 0; font-size:12.5px; line-height:2; color:#7E8CA0; text-align:center; }
-.foot-note code { color:#F5C500; font-family:monospace; }
+.foot-note { max-width:900px; margin:44px auto 0; font-size:12.5px; line-height:2; color:#68788e; text-align:center; }
+.foot-note code { color:#1e7a4f; font-family:monospace; }
 `;
 
 const html = `<!DOCTYPE html>

@@ -89,7 +89,6 @@ footer{text-align:center;color:#9aa7b5;font-size:11.5px;padding:24px 16px 40px;l
     <a class="nl on" data-view="home" href="javascript:void(0)" onclick="showView('home')">首页</a>
     <a class="nl" data-view="study" href="javascript:void(0)" onclick="showView('study')">学习</a>
     <a class="nl" data-view="life" href="javascript:void(0)" onclick="showView('life')">生活</a>
-    <a class="nl" data-view="res" href="javascript:void(0)" onclick="showView('res')">开发者资料</a>
     <a class="nl" data-view="dev" href="javascript:void(0)" onclick="showView('dev')">开发者寄语</a>
     <div class="spacer"></div>
     <input id="q" type="search" placeholder="搜索内容…（如：数学建模 / 报修）">
@@ -101,7 +100,6 @@ footer{text-align:center;color:#9aa7b5;font-size:11.5px;padding:24px 16px 40px;l
   <div class="view" id="view-home">页面生成中…（若长期无响应请检查 data.js 是否在同目录）</div>
   <div class="view" id="view-study" style="display:none"></div>
   <div class="view" id="view-life" style="display:none"></div>
-  <div class="view" id="view-res" style="display:none"></div>
   <div class="view" id="view-dev" style="display:none"></div>
 </div>
 
@@ -110,7 +108,7 @@ footer{text-align:center;color:#9aa7b5;font-size:11.5px;padding:24px 16px 40px;l
 
 <footer id="foot"></footer>
 
-<script src="data.js?v=202609072034"></script>
+<script src="data.js?v=202609122158"></script>
 <script>
 const app = document.getElementById('app');
 const esc = s => (s ?? '').toString().replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
@@ -191,7 +189,7 @@ function filterBar(b){
 let CUR = 'home';
 function showView(name){
   CUR = name;
-  ['home','study','life','res','dev'].forEach(v=>{
+  ['home','study','life','dev'].forEach(v=>{
     document.getElementById('view-'+v).style.display = v===name ? '' : 'none';
   });
   document.querySelectorAll('a.nl[data-view]').forEach(a=>a.classList.toggle('on', a.dataset.view===name));
@@ -243,7 +241,6 @@ function renderDev(){
 renderHome();
 document.getElementById('view-study').innerHTML = moduleHtml('study','学习',false);
 document.getElementById('view-life').innerHTML = moduleHtml('life','生活',false);
-document.getElementById('view-res').innerHTML = moduleHtml('res','开发者自我整理资料',false);
 renderDev();
 document.getElementById('foot').innerHTML = DATA.footer;
 

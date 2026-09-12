@@ -21,7 +21,7 @@ function buildNodes(text, words) {
     if (i % 2 === 1) {
       nodes.push({
         name: 'span',
-        attrs: { style: 'color:#F5C500;font-weight:600;' },
+        attrs: { style: 'color:#1e7a4f;font-weight:700;' },
         children: [{ type: 'text', text: p }]
       });
     } else {

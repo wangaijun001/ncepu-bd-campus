@@ -73,7 +73,7 @@ const URL_RE = new RegExp(
 
 /** 链接样式（rich-text 内部 class 不生效，必须用 inline style；
  *  注意：rich-text 是 WebView 渲染，这里不能用 rpx，要用 px） */
-const LINK_STYLE = 'color:#F5C500;border-bottom:1px solid rgba(245,197,0,.5);';
+const LINK_STYLE = 'color:#0b62c4;border-bottom:1px solid rgba(11,98,196,.4);';
 
 /** 严格判定：只有「区号-号码」形态才算电话，避免把 2026.xxx.net 这类域名误判 */
 function isTel(s) {
@@ -319,7 +319,6 @@ console.log('◆ 源文件：' + SRC_FILE);
 
 const study = (DATA.study || []).map((s) => convSection(s, 'study'));
 const life = (DATA.life || []).map((s) => convSection(s, 'life'));
-const res = (DATA.res || []).map((s) => convSection(s, 'res'));
 
 // 竞赛专用数据集：把 contest 板块里带 tags 的卡片抽出来
 const contestSec = study.find((s) => s.anchor === 'contest');
@@ -345,7 +344,7 @@ if (contestSec) {
 
 // 板块索引（首页导航 + 检索页用）
 const sections = withIdx(
-  [...study, ...life, ...res].map((s) => ({
+  [...study, ...life].map((s) => ({
     anchor: s.anchor,
     name: s.name,
     desc: s.desc,
@@ -367,7 +366,7 @@ function addIndex(sec, title, nodes, extra) {
     badge: (extra && extra.badge) || ''
   });
 }
-[...study, ...life, ...res].forEach((sec) => {
+[...study, ...life].forEach((sec) => {
   sec.blocks.forEach((b) => {
     if (b.type === 'cards') {
       b.items.forEach((it) => {
@@ -425,7 +424,6 @@ const out = {
   },
   footer: htmlToNodes(DATA.footer),
 
-  res,
   study,
   life,
   sections,
@@ -452,6 +450,6 @@ fs.writeFileSync(OUT_FILE, js, 'utf8');
 const kb = (n) => (n / 1024).toFixed(1) + ' KB';
 console.log('✓ 输出：' + OUT_FILE);
 console.log('  体积：' + kb(Buffer.byteLength(js)));
-console.log('  板块：学习 ' + study.length + ' · 生活 ' + life.length + ' · 资料 ' + res.length);
+console.log('  板块：学习 ' + study.length + ' · 生活 ' + life.length);
 console.log('  竞赛：' + contest.items.length + ' 项（' + contest.levels.join('/') + '，' + contest.depts.length + ' 个院系）');
 console.log('  检索条目：' + searchIndex.length);

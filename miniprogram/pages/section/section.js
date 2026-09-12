@@ -3,14 +3,13 @@ const actions = require('../../utils/actions.js');
 
 // 建立 anchor → section 的索引
 const ALL = {};
-[...C.study, ...C.life, ...C.res].forEach((s) => {
+[...C.study, ...C.life].forEach((s) => {
   ALL[s.anchor] = s;
 });
 
 const GROUP_LABEL = {
   study: 'STUDY // 学习指南',
-  life: 'LIFE // 生活指南',
-  res: 'RESOURCES // 资料与工具'
+  life: 'LIFE // 生活指南'
 };
 
 Page({

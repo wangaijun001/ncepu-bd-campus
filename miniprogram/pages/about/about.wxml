@@ -9,7 +9,7 @@
       <view class="bt-sub">华电保定 · 校园通</view>
     </view>
   </view>
-  <view class="hazard"></view>
+  <view class="brand-rule"></view>
 
   <!-- ══ 数据统计 ══ -->
   <view class="stat-grid">
@@ -144,7 +144,7 @@
   </view>
 
   <view class="tail-mark">
-    <view class="hazard"></view>
+    <view class="brand-rule"></view>
     <view class="tm-text">GRID-IN PROJECT · 并网计划</view>
   </view>
 
