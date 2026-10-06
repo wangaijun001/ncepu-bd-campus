@@ -76,6 +76,30 @@ select.deptSel{border:1px solid var(--line);border-radius:16px;padding:4px 10px;
 .modtag{display:inline-block;background:var(--green);color:#fff;font-size:12px;border-radius:5px;padding:1px 10px;margin-right:8px;vertical-align:middle}
 .lurl{display:inline-block;color:#8ba3b8;font-size:10.5px;margin-left:5px;word-break:break-all;font-weight:normal}
 .quick a small.u{color:#5f7488;opacity:1}
+/* 互动地图 */
+.imap{position:relative;border:1px solid var(--line);border-radius:10px;overflow:hidden;margin:10px 0;background:#dfe7ee}
+.imap img.mapbase{width:100%;display:block}
+.mdot{position:absolute;width:15px;height:15px;margin:-15px 0 0 -7.5px;border-radius:50%;border:2.5px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.45);cursor:pointer;padding:0;z-index:5;transition:transform .12s}
+.mdot:hover{transform:scale(1.5)}
+.mdot.on{transform:scale(1.55);box-shadow:0 0 0 3px rgba(30,122,79,.5),0 1px 4px rgba(0,0,0,.45)}
+.mdot.c-gate{background:#c0392b}.mdot.c-teach{background:#1e7a4f}.mdot.c-dorm{background:#d4791f}.mdot.c-life{background:#2c7fb8}.mdot.c-sport{background:#5b8c5a}.mdot.c-spot{background:#8e44ad}
+.imap-info{background:#fff;border:1px solid var(--line);border-radius:10px;padding:11px 15px;margin:10px 0;font-size:13px}
+.imap-info .t{font-weight:bold;font-size:15px;color:var(--green-d);display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.imap-info .catb{font-size:10.5px;color:#fff;border-radius:4px;padding:0 6px;font-weight:normal;white-space:nowrap}
+.imap-info ul{margin:7px 0 2px 20px;padding:0}
+.imap-info li{margin:3px 0}
+.ileg{display:flex;gap:6px;flex-wrap:wrap;margin:9px 0 2px;align-items:center}
+.ileg .lg-t{font-size:12px;color:var(--gray)}
+.ileg button{border:1px solid var(--line);background:#fff;border-radius:14px;padding:2px 10px;font-size:11.5px;cursor:pointer;color:#2c3a4d;display:inline-flex;align-items:center;gap:5px}
+.ileg button .d{width:9px;height:9px;border-radius:50%;display:inline-block}
+.ileg button.off{opacity:.35}
+.imap-list{margin-top:6px}
+.ilg{display:flex;gap:5px;flex-wrap:wrap;align-items:baseline;margin:4px 0}
+.ilg .cl{font-size:11px;color:var(--gray);flex:0 0 58px;text-align:justify;text-align-last:justify}
+.ilg button{border:1px solid #cfe6da;background:#fff;border-radius:12px;padding:1px 9px;font-size:11.5px;cursor:pointer;color:var(--green-d)}
+.ilg button:hover{background:var(--green-l)}
+.ilg button.on{background:var(--green);color:#fff;font-weight:bold}
+@media (max-width:640px){.mdot{width:19px;height:19px;margin:-19px 0 0 -9.5px;border-width:2px}}
 .morelink{float:right;font-size:12.5px;font-weight:normal}
 footer{text-align:center;color:#9aa7b5;font-size:11.5px;padding:24px 16px 40px;line-height:2}
 @media print{nav,#top,.chips{display:none}body{background:#fff}}
@@ -110,7 +134,7 @@ footer{text-align:center;color:#9aa7b5;font-size:11.5px;padding:24px 16px 40px;l
 
 <footer id="foot"></footer>
 
-<script src="data.js?v=202610061200"></script>
+<script src="data.js?v=202610061500"></script>
 <script>
 const app = document.getElementById('app');
 const esc = s => (s ?? '').toString().replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
@@ -212,12 +236,43 @@ function moduleHtml(key, title, collapsed){
   return html + '</div>';
 }
 
+// ===== 互动地图 =====
+const MB = DATA.mapBuildings||null;
+const CATC = {gate:'#c0392b',teach:'#1e7a4f',dorm:'#d4791f',life:'#2c7fb8',sport:'#5b8c5a',spot:'#8e44ad'};
+function openMapB(id,scroll){
+  if(!MB) return;
+  const b = MB.items.find(x=>x.id===id);
+  if(!b) return;
+  document.querySelectorAll('#imap .mdot').forEach(d=>d.classList.toggle('on', d.dataset.id===id));
+  document.querySelectorAll('#imapList button').forEach(x=>x.classList.toggle('on', x.dataset.id===id));
+  const pts = (b.pts||[]).concat(b.c==='dorm' ? (MB.dormCommonPts||[]) : []);
+  const links = (b.lk&&b.lk.length) ? `<div class="row"><span class="k">链接</span><span class="v">${b.lk.map(linkHtml).join('<br>')}</span></div>` : '';
+  const box = document.getElementById('imapInfo');
+  box.innerHTML = `<div class="t">${b.num?`<span class="badge">${esc(b.num)}</span>`:''}${esc(b.n)}<span class="catb" style="background:${CATC[b.c]||'var(--green)'}">${esc(MB.cats[b.c]||'')}</span></div>
+  <div style="margin-top:4px">${linkify(b.d)}</div>
+  ${pts.length?`<ul>${pts.map(p=>`<li>${linkify(p)}</li>`).join('')}</ul>`:''}${links}
+  ${b.src?`<div class="src">来源：${esc(b.src)}</div>`:''}`;
+  if(scroll) box.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function imapPanelHtml(){
+  const dots = MB.items.map(b=>`<button class="mdot c-${b.c}" style="left:${b.x}%;top:${b.y}%" data-id="${b.id}" title="${esc(b.n)}" aria-label="${esc(b.n)}"></button>`).join('');
+  const legend = `<span class="lg-t">图例（点击隐藏/显示）：</span>` + Object.keys(MB.cats).map(c=>`<button data-cat="${c}"><span class="d" style="background:${CATC[c]}"></span>${esc(MB.cats[c])}</button>`).join('');
+  const list = Object.keys(MB.cats).map(c=>{
+    const its = MB.items.filter(b=>b.c===c);
+    return `<div class="ilg" data-cat="${c}"><span class="cl">${esc(MB.cats[c])}</span>${its.map(b=>`<button data-id="${b.id}">${esc(b.n)}</button>`).join('')}</div>`;
+  }).join('');
+  return `<div class="imap" id="imap"><img class="mapbase" src="${esc(DATA.mapImg)}" alt="二校区互动地图">${dots}</div>
+  <div id="imapInfo" class="imap-info">点击地图上的彩色圆点，或下方列表中的名称，查看建筑 / 场所详细介绍。圆点颜色代表类别，见下方图例。</div>
+  <div class="ileg" id="imapLegend">${legend}</div>
+  <div class="imap-list" id="imapList">${list}</div>`;
+}
+
 // ===== 首页：只有 地图 + 学校简介 + 折叠的学习/生活模块 =====
 function renderHome(){
   const I = DATA.intro;
   let html = `<div class="panel"><h2>${esc(I.title)}</h2>
   <div class="pdesc">${I.sub}</div>
-  <div class="hero-img" onclick="lb(this.querySelector('img').src)"><img src="${esc(DATA.mapImg)}" alt="二校区地图"><div class="cap">${esc(DATA.mapCap)}（点击放大）</div></div>
+  ${MB ? imapPanelHtml() : `<div class="hero-img" onclick="lb(this.querySelector('img').src)"><img src="${esc(DATA.mapImg)}" alt="二校区地图"><div class="cap">${esc(DATA.mapCap)}（点击放大）</div></div>`}
   <div style="font-size:13.5px;margin-top:12px">${linkify(I.text)}</div>${I.src?srcHtml(I):''}
   <h3 class="blk closed" onclick="this.classList.toggle('closed');this.nextElementSibling.style.display=this.classList.contains('closed')?'none':''">地图注记</h3><div style="display:none">${blockHtml({type:'list',items:DATA.mapNotes,src:'来源：网络'})}</div></div>`;
   html += moduleHtml('study','学习模块（点击展开）',true);
@@ -241,6 +296,25 @@ function renderDev(){
 
 // ===== 主流程 =====
 renderHome();
+if(MB){
+  document.getElementById('imap').addEventListener('click',e=>{
+    const d=e.target.closest('.mdot'); if(d) openMapB(d.dataset.id,false);
+  });
+  document.getElementById('imapLegend').addEventListener('click',e=>{
+    const btn=e.target.closest('button[data-cat]'); if(!btn) return;
+    btn.classList.toggle('off');
+    const off=[...document.querySelectorAll('#imapLegend button.off')].map(x=>x.dataset.cat);
+    const hiddenCats=off.slice();
+    document.querySelectorAll('#imap .mdot').forEach(d=>{
+      const b=MB.items.find(x=>x.id===d.dataset.id);
+      d.style.display=(b&&hiddenCats.includes(b.c))?'none':'';
+    });
+    document.querySelectorAll('#imapList .ilg').forEach(g=>{g.style.display=hiddenCats.includes(g.dataset.cat)?'none':'';});
+  });
+  document.getElementById('imapList').addEventListener('click',e=>{
+    const btn=e.target.closest('button[data-id]'); if(btn) openMapB(btn.dataset.id,true);
+  });
+}
 document.getElementById('view-study').innerHTML = moduleHtml('study','学习',false);
 document.getElementById('view-life').innerHTML = moduleHtml('life','生活',false);
 renderDev();
