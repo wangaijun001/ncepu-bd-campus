@@ -19,6 +19,11 @@ const DATA = {
  },
  "quickLinks": [
   [
+   "校园 AI 接入指南",
+   "ai-kit/index.html",
+   "校内大模型·工具包"
+  ],
+  [
    "数字华电",
    "https://my.ncepu.edu.cn/",
    "统一门户·学号登录"

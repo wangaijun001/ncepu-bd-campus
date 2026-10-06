@@ -4,6 +4,10 @@
 
 **在线访问**：https://wangaijun001.github.io/ncepu-bd-campus/
 
+## AI 接入指南（ai-kit 子站）
+
+本仓库 `ai-kit/` 目录收录了[原 ncepu-ai-kit 仓库](https://github.com/wangaijun001/ncepu-ai-kit)的全部内容：校内大模型（qwen3.8-27b）的接入文档、自检脚本和本地反代工具。主站顶部导航「AI 接入」即为该指南页面，也可直接访问 https://wangaijun001.github.io/ncepu-bd-campus/ai-kit/ 。
+
 ## 如何更新内容
 
 1. 所有文字内容都在 `data.js` 里，直接用记事本改（字段含义见文件头部注释），保存刷新网页即可生效（本地双击 index.html）。
