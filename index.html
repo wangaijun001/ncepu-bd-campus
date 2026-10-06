@@ -6,7 +6,7 @@
 <title>华电保定 · 校园通</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--green:#1e7a4f;--green-d:#124a30;--green-l:#e8f4ee;--blue:#0b62c4;--gray:#68788e;--line:#dde6e0;--amber-bg:#fdf6ec;--amber:#d99a2b;--amber-t:#7a5a1e}
+:root{--green:#1e7a4f;--green-d:#124a30;--green-l:#e8f4ee;--blue:#0b62c4;--gray:#68788e;--line:#dde6e0;--amber-bg:#fdf6ec;--amber:#d99a2b;--amber-t:#7a5a1e;--bmono:"Cascadia Code","JetBrains Mono",Consolas,"Courier New",monospace}
 body{font-family:"Microsoft YaHei","PingFang SC",sans-serif;color:#1f2733;background:#f4f7f5;line-height:1.65}
 a{color:var(--blue);text-decoration:none;word-break:break-all}
 a:hover{text-decoration:underline}
@@ -76,30 +76,98 @@ select.deptSel{border:1px solid var(--line);border-radius:16px;padding:4px 10px;
 .modtag{display:inline-block;background:var(--green);color:#fff;font-size:12px;border-radius:5px;padding:1px 10px;margin-right:8px;vertical-align:middle}
 .lurl{display:inline-block;color:#8ba3b8;font-size:10.5px;margin-left:5px;word-break:break-all;font-weight:normal}
 .quick a small.u{color:#5f7488;opacity:1}
-/* 互动地图 */
-.imap{position:relative;width:fit-content;max-width:100%;margin:0 auto;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#dfe7ee}
-.imap img.mapbase{display:block;max-height:74vh;width:auto;max-width:100%}
-.mdot{position:absolute;width:15px;height:15px;margin:-15px 0 0 -7.5px;border-radius:50%;border:2.5px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.45);cursor:pointer;padding:0;z-index:5;transition:transform .12s}
-.mdot:hover{transform:scale(1.5)}
-.mdot.on{transform:scale(1.55);box-shadow:0 0 0 3px rgba(30,122,79,.5),0 1px 4px rgba(0,0,0,.45)}
-.mdot.c-gate{background:#c0392b}.mdot.c-teach{background:#1e7a4f}.mdot.c-dorm{background:#d4791f}.mdot.c-life{background:#2c7fb8}.mdot.c-sport{background:#5b8c5a}.mdot.c-spot{background:#8e44ad}
-.imap-info{background:#fff;border:1px solid var(--line);border-radius:10px;padding:11px 15px;margin:10px 0;font-size:13px}
-.imap-info .t{font-weight:bold;font-size:15px;color:var(--green-d);display:flex;align-items:center;gap:7px;flex-wrap:wrap}
-.imap-info .catb{font-size:10.5px;color:#fff;border-radius:4px;padding:0 6px;font-weight:normal;white-space:nowrap}
-.imap-info ul{margin:7px 0 2px 20px;padding:0}
-.imap-info li{margin:3px 0}
-.ileg{display:flex;gap:6px;flex-wrap:wrap;margin:9px 0 2px;align-items:center}
-.ileg .lg-t{font-size:12px;color:var(--gray)}
-.ileg button{border:1px solid var(--line);background:#fff;border-radius:14px;padding:2px 10px;font-size:11.5px;cursor:pointer;color:#2c3a4d;display:inline-flex;align-items:center;gap:5px}
+/* 互动地图 · 蓝图HUD风格 */
+.imap-hudbox{--ac:#8fd0ff;--mutb:#7fa3c8;--okb:#7dffc4;--warnb:#ffd479;
+  position:relative;margin:10px 0;padding:12px 14px 14px;
+  background:
+    linear-gradient(rgba(150,200,255,.06) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(150,200,255,.06) 1px,transparent 1px),
+    linear-gradient(rgba(150,200,255,.12) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(150,200,255,.12) 1px,transparent 1px);
+  background-size:22px 22px,22px 22px,110px 110px,110px 110px;
+  background-color:#08243f;border:1px solid rgba(150,200,255,.25);color:#dcebff}
+.imap-hudbox::before,.imap-hudbox::after,.imap-hudbox>.cb::before,.imap-hudbox>.cb::after{
+  content:"";position:absolute;width:14px;height:14px;border:2px solid var(--ac);z-index:6;pointer-events:none}
+.imap-hudbox::before{left:-2px;top:-2px;border-right:none;border-bottom:none}
+.imap-hudbox::after{right:-2px;top:-2px;border-left:none;border-bottom:none}
+.imap-hudbox>.cb::before{left:-2px;bottom:-2px;border-right:none;border-top:none}
+.imap-hudbox>.cb::after{right:-2px;bottom:-2px;border-left:none;border-top:none}
+.imap-hud{display:flex;align-items:center;justify-content:space-between;gap:8px 14px;flex-wrap:wrap;
+  font-family:var(--bmono);font-size:10.5px;letter-spacing:.14em;color:var(--ac);padding:2px 2px 10px}
+.imap-hud .dim{color:var(--mutb)}
+.imap-hud b{color:var(--warnb);font-weight:400}
+.imap-hud .tgt{color:var(--okb)}
+.imap-hud .tgt::before{content:"◉ "}
+.imap-hud .caret{display:inline-block;width:7px;height:1em;background:var(--okb);vertical-align:-2px;animation:hblink 1s steps(1) infinite}
+@keyframes hblink{50%{opacity:0}}
+.imap{position:relative;width:fit-content;max-width:100%;margin:0 auto;border:1px solid rgba(150,200,255,.35);background:rgba(6,26,46,.45);box-shadow:inset 0 0 26px rgba(4,16,32,.6)}
+.imap-in{position:relative;width:fit-content;max-width:100%;margin:0 auto;font-size:0}
+.imap img.mapbase{display:block;max-height:72vh;width:auto;max-width:100%;opacity:.93}
+.imap .xh{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .2s;z-index:4}
+.imap-in:hover .xh{opacity:1}
+.imap .xh .v{position:absolute;top:0;bottom:0;width:1px;background:rgba(143,208,255,.32)}
+.imap .xh .h{position:absolute;left:0;right:0;height:1px;background:rgba(143,208,255,.32)}
+.imap .xh .tag{position:absolute;font-family:var(--bmono);font-size:10px;letter-spacing:.1em;color:var(--ac);background:rgba(6,26,46,.92);border:1px solid rgba(150,200,255,.35);padding:1px 6px;white-space:nowrap;transform:translate(10px,10px)}
+@media(pointer:coarse){.imap .xh{display:none}}
+.imap .scan{position:absolute;left:0;right:0;top:-2%;height:2px;pointer-events:none;z-index:3;
+  background:linear-gradient(90deg,transparent,rgba(143,208,255,.5),transparent);
+  animation:iscan 7s linear infinite;opacity:.65}
+@keyframes iscan{0%{top:-2%}100%{top:102%}}
+.mdot{position:absolute;width:15px;height:15px;margin:-15px 0 0 -7.5px;border-radius:50%;
+  border:2px solid #fff;cursor:pointer;padding:0;z-index:5;
+  box-shadow:0 0 6px rgba(0,0,0,.55);transition:transform .15s,box-shadow .15s;
+  animation:blipIn .45s cubic-bezier(.2,.7,.3,1) backwards;animation-delay:calc(var(--i)*22ms)}
+@keyframes blipIn{0%{transform:scale(0);opacity:0}70%{transform:scale(1.4)}100%{transform:scale(1);opacity:1}}
+.mdot:hover{transform:scale(1.5);box-shadow:0 0 10px 2px rgba(143,208,255,.55);z-index:8}
+.mdot.on{transform:scale(1.55);box-shadow:0 0 0 3px rgba(143,208,255,.45),0 0 12px 3px rgba(143,208,255,.5);z-index:7}
+.mdot.on::before{content:"";position:absolute;inset:-5px;border-radius:50%;border:1.5px solid rgba(143,208,255,.85);animation:ping 1.5s ease-out infinite}
+@keyframes ping{0%{transform:scale(.55);opacity:.95}100%{transform:scale(2.3);opacity:0}}
+.mdot::after{content:attr(data-n);position:absolute;left:50%;bottom:calc(100% + 6px);transform:translateX(-50%) translateY(2px);
+  font-family:var(--bmono);font-size:10.5px;letter-spacing:.06em;color:#dcebff;white-space:nowrap;
+  background:rgba(6,26,46,.92);border:1px solid rgba(150,200,255,.4);padding:1px 7px;
+  opacity:0;pointer-events:none;transition:.18s;z-index:9}
+.mdot:hover::after{opacity:1;transform:translateX(-50%) translateY(0)}
+.mdot.c-gate{background:#e05252}.mdot.c-teach{background:#2fbf7f}.mdot.c-dorm{background:#f09b3c}.mdot.c-life{background:#41a8f0}.mdot.c-sport{background:#7dd08a}.mdot.c-spot{background:#b07ef0}
+.imap-info{position:relative;background:rgba(10,40,68,.55);border:1px solid rgba(150,200,255,.28);padding:12px 15px;margin:11px 0 0;font-size:13px;color:#dcebff}
+.imap-info::before,.imap-info::after,.imap-info>.cb::before,.imap-info>.cb::after{
+  content:"";position:absolute;width:10px;height:10px;border:1.5px solid rgba(143,208,255,.8);pointer-events:none}
+.imap-info::before{left:-1px;top:-1px;border-right:none;border-bottom:none}
+.imap-info::after{right:-1px;top:-1px;border-left:none;border-bottom:none}
+.imap-info>.cb::before{left:-1px;bottom:-1px;border-right:none;border-top:none}
+.imap-info>.cb::after{right:-1px;bottom:-1px;border-left:none;border-top:none}
+.imap-info .iread{animation:iread .38s cubic-bezier(.2,.7,.3,1)}
+@keyframes iread{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.imap-info .t{font-weight:bold;font-size:15px;color:#fff;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.imap-info .readout{font-family:var(--bmono);font-size:10px;letter-spacing:.16em;color:var(--ac);margin-bottom:6px}
+.imap-info .readout b{color:var(--warnb);font-weight:400}
+.imap-info .catb{font-size:10.5px;color:#062036;border-radius:2px;padding:0 6px;font-weight:normal;white-space:nowrap}
+.imap-info ul{margin:7px 0 2px 18px;padding:0}
+.imap-info li{margin:3px 0;color:#c9def5}
+.imap-info li::marker{color:var(--ac)}
+.imap-info a{color:var(--okb);text-decoration:none;border-bottom:1px dashed rgba(125,255,196,.5)}
+.imap-info a:hover{color:#fff;border-bottom-style:solid}
+.imap-info .row .k{color:var(--mutb)}
+.imap-info .row .v{color:#c9def5}
+.imap-info .src{color:var(--mutb);border-top:1px dashed rgba(150,200,255,.25)}
+.imap-info .src a{color:var(--mutb)}
+.imap-info .ph{color:var(--mutb);font-family:var(--bmono);font-size:11.5px;letter-spacing:.08em}
+.ileg{display:flex;gap:6px;flex-wrap:wrap;margin:11px 0 2px;align-items:center}
+.ileg .lg-t{font-size:11px;color:var(--mutb);font-family:var(--bmono);letter-spacing:.1em}
+.ileg button{border:1px solid rgba(150,200,255,.3);background:rgba(143,208,255,.06);border-radius:2px;padding:2px 10px;font-size:11.5px;cursor:pointer;color:#dcebff;display:inline-flex;align-items:center;gap:5px;transition:.2s}
+.ileg button:hover{border-color:var(--ac);box-shadow:0 0 8px rgba(143,208,255,.3)}
 .ileg button .d{width:9px;height:9px;border-radius:50%;display:inline-block}
-.ileg button.off{opacity:.35}
-.imap-list{margin-top:6px}
-.ilg{display:flex;gap:5px;flex-wrap:wrap;align-items:baseline;margin:4px 0}
-.ilg .cl{font-size:11px;color:var(--gray);flex:0 0 58px;text-align:justify;text-align-last:justify}
-.ilg button{border:1px solid #cfe6da;background:#fff;border-radius:12px;padding:1px 9px;font-size:11.5px;cursor:pointer;color:var(--green-d)}
-.ilg button:hover{background:var(--green-l)}
-.ilg button.on{background:var(--green);color:#fff;font-weight:bold}
-@media (max-width:640px){.mdot{width:19px;height:19px;margin:-19px 0 0 -9.5px;border-width:2px}}
+.ileg button.off{opacity:.32}
+.imap-list{margin-top:8px}
+.ilg{display:flex;gap:5px;flex-wrap:wrap;align-items:baseline;margin:5px 0}
+.ilg .cl{font-size:11px;color:var(--mutb);flex:0 0 58px;text-align:justify;text-align-last:justify}
+.ilg button{border:1px solid rgba(150,200,255,.24);background:rgba(143,208,255,.05);border-radius:2px;padding:1px 9px;font-size:11.5px;cursor:pointer;color:#cfe6ff;transition:.18s}
+.ilg button:hover{background:rgba(143,208,255,.16);border-color:var(--ac);transform:translateY(-1px);box-shadow:0 0 8px rgba(143,208,255,.22)}
+.ilg button.on{background:var(--ac);border-color:var(--ac);color:#062036;font-weight:bold}
+.spark{position:fixed;z-index:99;pointer-events:none}
+.spark i{position:absolute;left:0;top:0;width:2px;height:9px;background:var(--ac);box-shadow:0 0 6px var(--ac);animation:spk .5s ease-out forwards}
+@keyframes spk{0%{transform:translate(-50%,-50%) rotate(var(--ra)) translateY(0);opacity:1}100%{transform:translate(-50%,-50%) rotate(var(--ra)) translateY(var(--rd));opacity:0}}
+@media (max-width:640px){.mdot{width:19px;height:19px;margin:-19px 0 0 -9.5px;border-width:2px}.imap-hud .dim{display:none}}
+@media (prefers-reduced-motion:reduce){.imap .scan,.imap-hud .caret,.mdot,.mdot.on::before,.imap-info .iread{animation:none!important}}
 .morelink{float:right;font-size:12.5px;font-weight:normal}
 footer{text-align:center;color:#9aa7b5;font-size:11.5px;padding:24px 16px 40px;line-height:2}
 @media print{nav,#top,.chips{display:none}body{background:#fff}}
@@ -236,10 +304,22 @@ function moduleHtml(key, title, collapsed){
   return html + '</div>';
 }
 
-// ===== 互动地图 =====
+// ===== 互动地图 · 蓝图HUD =====
 const MB = DATA.mapBuildings||null;
-const CATC = {gate:'#c0392b',teach:'#1e7a4f',dorm:'#d4791f',life:'#2c7fb8',sport:'#5b8c5a',spot:'#8e44ad'};
-function openMapB(id,scroll){
+const CATC = {gate:'#e05252',teach:'#2fbf7f',dorm:'#f09b3c',life:'#41a8f0',sport:'#7dd08a',spot:'#b07ef0'};
+function spark(x,y){
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const b=document.createElement('div');b.className='spark';b.style.cssText=`left:${x}px;top:${y}px`;
+  for(let i=0;i<8;i++){
+    const s=document.createElement('i');
+    s.style.setProperty('--ra',(i/8*360)+'deg');
+    s.style.setProperty('--rd',(20+Math.random()*18)+'px');
+    s.style.animationDelay=(Math.random()*40)+'ms';
+    b.appendChild(s);
+  }
+  document.body.appendChild(b);setTimeout(()=>b.remove(),600);
+}
+function openMapB(id){
   if(!MB) return;
   const b = MB.items.find(x=>x.id===id);
   if(!b) return;
@@ -248,22 +328,25 @@ function openMapB(id,scroll){
   const pts = (b.pts||[]).concat(b.c==='dorm' ? (MB.dormCommonPts||[]) : []);
   const links = (b.lk&&b.lk.length) ? `<div class="row"><span class="k">链接</span><span class="v">${b.lk.map(linkHtml).join('<br>')}</span></div>` : '';
   const box = document.getElementById('imapInfo');
-  box.innerHTML = `<div class="t">${b.num?`<span class="badge">${esc(b.num)}</span>`:''}${esc(b.n)}<span class="catb" style="background:${CATC[b.c]||'var(--green)'}">${esc(MB.cats[b.c]||'')}</span></div>
+  box.innerHTML = `<i class="cb"></i><div class="iread"><div class="readout">&gt; TARGET_LOCK [<b>${esc(b.num||'--')}</b>] // CAT:${esc((MB.cats[b.c]||'')).toUpperCase()} // POS ${b.x}%/${b.y}%</div>
+  <div class="t">${esc(b.n)}<span class="catb" style="background:${CATC[b.c]||'#2fbf7f'}">${esc(MB.cats[b.c]||'')}</span>${b.num?`<span class="catb" style="background:var(--amber);color:#4a3305">${esc(b.num)}</span>`:''}</div>
   <div style="margin-top:4px">${linkify(b.d)}</div>
   ${pts.length?`<ul>${pts.map(p=>`<li>${linkify(p)}</li>`).join('')}</ul>`:''}${links}
-  ${b.src?`<div class="src">来源：${esc(b.src)}</div>`:''}`;
+  ${b.src?`<div class="src">来源：${esc(b.src)}</div>`:''}</div>`;
 }
 function imapPanelHtml(){
-  const dots = MB.items.map(b=>`<button class="mdot c-${b.c}" style="left:${b.x}%;top:${b.y}%" data-id="${b.id}" title="${esc(b.n)}" aria-label="${esc(b.n)}"></button>`).join('');
-  const legend = `<span class="lg-t">图例（点击隐藏/显示）：</span>` + Object.keys(MB.cats).map(c=>`<button data-cat="${c}"><span class="d" style="background:${CATC[c]}"></span>${esc(MB.cats[c])}</button>`).join('');
+  const dots = MB.items.map((b,i)=>`<button class="mdot c-${b.c}" style="left:${b.x}%;top:${b.y}%;--i:${i}" data-id="${b.id}" data-n="${esc(b.n)}" aria-label="${esc(b.n)}"></button>`).join('');
+  const legend = `<span class="lg-t">图层/点击显隐</span>` + Object.keys(MB.cats).map(c=>`<button data-cat="${c}"><span class="d" style="background:${CATC[c]}"></span>${esc(MB.cats[c])}</button>`).join('');
   const list = Object.keys(MB.cats).map(c=>{
     const its = MB.items.filter(b=>b.c===c);
     return `<div class="ilg" data-cat="${c}"><span class="cl">${esc(MB.cats[c])}</span>${its.map(b=>`<button data-id="${b.id}">${esc(b.n)}</button>`).join('')}</div>`;
   }).join('');
-  return `<div class="imap" id="imap"><img class="mapbase" src="${esc(DATA.mapImg)}" alt="二校区互动地图">${dots}</div>
-  <div id="imapInfo" class="imap-info">点击地图上的彩色圆点，或下方列表中的名称，查看建筑 / 场所详细介绍。圆点颜色代表类别，见下方图例。</div>
+  return `<div class="imap-hudbox"><i class="cb"></i>
+  <div class="imap-hud"><span>NCEPU·BD // 二校区 <span class="dim">CAMPUS-MAP</span></span><span class="dim">X:<b id="imapX">--</b> Y:<b id="imapY">--</b></span><span class="tgt">${MB.items.length} TARGETS</span><span class="caret"></span></div>
+  <div class="imap" id="imap"><div class="imap-in"><img class="mapbase" src="${esc(DATA.mapImg)}" alt="二校区互动地图"><div class="xh"><i class="v"></i><i class="h"></i><span class="tag"></span></div><div class="scan"></div>${dots}</div></div>
+  <div id="imapInfo" class="imap-info"><i class="cb"></i><span class="ph">&gt; STANDBY // 点击地图圆点或下方目标列表，查看建筑详情…</span></div>
   <div class="ileg" id="imapLegend">${legend}</div>
-  <div class="imap-list" id="imapList">${list}</div>`;
+  <div class="imap-list" id="imapList">${list}</div></div>`;
 }
 
 // ===== 首页：只有 地图 + 学校简介 + 折叠的学习/生活模块 =====
@@ -297,21 +380,41 @@ function renderDev(){
 renderHome();
 if(MB){
   document.getElementById('imap').addEventListener('click',e=>{
-    const d=e.target.closest('.mdot'); if(d) openMapB(d.dataset.id,false);
+    const d=e.target.closest('.mdot');
+    if(d){ openMapB(d.dataset.id); spark(e.clientX,e.clientY); }
   });
+  /* 准星十字线 + HUD 坐标读数（仅鼠标设备） */
+  if(matchMedia('(pointer:fine)').matches){
+    const imapIn=document.querySelector('.imap-in');
+    const xh=document.querySelector('#imap .xh');
+    const tag=xh.querySelector('.tag');
+    imapIn.addEventListener('mousemove',e=>{
+      const r=imapIn.getBoundingClientRect();
+      const px=(e.clientX-r.left)/r.width*100, py=(e.clientY-r.top)/r.height*100;
+      xh.querySelector('.v').style.left=px+'%';
+      xh.querySelector('.h').style.top=py+'%';
+      tag.style.left=px+'%'; tag.style.top=py+'%';
+      tag.textContent='X:'+px.toFixed(1)+' Y:'+py.toFixed(1);
+      const hx=document.getElementById('imapX'), hy=document.getElementById('imapY');
+      if(hx){ hx.textContent=px.toFixed(1); hy.textContent=py.toFixed(1); }
+    });
+    imapIn.addEventListener('mouseleave',()=>{
+      const hx=document.getElementById('imapX');
+      if(hx){ hx.textContent='--'; document.getElementById('imapY').textContent='--'; }
+    });
+  }
   document.getElementById('imapLegend').addEventListener('click',e=>{
     const btn=e.target.closest('button[data-cat]'); if(!btn) return;
     btn.classList.toggle('off');
     const off=[...document.querySelectorAll('#imapLegend button.off')].map(x=>x.dataset.cat);
-    const hiddenCats=off.slice();
     document.querySelectorAll('#imap .mdot').forEach(d=>{
       const b=MB.items.find(x=>x.id===d.dataset.id);
-      d.style.display=(b&&hiddenCats.includes(b.c))?'none':'';
+      d.style.display=(b&&off.includes(b.c))?'none':'';
     });
-    document.querySelectorAll('#imapList .ilg').forEach(g=>{g.style.display=hiddenCats.includes(g.dataset.cat)?'none':'';});
+    document.querySelectorAll('#imapList .ilg').forEach(g=>{g.style.display=off.includes(g.dataset.cat)?'none':'';});
   });
   document.getElementById('imapList').addEventListener('click',e=>{
-    const btn=e.target.closest('button[data-id]'); if(btn) openMapB(btn.dataset.id,true);
+    const btn=e.target.closest('button[data-id]'); if(btn) openMapB(btn.dataset.id);
   });
 }
 document.getElementById('view-study').innerHTML = moduleHtml('study','学习',false);
