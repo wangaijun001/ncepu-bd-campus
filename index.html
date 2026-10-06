@@ -77,8 +77,8 @@ select.deptSel{border:1px solid var(--line);border-radius:16px;padding:4px 10px;
 .lurl{display:inline-block;color:#8ba3b8;font-size:10.5px;margin-left:5px;word-break:break-all;font-weight:normal}
 .quick a small.u{color:#5f7488;opacity:1}
 /* 互动地图 */
-.imap{position:relative;border:1px solid var(--line);border-radius:10px;overflow:hidden;margin:10px 0;background:#dfe7ee}
-.imap img.mapbase{width:100%;display:block}
+.imap{position:relative;width:fit-content;max-width:100%;margin:0 auto;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#dfe7ee}
+.imap img.mapbase{display:block;max-height:74vh;width:auto;max-width:100%}
 .mdot{position:absolute;width:15px;height:15px;margin:-15px 0 0 -7.5px;border-radius:50%;border:2.5px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.45);cursor:pointer;padding:0;z-index:5;transition:transform .12s}
 .mdot:hover{transform:scale(1.5)}
 .mdot.on{transform:scale(1.55);box-shadow:0 0 0 3px rgba(30,122,79,.5),0 1px 4px rgba(0,0,0,.45)}
@@ -252,7 +252,6 @@ function openMapB(id,scroll){
   <div style="margin-top:4px">${linkify(b.d)}</div>
   ${pts.length?`<ul>${pts.map(p=>`<li>${linkify(p)}</li>`).join('')}</ul>`:''}${links}
   ${b.src?`<div class="src">来源：${esc(b.src)}</div>`:''}`;
-  if(scroll) box.scrollIntoView({behavior:'smooth',block:'nearest'});
 }
 function imapPanelHtml(){
   const dots = MB.items.map(b=>`<button class="mdot c-${b.c}" style="left:${b.x}%;top:${b.y}%" data-id="${b.id}" title="${esc(b.n)}" aria-label="${esc(b.n)}"></button>`).join('');
