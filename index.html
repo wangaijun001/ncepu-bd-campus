@@ -260,7 +260,7 @@ function imapPanelHtml(){
     const its = MB.items.filter(b=>b.c===c);
     return `<div class="ilg" data-cat="${c}"><span class="cl">${esc(MB.cats[c])}</span>${its.map(b=>`<button data-id="${b.id}">${esc(b.n)}</button>`).join('')}</div>`;
   }).join('');
-  return `<div class="imap" id="imap"><img class="mapbase" src="${esc(DATA.mapImg)}" alt="二校区互动地图">${dots}</div>
+  return `<div class="imap" id="imap"><img class="mapbase" src="${esc(DATA.mapImg)}" alt="二校区互动地图" width="1080" height="1152" decoding="async" fetchpriority="high">${dots}</div>
   <div id="imapInfo" class="imap-info">点击地图上的彩色圆点，或下方列表中的名称，查看建筑 / 场所详细介绍。圆点颜色代表类别，见下方图例。</div>
   <div class="ileg" id="imapLegend">${legend}</div>
   <div class="imap-list" id="imapList">${list}</div>`;
