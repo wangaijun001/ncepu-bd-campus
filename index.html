@@ -100,6 +100,34 @@ select.deptSel{border:1px solid var(--line);border-radius:16px;padding:4px 10px;
 .ilg button:hover{background:var(--green-l)}
 .ilg button.on{background:var(--green);color:#fff;font-weight:bold}
 @media (max-width:640px){.mdot{width:19px;height:19px;margin:-19px 0 0 -9.5px;border-width:2px}}
+/* 矢量地图 */
+.imap-mode{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin:10px 0 8px}
+.imap-mode .mt{font-size:12px;color:var(--gray)}
+.imap-mode button{border:1px solid var(--line);background:#fff;border-radius:14px;padding:2px 13px;font-size:12px;cursor:pointer;color:#2c3a4d}
+.imap-mode button.on{background:var(--green);border-color:var(--green);color:#fff;font-weight:bold}
+.imap-mode .mhint{font-size:11px;color:var(--gray)}
+#vmapWrap{width:100%}
+#vmap{display:block;width:100%;height:72vh;touch-action:none;cursor:grab;background:#eef4ef;border-radius:6px;user-select:none}
+#vmap:active{cursor:grabbing}
+.vbg{fill:#eef4ef}
+.vgrass{fill:#dcead9}
+.vroad{fill:none;stroke:#d3ded5;stroke-width:13;stroke-linecap:round}
+.vwater{fill:none;stroke:#8ec8de;stroke-width:6;stroke-linecap:round;opacity:.85}
+.vb{cursor:pointer}
+.vb rect,.vb polygon,.vb ellipse{stroke-width:2.5;transition:.15s;vector-effect:non-scaling-stroke}
+.vb.c-gate rect,.vb.c-gate polygon,.vb.c-gate ellipse{fill:rgba(192,57,43,.3);stroke:#c0392b}
+.vb.c-teach rect,.vb.c-teach polygon,.vb.c-teach ellipse{fill:rgba(30,122,79,.2);stroke:#1e7a4f}
+.vb.c-dorm rect,.vb.c-dorm polygon,.vb.c-dorm ellipse{fill:rgba(212,121,31,.32);stroke:#d4791f}
+.vb.c-life rect,.vb.c-life polygon,.vb.c-life ellipse{fill:rgba(44,127,184,.25);stroke:#2c7fb8}
+.vb.c-sport rect,.vb.c-sport polygon,.vb.c-sport ellipse{fill:rgba(91,140,90,.3);stroke:#5b8c5a}
+.vb.c-spot rect,.vb.c-spot polygon,.vb.c-spot ellipse{fill:rgba(142,68,173,.18);stroke:#8e44ad}
+.vb:hover{filter:brightness(.86)}
+.vb.on rect,.vb.on polygon,.vb.on ellipse{stroke-width:4.5}
+.vb text{font-size:17px;fill:#1f2733;text-anchor:middle;dominant-baseline:middle;paint-order:stroke;stroke:#fff;stroke-width:3px;stroke-linejoin:round;pointer-events:none;font-family:"Microsoft YaHei","PingFang SC",sans-serif}
+#vmap g.c-dorm text{opacity:0;transition:.2s}
+#vmap.z2 g.c-dorm text{opacity:1}
+.vctl{position:absolute;right:10px;bottom:10px;display:flex;flex-direction:column;gap:6px}
+.vctl button{width:34px;height:34px;border-radius:8px;border:1px solid var(--line);background:#fff;font-size:15px;cursor:pointer;color:var(--green-d);box-shadow:0 1px 4px rgba(0,0,0,.15)}
 .morelink{float:right;font-size:12.5px;font-weight:normal}
 footer{text-align:center;color:#9aa7b5;font-size:11.5px;padding:24px 16px 40px;line-height:2}
 @media print{nav,#top,.chips{display:none}body{background:#fff}}
@@ -301,6 +329,124 @@ function renderBldgsView(){
   }
   document.getElementById('view-bldgs').innerHTML = html + '</div>';
 }
+// ===== 矢量地图（SVG 手绘轮廓，可拖拽缩放） =====
+const MSHAPES = {
+ bm_n:["rect",842,80,876,98],
+ bm_s:["rect",606,918,642,938],
+ j6:["rect",488,742,548,788],
+ j7:["rect",600,726,660,772],
+ j8a:["rect",552,354,620,410],
+ j8b:["rect",480,356,540,406],
+ j9a:["rect",508,850,572,900],
+ j9b:["rect",498,796,560,844],
+ j10a:["rect",620,846,682,894],
+ j10b:["rect",614,784,678,832],
+ j11:["rect",850,390,910,430],
+ j12:["rect",208,858,292,932],
+ xgl:["rect",346,580,394,624],
+ rx:["rect",510,582,580,646],
+ sc:["rect",796,320,854,374],
+ bjz:["rect",604,450,654,490],
+ yss:["rect",434,682,474,714],
+ yws:["rect",414,644,460,676],
+ hdcs:["rect",452,700,502,730],
+ xsh:["rect",604,600,650,640],
+ sf:["rect",700,450,744,484],
+ tyd:["ell",406,828,95,126],
+ wt:["rect",310,620,366,666],
+ lq:["rect",510,146,604,214],
+ xzq:["rect",545,235,635,310],
+ wq:["rect",316,546,400,606],
+ rxy:["poly",[[380,330],[445,315],[462,370],[450,430],[435,470],[400,490],[378,450],[372,390]]],
+ whgc:["rect",572,780,626,852],
+ s3:["rect",768,319,798,337],
+ s6:["rect",634,638,664,656],
+ s7:["rect",578,442,608,460],
+ s8:["rect",621,563,651,581],
+ s9:["rect",592,480,622,498],
+ s10:["rect",482,504,512,522],
+ s11:["rect",692,368,722,386],
+ s12:["rect",673,319,703,337],
+ s13:["rect",667,258,697,276],
+ s14:["rect",664,217,694,235],
+ s15:["rect",798,257,828,275],
+ s16:["rect",801,205,831,223],
+ s17:["rect",676,161,706,179],
+ s18:["rect",789,150,819,168],
+ s19:["rect",903,303,933,321],
+ s20:["rect",901,242,931,260],
+ qa:["rect",896,460,954,494],
+ qbd:["rect",946,396,1002,430],
+ qc:["rect",936,338,990,370]
+};
+const VROADS = [
+ "M868,108C838,190,790,260,730,330C690,375,660,420,636,470C615,515,600,570,596,630C592,700,610,780,618,850C622,895,624,915,624,928",
+ "M730,330C650,345,560,370,500,410C445,448,415,495,395,545",
+ "M395,545C370,600,360,660,372,720C382,770,400,830,430,880C470,925,540,935,615,928",
+ "M636,470C700,460,780,440,852,404"
+];
+function vLabelPos(s){
+  let xs=[], ys=[];
+  if(s[0]==='rect'){ xs=[s[1],s[3]]; ys=[s[2],s[4]]; }
+  else if(s[0]==='ell'){ xs=[s[1]-s[3],s[1]+s[3]]; ys=[s[2]-s[4],s[2]+s[4]]; }
+  else { s[1].forEach(p=>{xs.push(p[0]);ys.push(p[1]);}); }
+  return [(Math.min(...xs)+Math.max(...xs))/2, (Math.min(...ys)+Math.max(...ys))/2];
+}
+function renderVectorMap(){
+  const shapes = MB.items.map(b=>{
+    const s = MSHAPES[b.id]; if(!s) return '';
+    const name = b.n.replace(/ · .*/,'');
+    let geo='';
+    if(s[0]==='rect') geo=`<rect x="${s[1]}" y="${s[2]}" width="${s[3]-s[1]}" height="${s[4]-s[2]}" rx="3"/>`;
+    else if(s[0]==='ell') geo=`<ellipse cx="${s[1]}" cy="${s[2]}" rx="${s[3]}" ry="${s[4]}"/>`;
+    else geo=`<polygon points="${s[1].map(p=>p.join(',')).join(' ')}"/>`;
+    const [lx,ly]=vLabelPos(s);
+    return `<g class="vb c-${b.c}" data-id="${b.id}" tabindex="0" role="button" aria-label="${esc(b.n)}"><title>${esc(b.n)}（点击查看详情）</title>${geo}<text x="${lx}" y="${ly}">${esc(name)}</text></g>`;
+  }).join('');
+  return `<svg id="vmap" viewBox="0 0 1080 1152" preserveAspectRatio="xMidYMid meet" role="img" aria-label="二校区矢量地图">
+  <g id="vmapT">
+   <rect x="-40" y="-40" width="1160" height="1232" class="vbg"/>
+   <ellipse cx="406" cy="828" rx="150" ry="185" class="vgrass"/>
+   <rect x="500" y="130" width="140" height="195" rx="12" class="vgrass"/>
+   <polygon points="368,310 470,296 478,468 420,508 362,452" class="vgrass"/>
+   ${VROADS.map(d=>`<path class="vroad" d="${d}"/>`).join('')}
+   <path class="vwater" d="M435,316C423,350,428,372,418,396C410,418,398,428,397,447C396,462,406,470,416,472"/>
+   ${shapes}
+  </g></svg>
+  <div class="vctl"><button id="vzIn" type="button" aria-label="放大">＋</button><button id="vzOut" type="button" aria-label="缩小">－</button><button id="vzRst" type="button" aria-label="复位">⌂</button></div>`;
+}
+function initVectorMap(){
+  const svg=document.getElementById('vmap'); if(!svg) return;
+  const T=document.getElementById('vmapT');
+  let k=1, tx=0, ty=0;
+  const apply=()=>{ T.setAttribute('transform',`translate(${tx},${ty}) scale(${k})`); svg.classList.toggle('z2', k>=1.8); };
+  const toSvg=(cx,cy)=>{ const r=svg.getBoundingClientRect(); const s=Math.min(r.width/1080, r.height/1152); return { x:(cx-r.left-(r.width-1080*s)/2)/s, y:(cy-r.top-(r.height-1152*s)/2)/s }; };
+  const zoomAt=(f,px,py)=>{ const k2=Math.min(8,Math.max(1,k*f)); if(k2===k) return; px=px??540; py=py??576; tx=px-(px-tx)*(k2/k); ty=py-(py-ty)*(k2/k); k=k2; if(k===1){tx=0;ty=0;} apply(); };
+  svg.addEventListener('wheel',e=>{ e.preventDefault(); const p=toSvg(e.clientX,e.clientY); zoomAt(e.deltaY<0?1.15:1/1.15, p.x, p.y); },{passive:false});
+  const ptrs=new Map(); let moved=0, lastDist=0;
+  svg.addEventListener('pointerdown',e=>{ svg.setPointerCapture(e.pointerId); ptrs.set(e.pointerId,{x:e.clientX,y:e.clientY}); moved=0; if(ptrs.size===2){ const [a,b]=[...ptrs.values()]; lastDist=Math.hypot(a.x-b.x,a.y-b.y); } });
+  svg.addEventListener('pointermove',e=>{
+    if(!ptrs.has(e.pointerId)) return;
+    const prev={...ptrs.get(e.pointerId)}; ptrs.set(e.pointerId,{x:e.clientX,y:e.clientY});
+    if(ptrs.size===1){
+      const r=svg.getBoundingClientRect(); const s=Math.min(r.width/1080, r.height/1152);
+      tx+=(e.clientX-prev.x)/s; ty+=(e.clientY-prev.y)/s; moved+=Math.abs(e.clientX-prev.x)+Math.abs(e.clientY-prev.y);
+    } else if(ptrs.size===2){
+      const [a,b]=[...ptrs.values()]; const d=Math.hypot(a.x-b.x,a.y-b.y);
+      if(lastDist>0){ const p=toSvg((a.x+b.x)/2,(a.y+b.y)/2); zoomAt(d/lastDist, p.x, p.y); }
+      lastDist=d; moved=99;
+    }
+    if(k===1){ tx=0; ty=0; }
+    apply();
+  });
+  const end=e=>{ ptrs.delete(e.pointerId); lastDist=0; };
+  svg.addEventListener('pointerup',end); svg.addEventListener('pointercancel',end);
+  svg.addEventListener('click',e=>{ if(moved>6) return; const g=e.target.closest('.vb'); if(g) openBuilding(g.dataset.id); });
+  document.getElementById('vzIn').onclick=()=>zoomAt(1.4);
+  document.getElementById('vzOut').onclick=()=>zoomAt(1/1.4);
+  document.getElementById('vzRst').onclick=()=>{ k=1; tx=0; ty=0; apply(); };
+  apply();
+}
 function imapPanelHtml(){
   const dots = MB.items.map(b=>`<button class="mdot c-${b.c}" style="left:${b.x}%;top:${b.y}%" data-id="${b.id}" title="${esc(b.n)}" aria-label="${esc(b.n)}"></button>`).join('');
   const legend = `<span class="lg-t">图例（点击隐藏/显示）：</span>` + Object.keys(MB.cats).map(c=>`<button data-cat="${c}"><span class="d" style="background:${CATC[c]}"></span>${esc(MB.cats[c])}</button>`).join('');
@@ -308,8 +454,10 @@ function imapPanelHtml(){
     const its = MB.items.filter(b=>b.c===c);
     return `<div class="ilg" data-cat="${c}"><span class="cl">${esc(MB.cats[c])}</span>${its.map(b=>`<button data-id="${b.id}">${esc(b.n)}</button>`).join('')}</div>`;
   }).join('');
-  return `<div class="imap" id="imap"><img class="mapbase" src="${esc(DATA.mapImg)}" alt="二校区互动地图" width="1080" height="1152" decoding="async" fetchpriority="high">${dots}</div>
-  <div id="imapInfo" class="imap-info">点击地图上的彩色圆点，或下方列表中的名称，查看建筑 / 场所详细介绍。圆点颜色代表类别，见下方图例。</div>
+  return `<div class="imap-mode"><span class="mt">地图模式</span><button id="mModeV" class="on" type="button">矢量地图</button><button id="mModeP" type="button">手绘原图</button><span class="mhint">矢量图：拖动平移 · 滚轮 / 双指缩放 · 点击楼宇看详情</span></div>
+  <div id="vmapWrap" class="imap">${renderVectorMap()}</div>
+  <div id="imap" class="imap" style="display:none"><img class="mapbase" src="${esc(DATA.mapImg)}" alt="二校区手绘地图" width="1080" height="1152" decoding="async" fetchpriority="high">${dots}</div>
+  <div id="imapInfo" class="imap-info" style="display:none">点击手绘图上的彩色圆点，或下方列表中的名称，查看建筑 / 场所详细介绍。圆点颜色代表类别，见下方图例。</div>
   <div class="ileg" id="imapLegend">${legend}</div>
   <div class="imap-list" id="imapList">${list}</div>`;
 }
@@ -344,6 +492,15 @@ function renderDev(){
 // ===== 主流程 =====
 renderHome();
 if(MB){
+  initVectorMap();
+  /* 模式切换：矢量 / 手绘 */
+  const mV=document.getElementById('mModeV'), mP=document.getElementById('mModeP');
+  mV.onclick=()=>{ mV.classList.add('on'); mP.classList.remove('on');
+    document.getElementById('vmapWrap').style.display=''; document.getElementById('imap').style.display='none';
+    document.getElementById('imapInfo').style.display='none'; };
+  mP.onclick=()=>{ mP.classList.add('on'); mV.classList.remove('on');
+    document.getElementById('vmapWrap').style.display='none'; document.getElementById('imap').style.display='';
+    document.getElementById('imapInfo').style.display=''; };
   document.getElementById('imap').addEventListener('click',e=>{
     const d=e.target.closest('.mdot'); if(d) openMapB(d.dataset.id,false);
   });
@@ -356,10 +513,14 @@ if(MB){
       const b=MB.items.find(x=>x.id===d.dataset.id);
       d.style.display=(b&&hiddenCats.includes(b.c))?'none':'';
     });
+    document.querySelectorAll('#vmap .vb').forEach(g=>{
+      const b=MB.items.find(x=>x.id===g.dataset.id);
+      g.style.display=(b&&hiddenCats.includes(b.c))?'none':'';
+    });
     document.querySelectorAll('#imapList .ilg').forEach(g=>{g.style.display=hiddenCats.includes(g.dataset.cat)?'none':'';});
   });
   document.getElementById('imapList').addEventListener('click',e=>{
-    const btn=e.target.closest('button[data-id]'); if(btn) openMapB(btn.dataset.id,true);
+    const btn=e.target.closest('button[data-id]'); if(btn) openBuilding(btn.dataset.id);
   });
 }
 document.getElementById('view-svc').innerHTML = moduleHtml('study','学习',false) + moduleHtml('life','生活',false);
