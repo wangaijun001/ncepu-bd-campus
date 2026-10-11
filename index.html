@@ -111,8 +111,8 @@ footer{text-align:center;color:#9aa7b5;font-size:11.5px;padding:24px 16px 40px;l
   <div class="nav-in">
     <div class="logo">华电保定<span>·校园通</span></div>
     <a class="nl on" data-view="home" href="javascript:void(0)" onclick="showView('home')">首页</a>
-    <a class="nl" data-view="study" href="javascript:void(0)" onclick="showView('study')">学习</a>
-    <a class="nl" data-view="life" href="javascript:void(0)" onclick="showView('life')">生活</a>
+    <a class="nl" data-view="bldgs" href="javascript:void(0)" onclick="showView('bldgs')">楼宇</a>
+    <a class="nl" data-view="svc" href="javascript:void(0)" onclick="showView('svc')">事务速查</a>
     <a class="nl" data-view="ai" href="javascript:void(0)" onclick="showView('ai')">AI 接入</a>
     <a class="nl" data-view="dev" href="javascript:void(0)" onclick="showView('dev')">开发者寄语</a>
     <div class="spacer"></div>
@@ -123,8 +123,9 @@ footer{text-align:center;color:#9aa7b5;font-size:11.5px;padding:24px 16px 40px;l
 
 <div class="wrap" id="app">
   <div class="view" id="view-home">页面生成中…（若长期无响应请检查 data.js 是否在同目录）</div>
-  <div class="view" id="view-study" style="display:none"></div>
-  <div class="view" id="view-life" style="display:none"></div>
+  <div class="view" id="view-bldgs" style="display:none"></div>
+  <div class="view" id="view-bldg" style="display:none"></div>
+  <div class="view" id="view-svc" style="display:none"></div>
   <div class="view" id="view-dev" style="display:none"></div>
   <div class="view" id="view-ai" style="display:none"><iframe src="ai-kit/index.html" title="校园 AI 接入指南" style="width:100%;height:calc(100vh - 120px);border:1px solid var(--line);border-radius:12px;background:#fff"></iframe></div>
 </div>
@@ -215,7 +216,7 @@ function filterBar(b){
 let CUR = 'home';
 function showView(name){
   CUR = name;
-  ['home','study','life','dev','ai'].forEach(v=>{
+  ['home','bldgs','bldg','svc','dev','ai'].forEach(v=>{
     document.getElementById('view-'+v).style.display = v===name ? '' : 'none';
   });
   document.querySelectorAll('a.nl[data-view]').forEach(a=>a.classList.toggle('on', a.dataset.view===name));
@@ -226,7 +227,7 @@ function showView(name){
 function moduleHtml(key, title, collapsed){
   const secs = DATA[key]||[];
   const zh = key==='study'?'学习':'生活';
-  let html = `<div class="panel"><h2><span class="modtag">${zh}</span>${esc(title)}${collapsed?`<a class="morelink" href="javascript:void(0)" onclick="showView('${key}')">进入${zh}模块 →</a>`:''}</h2>`;
+  let html = `<div class="panel"><h2><span class="modtag">${zh}</span>${esc(title)}${collapsed?`<a class="morelink" href="javascript:void(0)" onclick="showView('svc')">进入${zh}速查 →</a>`:''}</h2>`;
   if(!collapsed) html += `<div class="chips">${secs.map(s=>`<a class="chip" style="text-decoration:none" href="#st-${key}-${s.anchor}">${esc(s.name)}</a>`).join('')}</div>`;
   for(const s of secs){
     html += `<div ${collapsed?'':`id="st-${key}-${s.anchor}"`}><h3 class="blk${collapsed?' closed':''}" onclick="this.classList.toggle('closed');this.nextElementSibling.style.display=this.classList.contains('closed')?'none':''">${esc(s.name)}${s.desc?`<span style="font-weight:normal;font-size:11.5px;color:var(--gray)">${esc(s.desc)}</span>`:''}</h3><div class="bbody"${collapsed?' style="display:none"':''}>`;
@@ -251,7 +252,54 @@ function openMapB(id,scroll){
   box.innerHTML = `<div class="t">${b.num?`<span class="badge">${esc(b.num)}</span>`:''}${esc(b.n)}<span class="catb" style="background:${CATC[b.c]||'var(--green)'}">${esc(MB.cats[b.c]||'')}</span></div>
   <div style="margin-top:4px">${linkify(b.d)}</div>
   ${pts.length?`<ul>${pts.map(p=>`<li>${linkify(p)}</li>`).join('')}</ul>`:''}${links}
-  ${b.src?`<div class="src">来源：${esc(b.src)}</div>`:''}`;
+  ${b.src?`<div class="src">来源：${esc(b.src)}</div>`:''}
+  <div style="margin-top:9px"><a href="javascript:void(0)" onclick="openBuilding('${b.id}')"><b>打开「${esc(b.n)}」完整页面 →</b></a></div>`;
+}
+// ===== 楼宇页面 =====
+function deptBlockHtml(d){
+  let html = `<div class="panel"><h2><span class="modtag">系</span>${esc(d.n)} · 系资源</h2>`;
+  if(d.intro) html += `<div style="font-size:13.5px;margin:6px 0 10px">${linkify(d.intro)}</div>`;
+  for(const s of d.sections||[]){
+    html += `<h3 class="blk" style="cursor:default">${esc(s.t)}</h3><div class="bbody">`;
+    if(s.text) html += blockHtml({type:'text',html:s.text});
+    if(s.list) html += blockHtml({type:'list',items:s.list});
+    if(s.cards) html += blockHtml({type:'cards',items:s.cards});
+    if(s.links) html += blockHtml({type:'links',items:s.links});
+    if(s.src||s.srcUrl) html += srcHtml({src:s.src,srcUrl:s.srcUrl});
+    html += `</div>`;
+  }
+  return html + '</div>';
+}
+function openBuilding(id){
+  if(!MB) return;
+  const b = MB.items.find(x=>x.id===id);
+  if(!b) return;
+  const pts = (b.pts||[]).concat(b.c==='dorm'?(MB.dormCommonPts||[]):[]);
+  const dept = b.dept && MB.depts ? MB.depts[b.dept] : null;
+  let html = `<div class="panel"><h2>${esc(b.n)}<span class="badge" style="background:${CATC[b.c]||'var(--green)'};margin-left:8px;vertical-align:3px">${esc(MB.cats[b.c]||'')}</span>${b.num?`<span class="badge" style="background:var(--amber);margin-left:6px;vertical-align:3px">注记 ${esc(b.num)}</span>`:''}</h2>
+  <div class="pdesc">华北电力大学（保定）· 二校区</div>
+  <div style="font-size:13.5px">${linkify(b.d)}</div>
+  ${pts.length?`<h3 class="blk" style="cursor:default">服务与设施</h3><ul style="margin:6px 0 6px 20px;font-size:13px">${pts.map(p=>`<li style="margin:4px 0">${linkify(p)}</li>`).join('')}</ul>`:''}
+  ${(b.lk&&b.lk.length)?`<h3 class="blk" style="cursor:default">相关链接</h3><div class="quick">${b.lk.map(l=>`<a href="${esc(l[1])}" target="_blank" rel="noopener">${esc(l[0])}<small>${esc(l[2]||'')}</small></a>`).join('')}</div>`:''}
+  ${b.src?`<div class="src">来源：${esc(b.src)}</div>`:''}
+  <div style="margin-top:12px;font-size:13px"><a href="javascript:void(0)" onclick="showView('bldgs')">← 返回楼宇列表</a> ｜ <a href="javascript:void(0)" onclick="showView('home')">返回首页地图</a></div></div>`;
+  if(dept) html += deptBlockHtml(dept);
+  document.getElementById('view-bldg').innerHTML = html;
+  showView('bldg');
+}
+function renderBldgsView(){
+  if(!MB) return;
+  let html = `<div class="panel"><h2>楼宇导航</h2><div class="pdesc">按建筑浏览校园：每栋楼一页，教学楼宇内含所在院系资源。也可从首页地图的圆点直接进入。</div>`;
+  for(const c of Object.keys(MB.cats)){
+    const its = MB.items.filter(b=>b.c===c);
+    if(!its.length) continue;
+    html += `<h3 class="blk" style="cursor:default"><span class="badge" style="background:${CATC[c]||'var(--green)'}">${esc(MB.cats[c])}</span> ${esc(MB.cats[c])} · ${its.length} 处</h3><div class="cards">${its.map(b=>`
+      <div class="card" style="cursor:pointer" onclick="openBuilding('${b.id}')">
+        <div class="t">${esc(b.n)}${b.num?` <span class="badge" style="background:var(--amber)">${esc(b.num)}</span>`:''}${b.dept&&MB.depts&&MB.depts[b.dept]?` <span class="badge" style="background:var(--blue)">系资源</span>`:''}</div>
+        <div style="font-size:12.3px;color:#4d5c6e">${esc((b.d||'').slice(0,46))}${(b.d||'').length>46?'…':''}</div>
+      </div>`).join('')}</div>`;
+  }
+  document.getElementById('view-bldgs').innerHTML = html + '</div>';
 }
 function imapPanelHtml(){
   const dots = MB.items.map(b=>`<button class="mdot c-${b.c}" style="left:${b.x}%;top:${b.y}%" data-id="${b.id}" title="${esc(b.n)}" aria-label="${esc(b.n)}"></button>`).join('');
@@ -314,8 +362,8 @@ if(MB){
     const btn=e.target.closest('button[data-id]'); if(btn) openMapB(btn.dataset.id,true);
   });
 }
-document.getElementById('view-study').innerHTML = moduleHtml('study','学习',false);
-document.getElementById('view-life').innerHTML = moduleHtml('life','生活',false);
+document.getElementById('view-svc').innerHTML = moduleHtml('study','学习',false) + moduleHtml('life','生活',false);
+renderBldgsView();
 renderDev();
 document.getElementById('foot').innerHTML = DATA.footer;
 
